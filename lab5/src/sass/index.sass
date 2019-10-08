@@ -1,12 +1,16 @@
 @import "icons"
 @import "normalize"
-
+@import "range"
+.hover
+	transition: opacity .3s
+	cursor: pointer
+	&:hover
+		opacity: .6
 body
   display: flex
   flex-direction: column
   align-items: center
   min-width: 1620px
-
 .header
   height: 80px
   width: 100%
@@ -152,3 +156,184 @@ body
       &:hover
         opacity: .6
 
+
+.filter
+	height: 80px
+	width: 100%
+	border-left: 1px solid #d3d3d3
+	color: #232323
+	font-weight: 700
+	text-transform: uppercase
+	letter-spacing: 1.4px
+	display: flex
+	align-items: center
+	> *:not(:last-child)
+		border-right: 1px solid #d3d3d3
+		border-bottom: 1px solid #d3d3d3
+		display: flex
+		align-items: center
+		padding: 0 30px
+		height: 100%
+	&-title
+		min-width: 215px
+	&-button
+		font-size: 22px
+		color: #5269dd
+		width: 90px
+	&-item
+		flex: 1
+		justify-content: space-between
+		&_selected
+			font-weight: 400
+			margin-left: 10px
+			text-transform: none
+	&-all
+		color: #fff
+		background-color: #5269dd
+		text-transform: uppercase
+		font-size: 14px
+		font-weight: 700
+		letter-spacing: 1.4px
+		width: 150px
+		display: flex
+		align-items: center
+		justify-content: center
+		height: 100%
+		transition: opacity .3s
+		cursor: pointer
+		&:hover
+			opacity: .8
+
+.sidebar
+	display: flex
+	flex-direction: column
+	width: 306px
+	border: 1px solid #d5d5d6
+	border-top: none
+	&-block
+		display: flex
+		flex-direction: column
+		width: 100%
+		padding-bottom: 35px
+		padding-top: 30px
+		padding-left: 30px
+		padding-right: 30px
+		border-bottom: 1px solid #d5d5d6
+		&-header
+			display: flex
+			align-items: center
+			justify-content: space-between
+			position: relative
+			padding-bottom: 60px
+			&::after
+				content: ''
+				position: absolute
+				bottom: 30px
+				right: -12px
+				width: 270px
+				height: 1px
+				background-color: #f8f8f8
+			&-close
+				font-size: 14px
+				color: #999
+
+			span
+				color: #333
+				font-weight: 700
+				text-transform: uppercase
+				letter-spacing: 1.4px
+				align-items: center
+				display: flex
+				i
+					font-size: 22px
+					margin-right: 5px
+	&-categories
+		display: flex
+		width: 100%
+		flex-direction: column
+		padding-left: 35px
+		padding-right: 5px
+		color: #424242
+		font-size: 15px
+		&-item
+			display: flex
+			align-items: center
+			justify-content: space-between
+			margin-bottom: 15px
+			transition: opacity .3s
+			cursor: pointer
+			&:hover
+				opacity: .5
+			&:last-child
+				margin-bottom: 0
+			&_active
+				color: #3853d8
+	&-price
+		display: flex
+		flex-direction: column
+		width: 100%
+		font-size: 15px
+		&-input
+			display: flex
+			align-items: center
+			justify-content: space-around
+			input
+				width: 80px
+				height: 32px
+				border-radius: 16px
+				border: 1px solid #dddddd
+				text-align: center
+				font-size: 16px
+		&-range
+			margin-top: 20px
+			&-labels
+				margin-top: 5px
+				display: flex
+				align-items: center
+				justify-content: space-between
+	&-color
+		display: flex
+		align-items: center
+		flex-wrap: wrap
+		justify-content: flex-end
+		&-item
+			width: 27px
+			height: 27px
+			margin-right: 25px
+			margin-bottom: 25px
+			border-radius: 50%
+			transition: opacity .3s
+			cursor: pointer
+			&:hover
+				opacity: .6
+			&_selected
+				display: flex
+				align-items: center
+				justify-content: center
+			&_selected::before
+				content: '\e804'
+				font-family: 'cloud'
+	&-size
+		height: 60px
+		width: 100%
+		border: 1px solid #d5d5d6
+		display: flex
+		&-item
+			display: flex
+			align-items: center
+			justify-content: center
+			flex: 1
+			font-weight: 700
+			letter-spacing: 1.4px
+			text-transform: uppercase
+			height: 100%
+			min-width: 62px
+			border-right: 1px solid #d5d5d6
+			cursor: pointer
+			transition: opacity .3s
+			&:hover
+				opacity: .3
+			&:last-child
+				border-right: none
+			&_selected
+				box-shadow: 0 0 20px rgba(0, 0, 0, 0.15)
