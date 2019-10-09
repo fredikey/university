@@ -10,6 +10,15 @@ import './img/products/6.png'
 import './img/products/7.png'
 import './img/products/8.png'
 import './img/products/9.png'
+import './img/slides/1.png'
+import './img/slides/2.png'
+import './img/slides/3.png'
+import './img/slides/4.png'
+import './img/payments/1.png'
+import './img/payments/2.png'
+import './img/payments/3.png'
+import './img/payments/4.png'
+import './img/payments/5.png'
 
 const elm = document.querySelector('#range');
 console.log(elm);
