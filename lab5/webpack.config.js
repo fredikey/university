@@ -1,8 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin')
 module.exports = {
-  entry: './src/index.js',
+  entry: './index.js',
+  context: path.resolve(__dirname, 'src'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -33,8 +35,8 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
-              outputPath: 'img/'
+              name: '[path][name].[ext]',
+              outputPath: '',
             }
           },
           {
@@ -76,7 +78,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: false,
       hash: true,
-      template: './src/index.html',
+      template: './index.html',
       filename: 'index.html'
     }),
     new MiniCssExtractPlugin({
