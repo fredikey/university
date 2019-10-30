@@ -32,7 +32,11 @@ a {
 	background-size: cover;
 	flex-direction: column;
 }
-
+.reg_container {
+	background:linear-gradient(0deg, rgba(51, 51, 51, 0.42),rgba(51, 51, 51, 0.42)),url('./img/reg_bg.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 .title {
 	font-size: 45px;
 	text-align: center;
