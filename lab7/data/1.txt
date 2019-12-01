@@ -1,0 +1,6 @@
+# name # surname # phone # birth_date #
+Viktor  kozodaev  89525845334  10.01.2001
+Anton  Pitch  89525845334  10.01.2001
+Mark  Houl  89525845334  10.01.2001
+Viktor  Dada  89525845334  10.01.2001
+Donald  Later  89525845334  10.01.2001
