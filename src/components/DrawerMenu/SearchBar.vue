@@ -1,7 +1,5 @@
 <template>
-  <div class="container">
-    <h2>home</h2>
-  </div>
+	<span>SearchBar</span>
 </template>
 
 <script>
@@ -11,3 +9,7 @@
 		}
 	}
 </script>
+
+<style scoped>
+
+</style>
