@@ -1,51 +1,54 @@
 <template>
   <div class="nav">
-	  <ProfileInfo />
-	  <SearchBar />
-	  <Link v-for="(item, index) in this.menuItems" :title="item.title" :path="item.path" :key="index"/>
+    <ProfileInfo />
+    <SearchBar />
+    <Link
+      v-for="(item, index) in this.menuItems"
+      :title="item.title"
+      :path="item.path"
+      :key="index"
+    />
   </div>
 </template>
 
 <script>
-	import MenuItem from './MenuItem'
-	import SearchBar from './SearchBar'
-	import ProfileInfo from './ProfileInfo'
-	
-	const menuItems = [
-		{
-			path : '/',
-			title: 'Мой день'
-		},
-		{
-			path : '/important',
-			title: 'Важное'
-		},
-		{
-			path : '/tasks',
-			title: 'Задачи'
-		},
-		{
-			path : '/statistics',
-			title: 'Статистика'
-		},
-	]
-	
+import MenuItem from './MenuItem'
+import SearchBar from './SearchBar'
+import ProfileInfo from './ProfileInfo'
+
+const menuItems = [
+  {
+    path: '/',
+    title: 'Мой день'
+  },
+  {
+    path: '/important',
+    title: 'Важное'
+  },
+  {
+    path: '/tasks',
+    title: 'Задачи'
+  },
+  {
+    path: '/statistics',
+    title: 'Статистика'
+  }
+]
+
 export default {
   data() {
-    return {
-    
+    return {}
+  },
+  computed: {
+    menuItems() {
+      return menuItems
     }
   },
-	computed: {
-  	menuItems () {
-  		return menuItems
-	  }
-	},
-	components: {
-  	ProfileInfo,
-		SearchBar,
-		Link: MenuItem
-	}
+  components: {
+    ProfileInfo,
+    SearchBar,
+    Link: MenuItem
+  }
 }
 </script>
 

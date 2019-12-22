@@ -1,5 +1,5 @@
 <template>
-	<router-link :to="this.path">{{ this.title }}</router-link>
+  <router-link :to="this.path">{{ this.title }}</router-link>
 </template>
 
 <script>
@@ -12,13 +12,13 @@ export default {
 </script>
 
 <style scoped>
-	a {
-		font-weight: bold;
-		color: #2c3e50;
-		margin-bottom: 20px;
-	}
-	
-	a.router-link-exact-active {
-		color: #2980b9;
-	}
+a {
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+a.router-link-exact-active {
+  color: #2980b9;
+}
 </style>
