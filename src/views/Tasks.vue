@@ -1,15 +1,17 @@
 <template>
   <div class="container">
-    <h2>tasks</h2>
+    <h2 class="title">Все задания</h2>
+    <Task v-for="item in allTasks" :data="item" :key="item.id" />
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {}
-  },
-  methods: {}
+  computed: {
+    allTasks() {
+      return this.$store.state.tasks
+    }
+  }
 }
 </script>
 

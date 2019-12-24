@@ -4,6 +4,9 @@ import router from './router'
 import store from './store'
 
 Vue.config.productionTip = false
+import { Task } from './components'
+
+Vue.component('Task', Task)
 
 new Vue({
   router,

@@ -1,13 +1,16 @@
 <template>
   <div class="container">
-    <h2>important</h2>
+    <h2 class="title">Важное</h2>
+    <Task v-for="item in importantTasks" :data="item" :key="item.id" />
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {}
+  computed: {
+    importantTasks() {
+      return this.$store.getters.importantTasks
+    }
   }
 }
 </script>
