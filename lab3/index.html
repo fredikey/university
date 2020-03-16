@@ -41,10 +41,12 @@
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium cum dignissimos doloribus, ex fugit illo impedit minima possimus sed veniam
                   </p>
               </div>
+	          <!--	    chart  -->
+	          <canvas id="myChart"></canvas>
           </section>
       </div>
     
-
+			
       <div class="posts">
           <h1 class="content-subhead">Recent Posts</h1>
 
@@ -116,5 +118,42 @@
     </div>
   </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+<script>
+	const ctx = document.getElementById('myChart').getContext('2d');
+	const myChart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: ['No', 'Yeah', 'don\'t use frameworks'],
+			datasets: [{
+				label: 'Do u like bootstrap ?',
+				data: [30, 20, 50],
+				backgroundColor: [
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 159, 64, 0.2)'
+				],
+				borderColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 159, 64, 1)'
+				],
+				borderWidth: 1
+			}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true,
+						callback (value, index, values) {
+							return  value + '%'
+						}
+					},
+				}]
+			}
+		}
+	});
+</script>
 </body>
 </html>
