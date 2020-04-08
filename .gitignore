@@ -1,0 +1,11 @@
+# macos specific file
+.DS_Store
+
+# idea
+.idea/
+
+#generated files
+lab1/compressed
+lab2/compressed
+lab3/compressed
+*.docx
