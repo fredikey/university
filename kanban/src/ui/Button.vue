@@ -1,6 +1,6 @@
 <template>
 	<button
-		class="button"
+		:class="`button ${primary ? 'button_Primary' : ''}`"
 		v-bind="$attrs"
 		v-on="this.$listeners"
 	>
@@ -16,6 +16,7 @@
 		inheritAttrs: false,
 		props: {
 			title: String,
+			primary: Boolean
 		}
 	});
 </script>
@@ -26,5 +27,9 @@
 		border: 1px solid $color-default;
 		padding: 5px 10px;
 		font-size: 16px;
+		&_Primary {
+			background-color: $color-default;
+			color: $color-primary;
+		}
 	}
 </style>
