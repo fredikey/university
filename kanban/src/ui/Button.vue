@@ -12,7 +12,6 @@
 	import Vue from "vue";
 	
 	export default Vue.extend({
-		name: "Input",
 		inheritAttrs: false,
 		props: {
 			title: String,
@@ -25,9 +24,14 @@
 <style scoped lang="scss">
 	.button {
 		border: 1px solid $color-default;
-		padding: 5px 10px;
-		font-size: 16px;
+		@include spacing(orange, right, padding);
+		@include spacing(orange, left, padding);
+		@include spacing(red, top, padding);
+		@include spacing(red, bottom, padding);
+		@include text(big);
+		min-width: 70px;
 		&_Primary {
+			@include text(big, accent);
 			background-color: $color-default;
 			color: $color-primary;
 		}

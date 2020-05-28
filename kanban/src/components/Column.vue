@@ -1,25 +1,28 @@
 <template>
 	<div class="column">
-		<h3 class="title">
+		<h2 class="column-title">
 			{{ title }}
-		</h3>
-		<Task />
+		</h2>
+		<Task v-for="item in tasks" :key="item.id" :data="item"/>
 	</div>
 </template>
 
 <script lang="ts">
 	import Vue from "vue";
 	import Task from './Task.vue'
-	import {TaskType} from '@/lib/types'
+	import {TaskStatus, ITask} from '@/lib/types'
 	export default Vue.extend({
 		name: "Column",
+		props: {
+			title: String,
+			status: String as () => TaskStatus
+		},
 		components: {
 			Task
 		},
-		props: {
-			title: String,
-			status: {
-				type: String as () => TaskType
+		computed: {
+			tasks() {
+				return this.$store.getters.tasksByStatus(this.status) as ITask[]
 			}
 		}
 	});
@@ -29,8 +32,8 @@
 <style scoped lang="scss">
 	.column {
 		width: 350px;
-		margin-right: 10px;
-		margin-left: 10px;
+		@include spacing(yellow, left);
+		@include spacing(yellow, right);
 		border-right: 1px solid $color-default;
 		height: 500px;
 		
@@ -44,6 +47,7 @@
 	}
 	
 	.title {
-		margin-bottom: 20px;
+		@include spacing(green, bottom);
+		@include text(h2);
 	}
 </style>

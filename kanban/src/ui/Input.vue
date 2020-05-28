@@ -14,7 +14,6 @@
 	import Vue from "vue";
 	
 	export default Vue.extend({
-		name: "Input",
 		inheritAttrs: false,
 		props: {
 			label: String,
@@ -52,9 +51,13 @@
 		background-color: transparent;
 		font-size: 16px;
 		color: $color-default;
+		
 		border: 1px solid $color-gray;
 		width: 200px;
-		padding: 5px 10px;
+		@include spacing(orange, right, padding);
+		@include spacing(orange, left, padding);
+		@include spacing(red, top, padding);
+		@include spacing(red, bottom, padding);
 		border-radius: 6px;
 		transition: border .2s;
 		&::placeholder {
@@ -69,7 +72,7 @@
 		}
 	}
 	.label {
-		font-size: 14px;
-		margin-bottom: 5px;
+		@include text(medium);
+		@include spacing(red, bottom);
 	}
 </style>

@@ -49,13 +49,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-	@import "styles/normalize";
-	// add light theme
-	// default
-	@include generateCssVariables(1, true);
-	
-	// add dark theme
-	@include generateCssVariables(2);
+	@import "styles/index";
 	
 	.container {
 		width: 100%;
@@ -67,6 +61,9 @@ export default Vue.extend({
 		padding-right: 50px;
 		padding-top: 20px;
 		transition: .2s;
+	}
+	.title {
+		@include text(h1);
 	}
 	.header {
 		display: flex;
