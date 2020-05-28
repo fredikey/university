@@ -1,6 +1,8 @@
 <template>
 	<div class="column">
-		{{ title }}
+		<h3 class="title">
+			{{ title }}
+		</h3>
 		<Task />
 	</div>
 </template>
@@ -26,6 +28,22 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 	.column {
+		width: 350px;
+		margin-right: 10px;
+		margin-left: 10px;
+		border-right: 1px solid $color-default;
+		height: 500px;
+		
+		&:first-of-type {
+			margin-left: 0;
+		}
+		&:last-of-type {
+			margin-right: 0;
+			border-right: none;
+		}
+	}
 	
+	.title {
+		margin-bottom: 20px;
 	}
 </style>

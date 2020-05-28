@@ -3,7 +3,7 @@
 	  <header class="header">
 		  <h1 class="title">Welcome to the most powerful task manager in the world !! (probably no)</h1>
 			<ui-button
-				@click="switchTheme"
+				@click="toggleTheme"
 				:title="`Switch to ${ darkMode ? 'Light' : 'Dark' } Mode`"
 			/>
 	  </header>
@@ -28,21 +28,21 @@
 <script lang="ts">
 import Vue from "vue";
 import {Column, AddTask} from "@/components";
+import {TOGGLE_DARK_MODE} from '@/store/constants'
 export default Vue.extend({
   name: "App",
-	data () {
-  	return {
-  		// can be 'dark' | 'light'
-  		darkMode: true
-	  }
+	computed: {
+    darkMode () {
+    	return this.$store.state.darkMode
+    }
 	},
   components: {
 	  Column,
 	  AddTask
   },
 	methods: {
-  	switchTheme () {
-  		this.darkMode = !this.darkMode
+  	toggleTheme () {
+		  this.$store.dispatch(TOGGLE_DARK_MODE)
 	  }
 	}
 });
@@ -50,6 +50,13 @@ export default Vue.extend({
 
 <style lang="scss">
 	@import "styles/normalize";
+	// add light theme
+	// default
+	@include generateCssVariables(1, true);
+	
+	// add dark theme
+	@include generateCssVariables(2);
+	
 	.container {
 		width: 100%;
 		height: 100%;
@@ -59,6 +66,7 @@ export default Vue.extend({
 		padding-left: 50px;
 		padding-right: 50px;
 		padding-top: 20px;
+		transition: .2s;
 	}
 	.header {
 		display: flex;
@@ -67,5 +75,8 @@ export default Vue.extend({
 	}
 	.columns {
 		display: flex;
+		width: 100%;
+		margin-top: 50px;
+		justify-content: center;
 	}
 </style>
