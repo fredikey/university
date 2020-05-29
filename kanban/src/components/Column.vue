@@ -2,8 +2,11 @@
 	<div class="column">
 		<h2 class="column-title">
 			{{ title }}
+			({{ tasks.length }})
 		</h2>
-		<Task v-for="item in tasks" :key="item.id" :data="item"/>
+		<div class="column-scrollable">
+			<Task v-for="item in tasks" :key="item.id" :data="item"/>
+		</div>
 	</div>
 </template>
 
@@ -35,7 +38,7 @@
 		@include spacing(yellow, left);
 		@include spacing(yellow, right);
 		border-right: 1px solid $color-default;
-		height: 500px;
+		height: 650px;
 		
 		&:first-of-type {
 			margin-left: 0;
@@ -43,6 +46,13 @@
 		&:last-of-type {
 			margin-right: 0;
 			border-right: none;
+		}
+	}
+	.column-scrollable {
+		height: 100%;
+		overflow-y: auto;
+		&::-webkit-scrollbar {
+			display: none;
 		}
 	}
 	

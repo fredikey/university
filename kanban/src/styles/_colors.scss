@@ -6,11 +6,14 @@ $colors: (
 	primary: (#ffffff, #2c3e50),
 	default: (#2c3e50, #ffffff),
 	gray:    (#95a5a6, #95a5a6),
+	back:    (#536b7e, #34495e),
 	blue:    (#3498db, #3498db),
 	red:     (#e74c3c, #e74c3c),
 	yellow:  (#f1c40f, #f1c40f)
 );
 
+$color-always-white: #fff;
+$color-always-gray: rgba(#fff,.7);
 @mixin generateCssVariables ($theme_index, $isDefault: false) {
 
 	@if $theme_index != 1 and $theme_index != 2 {
@@ -38,6 +41,7 @@ $colors: (
 // generated colors (for better IDE autocomplete)
 $color-primary: var(--color-primary);
 $color-default: var(--color-default);
+$color-back: var(--color-back);
 $color-gray: var(--color-gray);
 $color-blue: var(--color-blue);
 $color-red: var(--color-red);

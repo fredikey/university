@@ -1,22 +1,73 @@
 <template>
 	<div class="task">
-		<h4 class="task-title">Task {{ data.id }}</h4>
+		<div class="task-head">
+			<h4 class="task-title">
+				Task {{ data.id + 1 }}
+				<span v-if="isProcess || isReady" class="task-title-user">
+					({{ data.user }})
+				</span>
+			</h4>
+			<span class="task-date" v-if="isProcess || isReady">
+				{{ date }}
+			</span>
+		</div>
 		<p class="task-description">
 			{{ data.description }}
 		</p>
+		<div class="task-actions">
+			<ui-button
+				title="edit"
+			/>
+			<ui-button
+				v-if="!isReady"
+				primary
+				:title="isProcess ? 'ready' : 'start'"
+				@click="ready"
+			/>
+			<ui-button
+				v-else
+				primary
+				title="delete"
+				@click="deleteTask"
+			/>
+		</div>
 	</div>
 </template>
 
 <script lang="ts">
 	import Vue from "vue";
-	import {ITask} from '@/lib/types'
+	import {IProcessTask, IReadyTask, ITask} from '@/lib/types'
+	import {DELETE_TASK, SET_TASK_STATUS} from '@/store/constants'
 	
 	export default Vue.extend({
 		name: "Task",
 		props: {
 			msg: String,
-			data: {
-				type: Object as () => ITask
+			data: Object as () => ITask
+		},
+		computed: {
+			date () {
+				const date = new Date((this.data as IProcessTask).createdAt);
+				return date.toLocaleString('en-US', { year: 'numeric', day: 'numeric', month: 'short', hour: 'numeric', minute: 'numeric', hour12: true })
+			},
+			isProcess () {
+				return (this.data as IProcessTask).status === 'process'
+			},
+			isReady () {
+				return (this.data as IReadyTask).status === 'ready'
+			}
+		},
+		methods: {
+			ready () {
+				console.log(this.data.status)
+				if (this.data.status === 'backlog') {
+					this.$store.dispatch(SET_TASK_STATUS, {id: this.data.id, status: 'process'})
+				} else {
+					this.$store.dispatch(SET_TASK_STATUS, {id: this.data.id, status: 'ready'})
+				}
+			},
+			deleteTask () {
+				this.$store.dispatch(DELETE_TASK, {id: this.data.id})
 			}
 		}
 	});
@@ -31,17 +82,35 @@
 		@include spacing(orange, bottom);
 		@include spacing(orange, right);
 		@include spacing(red, top, padding);
-		@include spacing(red, bottom, padding);
+		@include spacing(orange, bottom, padding);
 		@include spacing(orange, left, padding);
 		@include spacing(orange, right, padding);
-		background-color: #34495e;
+		background-color: $color-back;
 		border-radius: 10px;
+	}
+	.task-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.task-date {
+		color: $color-always-white;
+		@include text(small);
 	}
 	.task-title {
 		@include text(h4);
+		color: $color-always-white;
+	}
+	.task-title-user {
+		@include text(h6);
 	}
 	.task-description {
 		@include text(big);
-		color: $color-gray;
+		color: $color-always-gray;
+	}
+	.task-actions {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
 	}
 </style>

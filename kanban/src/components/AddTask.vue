@@ -1,22 +1,38 @@
 <template>
 	<div class="addTask">
-		<ui-input label="Enter task here..." placeholder="text" :value="this.inputValue" />
+		<ui-input
+			@keydown.enter="submit"
+			label="Enter task here..."
+			placeholder="text"
+			v-model="inputValue"
+		/>
 		<ui-button
 			primary
 			class="button"
 			title="Add"
+			@click="submit"
 		/>
 	</div>
 </template>
 
 <script lang="ts">
 	import Vue from "vue";
+	import {ADD_TASK} from '@/store/constants'
 	
 	export default Vue.extend({
 		name: "AddTask",
 		data () {
 			return {
 				inputValue: ''
+			}
+		},
+		methods: {
+			submit () {
+				const val = this.inputValue.trim()
+				if (val !== '') {
+					this.$store.dispatch(ADD_TASK, val)
+					this.inputValue = ''
+				}
 			}
 		}
 	});
