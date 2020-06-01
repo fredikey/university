@@ -179,3 +179,30 @@ body {
 	max-width: 250px;
 	display: flex;
 }
+
+/* direction */
+
+.sidebar-wrapper {
+	width: 100%;
+	display: flex;
+	position: relative;
+}
+.sidebar {
+	width: 200px;
+	height: 100vh;
+	position: fixed;
+}
+.sidebar-placeholder {
+	width: 200px;
+	height: 100vh;
+}
+.content {
+	display: flex;
+	flex: 1;
+}
+@media screen and (max-width: 767px) {
+	.sidebar-placeholder,
+	.sidebar{
+		display: none;
+	}
+}
