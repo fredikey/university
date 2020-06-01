@@ -148,4 +148,34 @@ body {
 	color: #fff;
 }
 
+/* university */
 
+.title-university {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+.title-university-more {
+	cursor: pointer;
+}
+
+.car__university {
+	min-width: 300px;
+}
+
+.title-university__search-container {
+	margin-top: 40px;
+	margin-bottom: 30px;
+}
+@media screen and (max-width: 600px) {
+	.title-university__search-container {
+		justify-content: unset;
+		flex-direction: column;
+	}
+}
+
+.title-university-search {
+	max-width: 250px;
+	display: flex;
+}
