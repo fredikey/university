@@ -206,3 +206,23 @@ body {
 		display: none;
 	}
 }
+
+
+@media print {
+	img {
+		display: none;
+	}
+	.sidebar-placeholder,
+	.sidebar{
+		display: none;
+	}
+	.title-university-search {
+		display: none;
+	}
+	.promo-container {
+		height: auto;
+	}
+	.promo-bg, .promo-overlay, .promo-content {
+		display: none;
+	}
+}
