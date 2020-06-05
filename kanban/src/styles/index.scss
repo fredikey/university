@@ -1,0 +1,7 @@
+@import "./normalize";
+// add light theme
+// default
+@include generateCssVariables(1, true);
+
+// add dark theme
+@include generateCssVariables(2);

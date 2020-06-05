@@ -1,0 +1,28 @@
+$medium-tablet: 1000px;
+$small-desktop: 1280px;
+$large-desktop: 1440px;
+$big-desktop: 1920px;
+
+@mixin mediumTablet {
+	@media (max-width: #{$medium-tablet - 1px}) {
+		@content;
+	}
+}
+
+@mixin smallDesktop {
+	@media (max-width: #{$large-desktop - 1px}) {
+		@content;
+	}
+}
+
+@mixin largeDesktop {
+	@media (min-width: #{$large-desktop}) {
+		@content;
+	}
+}
+
+@mixin bigDesktop {
+	@media (min-width: #{$big-desktop}) {
+		@content;
+	}
+}

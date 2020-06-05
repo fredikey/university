@@ -1,0 +1,55 @@
+$levels: (
+	//      1920     1440    1280   960
+	red:    (7px,    6px,    5px,   4px),
+	orange: (14px,   12px,   10px,  8px),
+	yellow: (21px,   18px,   15px,  12px),
+	green:  (28px,   24px,   20px,  16px),
+	cyan:   (35px,   30px,   25px,  20px),
+	blue:   (42px,   36px,   30px,  24px),
+	purple: (49px,   42px,   35px,  28px),
+	pink:   (56px,   48px,   40px,  32px)
+);
+@mixin spacing ($color, $side: top, $prop: margin) {
+  $level: map_get($levels, $color);
+  @if $prop != margin and $prop != padding {
+    @error 'Property #{$prop} must be either padding or margin.';
+  }
+
+  @if $side != top and $side != bottom and $side != right and $side != left and $side != all {
+    @error 'Property #{$side} must be top / bottom / right / left / all';
+  }
+
+  @if $color != red and
+  $color != orange and
+  $color != yellow and
+  $color != green and
+  $color != cyan and
+  $color != blue and
+  $color != purple and
+  $color != pink {
+    @error 'Property #{$color} is incorrect;'
+  }
+  @if $side == all {
+    #{$prop}: nth($level, 4);
+	  @include smallDesktop {
+		  #{$prop}: nth($level, 3);
+	  }
+    @include largeDesktop {
+      #{$prop}: nth($level, 2);
+    }
+    @include bigDesktop {
+      #{$prop}: nth($level, 1);
+    }
+  } @else {
+	  #{$prop}-#{$side}: nth($level, 4);
+	  @include smallDesktop {
+		  #{$prop}-#{$side}: nth($level, 3);
+	  }
+    @include largeDesktop {
+      #{$prop}-#{$side}: nth($level, 2);
+    }
+    @include bigDesktop {
+      #{$prop}-#{$side}: nth($level, 1);
+    }
+  }
+}
