@@ -21,6 +21,7 @@
 			<div class="task-actions">
 				<ui-button
 					title="edit"
+					@click="edit"
 				/>
 				<ui-button
 					v-if="!isReady"
@@ -42,7 +43,7 @@
 <script lang="ts">
 	import Vue from "vue";
 	import {IProcessTask, IReadyTask, ITask} from '@/lib/types'
-	import {DELETE_TASK, SET_TASK_STATUS} from '@/store/constants'
+	import {DELETE_TASK, OPEN_EDIT_MODAL, SET_TASK_STATUS} from '@/store/constants'
 	import {formatDate, dateDiff} from '@/lib/utils'
 	
 	export default Vue.extend({
@@ -73,6 +74,9 @@
 				} else {
 					this.$store.dispatch(SET_TASK_STATUS, {id: this.data.id, status: 'ready'})
 				}
+			},
+			edit () {
+				this.$store.dispatch(OPEN_EDIT_MODAL, this.data)
 			},
 			deleteTask () {
 				this.$store.dispatch(DELETE_TASK, {id: this.data.id})

@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+	  <EditModal v-if="editModalVisible"/>
 	  <header class="header">
 		  <h1 class="title">Welcome to the most powerful task manager in the world !! (probably no)</h1>
 			<ui-button
@@ -27,18 +28,22 @@
 
 <script lang="ts">
 import Vue from "vue";
-import {Column, AddTask} from "@/components";
+import {Column, AddTask, EditModal} from "@/components";
 import {TOGGLE_DARK_MODE} from '@/store/constants'
 export default Vue.extend({
   name: "App",
 	computed: {
     darkMode () {
     	return this.$store.state.darkMode
-    }
+    },
+		editModalVisible () {
+    	return this.$store.state.editModalVisible
+		}
 	},
   components: {
 	  Column,
-	  AddTask
+	  AddTask,
+	  EditModal
   },
 	methods: {
   	toggleTheme () {

@@ -44,7 +44,7 @@
 	});
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 	.column {
 		width: 350px;
 		border-right: 1px solid $color-default;

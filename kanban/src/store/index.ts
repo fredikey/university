@@ -1,13 +1,14 @@
 import Vue from "vue";
 import Vuex, {Store} from "vuex";
 import {
-	ADD_TASK,
+	ADD_TASK, CLOSE_EDIT_MODAL,
 	DELETE_TASK,
 	INIT_DARK_MODE,
-	LOAD_TASKS,
+	LOAD_TASKS, OPEN_EDIT_MODAL,
 	SAVE_TASKS,
 	SET_TASK_STATUS,
-	TOGGLE_DARK_MODE
+	TOGGLE_DARK_MODE,
+	EDIT_TASK
 } from '@/store/constants'
 import {getDefaultDarkModeValue} from '@/lib/darkMode'
 import {IBackLogTask, IProcessTask, IReadyTask, ITask, TaskStatus} from '@/lib/types'
@@ -16,6 +17,8 @@ Vue.use(Vuex);
 interface IState {
 	darkMode: boolean,
 	tasks: ITask[]
+	editModalVisible: boolean
+	editModalData?: ITask
 }
 const htmlElement = document.querySelector('body') as HTMLBodyElement
 export type GlobalStore = Store<IState>
@@ -23,7 +26,9 @@ export type GlobalStore = Store<IState>
 const store: GlobalStore = new Vuex.Store<IState>({
 	state: {
 		darkMode: true,
-		tasks: []
+		tasks: [],
+		editModalVisible: false,
+		editModalData: undefined
 	},
 	getters: {
 		tasksByStatus (state) {
@@ -86,6 +91,20 @@ const store: GlobalStore = new Vuex.Store<IState>({
 		},
 		setTasks (state, payload: ITask[]) {
 			state.tasks = payload
+		},
+		setModalVisible (state, payload: boolean) {
+			state.editModalVisible = payload
+		},
+		setModalData (state, payload: ITask) {
+			state.editModalData = payload
+		},
+		editTask (state, payload: ITask) {
+			const task: ITask = state.tasks.find(item => item.id === payload.id)
+			task.description = payload.description
+			task.status = payload.status
+			task.createdAt = payload.createdAt
+			task.user = payload.user
+			task.finishedAt = payload.finishedAt
 		}
 	},
 	actions: {
@@ -116,7 +135,19 @@ const store: GlobalStore = new Vuex.Store<IState>({
 		[DELETE_TASK] ({commit, dispatch}, payload: {id: number}) {
 			commit('deleteTask', payload)
 			dispatch(SAVE_TASKS)
-		}}
+		},
+		[OPEN_EDIT_MODAL] ({commit}, payload: ITask) {
+			commit('setModalVisible', true)
+			commit('setModalData', payload)
+		},
+		[CLOSE_EDIT_MODAL] ({commit}) {
+			commit('setModalVisible', false)
+		},
+		[EDIT_TASK] ({commit, dispatch}, payload: ITask) {
+			commit('editTask', payload)
+			dispatch(SAVE_TASKS)
+		}
+	}
 });
 
 export default store
