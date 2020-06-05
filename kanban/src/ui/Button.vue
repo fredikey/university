@@ -30,6 +30,7 @@
 		@include spacing(red, bottom, padding);
 		@include text(big);
 		min-width: 70px;
+		background-color: $color-primary;
 		&_Primary {
 			@include text(big, accent);
 			background-color: $color-default;

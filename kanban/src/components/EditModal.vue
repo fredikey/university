@@ -124,14 +124,13 @@
 	.modal {
 		border-radius: 10px;
 		width: 350px;
-		background-color: $color-back;
+		background-color: $color-primary;
 		@include spacing(green, left, padding);
 		@include spacing(green, right, padding);
 		@include spacing(pink, top, padding);
 		@include spacing(cyan, bottom, padding);
 		display: flex;
 		flex-direction: column;
-		color: $color-always-white;
 	}
 	.modal-title {
 		@include text(h3);
