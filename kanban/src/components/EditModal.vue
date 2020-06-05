@@ -89,7 +89,7 @@
 					if (this.data.finishedAt === undefined) {
 						this.error = true
 						return
-					} else if (this.data.finishedAt < this.data.createdAt) {
+					} else if (this.data.finishedAt <= this.data.createdAt) {
 						this.error = true
 						return
 					}

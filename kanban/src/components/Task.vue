@@ -76,7 +76,7 @@
 				}
 			},
 			edit () {
-				this.$store.dispatch(OPEN_EDIT_MODAL, this.data)
+				this.$store.dispatch(OPEN_EDIT_MODAL, Object.assign({}, this.data))
 			},
 			deleteTask () {
 				this.$store.dispatch(DELETE_TASK, {id: this.data.id})
