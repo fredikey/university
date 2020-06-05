@@ -62,6 +62,11 @@ const store: GlobalStore = new Vuex.Store<IState>({
 			if (task !== undefined) {
 				const oldStatus = task.status;
 				task.status = status
+				
+				if (status === oldStatus) {
+					return
+				}
+				
 				switch (status) {
 					case 'process': {
 						// const newTask = task as IProcessTask

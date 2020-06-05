@@ -1,5 +1,5 @@
 <template>
-	<div class="task">
+	<div class="task" draggable="true" @dragstart="onDragStart">
 		<div class="task-head">
 			<h4 class="task-title">
 				Task {{ data.id + 1 }}
@@ -76,6 +76,9 @@
 			},
 			deleteTask () {
 				this.$store.dispatch(DELETE_TASK, {id: this.data.id})
+			},
+			onDragStart (evt: DragEvent) {
+				evt.dataTransfer?.setData("task/id", JSON.stringify(this.data.id));
 			}
 		}
 	});
@@ -88,7 +91,6 @@
 		flex-direction: column;
 		@include spacing(orange, top);
 		@include spacing(orange, bottom);
-		@include spacing(orange, right);
 		@include spacing(red, top, padding);
 		@include spacing(orange, bottom, padding);
 		@include spacing(orange, left, padding);

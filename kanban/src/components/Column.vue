@@ -1,5 +1,5 @@
 <template>
-	<div class="column">
+	<div @drop="onDrop" @dragover="onDragOver" class="column">
 		<h2 class="column-title">
 			{{ title }}
 			({{ tasks.length }})
@@ -14,6 +14,7 @@
 	import Vue from "vue";
 	import Task from './Task.vue'
 	import {TaskStatus, ITask} from '@/lib/types'
+	import {SET_TASK_STATUS} from '@/store/constants'
 	export default Vue.extend({
 		name: "Column",
 		props: {
@@ -27,23 +28,40 @@
 			tasks() {
 				return this.$store.getters.tasksByStatus(this.status) as ITask[]
 			}
+		},
+		methods: {
+			onDragOver (evt: DragEvent) {
+				evt.preventDefault()
+			},
+			onDrop (evt: DragEvent) {
+				const id = evt.dataTransfer?.getData("task/id");
+				if (id) {
+					const resId = JSON.parse(id) as number
+					this.$store.dispatch(SET_TASK_STATUS, {id: resId, status: this.status})
+				}
+			}
 		}
 	});
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss">
 	.column {
 		width: 350px;
-		@include spacing(yellow, left);
-		@include spacing(yellow, right);
 		border-right: 1px solid $color-default;
 		height: 650px;
 		
 		&:first-of-type {
 			margin-left: 0;
+			@include spacing(yellow, right, padding);
+			@include spacing(yellow, right);
+			
 		}
+		&:nth-of-type(2) {
+			@include spacing(yellow, right, padding);
+		}
+		
 		&:last-of-type {
+			@include spacing(yellow, left);
 			margin-right: 0;
 			border-right: none;
 		}
@@ -56,8 +74,8 @@
 		}
 	}
 	
-	.title {
-		@include spacing(green, bottom);
+	.column-title {
+		@include spacing(orange, bottom);
 		@include text(h2);
 	}
 </style>
