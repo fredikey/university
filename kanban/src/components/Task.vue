@@ -14,22 +14,27 @@
 		<p class="task-description">
 			{{ data.description }}
 		</p>
-		<div class="task-actions">
-			<ui-button
-				title="edit"
-			/>
-			<ui-button
-				v-if="!isReady"
-				primary
-				:title="isProcess ? 'ready' : 'start'"
-				@click="ready"
-			/>
-			<ui-button
-				v-else
-				primary
-				title="delete"
-				@click="deleteTask"
-			/>
+		<div :class="`task-actions-container ${isReady ? 'task-actions-container_Date' : ''}`">
+			<span class="task-date" v-if="isReady">
+				Wasted: {{ wastedTime }}
+			</span>
+			<div class="task-actions">
+				<ui-button
+					title="edit"
+				/>
+				<ui-button
+					v-if="!isReady"
+					primary
+					:title="isProcess ? 'ready' : 'start'"
+					@click="ready"
+				/>
+				<ui-button
+					v-else
+					primary
+					title="delete"
+					@click="deleteTask"
+				/>
+			</div>
 		</div>
 	</div>
 </template>
@@ -38,6 +43,7 @@
 	import Vue from "vue";
 	import {IProcessTask, IReadyTask, ITask} from '@/lib/types'
 	import {DELETE_TASK, SET_TASK_STATUS} from '@/store/constants'
+	import {formatDate, dateDiff} from '@/lib/utils'
 	
 	export default Vue.extend({
 		name: "Task",
@@ -47,8 +53,10 @@
 		},
 		computed: {
 			date () {
-				const date = new Date((this.data as IProcessTask).createdAt);
-				return date.toLocaleString('en-US', { year: 'numeric', day: 'numeric', month: 'short', hour: 'numeric', minute: 'numeric', hour12: true })
+				return formatDate((this.data as IProcessTask).createdAt)
+			},
+			wastedTime () {
+				return dateDiff((this.data as IReadyTask).createdAt, (this.data as IReadyTask).finishedAt)
 			},
 			isProcess () {
 				return (this.data as IProcessTask).status === 'process'
@@ -111,6 +119,15 @@
 	.task-actions {
 		display: flex;
 		align-items: center;
+	}
+	.task-actions-container {
+		display: flex;
+		align-items: flex-end;
+		width: 100%;
 		justify-content: flex-end;
+		
+		&_Date {
+			justify-content: space-between;
+		}
 	}
 </style>
