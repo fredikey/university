@@ -1,11 +1,11 @@
 <template>
-	<div @drop="onDrop" @dragover="onDragOver" class="column">
+	<div :aria-labelledby="title" role="list" @drop="onDrop" @dragover="onDragOver" class="column">
 		<h2 class="column-title">
 			{{ title }}
 			({{ tasks.length }})
 		</h2>
 		<div class="column-scrollable">
-			<Task v-for="item in tasks" :key="item.id" :data="item"/>
+			<Task role="listitem" v-for="item in tasks" :key="item.id" :data="item"/>
 		</div>
 	</div>
 </template>

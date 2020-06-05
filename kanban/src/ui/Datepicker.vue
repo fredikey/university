@@ -1,6 +1,6 @@
 <template>
-	<div class="datepicker-container">
-		<span class="datepicker-label">{{ label }}</span>
+	<div role="button" :aria-labelledby="label" class="datepicker-container">
+		<span  class="datepicker-label">{{ label }}</span>
 		<Datepicker
 			class="datepicker"
 			input-class="datepicker-input"

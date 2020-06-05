@@ -1,5 +1,5 @@
 <template>
-	<div class="addTask">
+	<div class="addTask" aria-labelledby="Add task">
 		<ui-input
 			@keydown.enter="submit"
 			label="Enter task here..."

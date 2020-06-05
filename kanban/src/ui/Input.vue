@@ -1,5 +1,5 @@
 <template>
-	<div class="input-container">
+	<div :aria-labelledby="label" class="input-container">
 		<span class="label">{{ label }}</span>
 		<input
 			class="input"

@@ -1,15 +1,16 @@
 <template>
-  <div class="container">
+  <main class="container">
 	  <EditModal v-if="editModalVisible"/>
 	  <header class="header">
 		  <h1 class="title">Welcome to the most powerful task manager in the world !! (probably no)</h1>
 			<ui-button
+				:aria-labelledby="`Switch to ${ darkMode ? 'Light' : 'Dark' } Mode`"
 				@click="toggleTheme"
 				:title="`Switch to ${ darkMode ? 'Light' : 'Dark' } Mode`"
 			/>
 	  </header>
 	  <AddTask />
-	  <div class="columns">
+	  <div role="contentinfo" class="columns">
 		  <Column
 			  title="BackLog"
 			  status="backlog"
@@ -23,7 +24,7 @@
 			  status="ready"
 		  />
 	  </div>
-  </div>
+  </main>
 </template>
 
 <script lang="ts">

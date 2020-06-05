@@ -1,15 +1,15 @@
 <template>
-	<div class="select-relative-helper">
-		<div class="select-container" @click="toggle">
+	<div :aria-labelledby="label" class="select-relative-helper">
+		<div role="button" class="select-container" @click="toggle">
 			<span class="label">{{ label }}</span>
-			<div class="select">
+			<button class="select">
 				{{ value }}
-			</div>
+			</button>
 		</div>
-		<div :class="`select-dropdown ${visible ? 'select-dropdown_Active' : ''}`">
-			<div class="select-dropdown-item" v-for="(item, index) in items" :key="index" @click="select(item)">
+		<div v-show="visible" class="select-dropdown">
+			<button class="select-dropdown-item" v-for="(item, index) in items" :key="index" @click="select(item)">
 				{{ item }}
-			</div>
+			</button>
 		</div>
 	</div>
 </template>
@@ -60,6 +60,8 @@
 		box-shadow: none;
 		background-color: transparent;
 		font-size: 16px;
+		display: flex;
+		justify-content: flex-start;
 		color: $color-default;
 		border: 1px solid $color-gray;
 		width: 200px;
@@ -70,27 +72,26 @@
 		border-radius: 6px;
 		transition: border .2s;
 		cursor: pointer;
+		&:hover {
+			opacity: 1;
+		}
 	}
 	.select-dropdown {
 		user-select: none;
 		width: 200px;
 		border: 1px solid $color-gray;
 		border-radius: 6px;
-		opacity: 0;
-		visibility: hidden;
 		position: absolute;
 		top: 70px;
-		background-color: $color-back;
-		&_Active {
-			opacity: 1;
-			visibility: visible;
-		}
+		background-color: $color-primary;
 	}
 	.select-dropdown-item {
 		font-size: 16px;
 		color: $color-default;
 		width: 100%;
 		cursor: pointer;
+		display: flex;
+		justify-content: flex-start;
 		@include spacing(orange, right, padding);
 		@include spacing(orange, left, padding);
 		@include spacing(red, top, padding);

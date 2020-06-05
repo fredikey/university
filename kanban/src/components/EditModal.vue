@@ -1,16 +1,19 @@
 <template>
-	<div class="modal-overlay" @click.self="closeModal">
-		<div class="modal">
-			<h3 class="modal-title">Edit task</h3>
+	<div aria-labelledby="editTask" aria-describedby="editTask" class="modal-overlay" @click.self="closeModal">
+		<div  role="dialog" class="modal">
+			<h3 id="dialogTitle" class="modal-title">Edit task</h3>
 			<ui-input
+				aria-required="true"
 				label="Description"
 				placeholder="Enter..."
 				v-model="data.description"
 				class="modal-element"
+				tabindex="1"
 			/>
 			<ui-select
 				label="Status"
 				placeholder="Select..."
+				aria-required="true"
 				:defaultValue="data.status"
 				:items="['backlog', 'process', 'ready']"
 				@change="onChangeSelect"
@@ -18,6 +21,8 @@
 			/>
 			<ui-input
 				v-if="isProcess || isReady"
+				aria-required="true"
+				:aria-hidden="!isProcess || !isReady"
 				label="Person"
 				placeholder="Enter..."
 				v-model="data.user"
@@ -25,6 +30,8 @@
 			/>
 			<ui-datepicker
 				v-if="isProcess || isReady"
+				aria-required="true"
+				:aria-hidden="!isProcess || !isReady"
 				v-model="data.createdAt"
 				label="Created at"
 				placeholder="Choose..."
@@ -32,7 +39,9 @@
 			/>
 			<ui-datepicker
 				v-if="isReady"
+				aria-required="true"
 				v-model="data.finishedAt"
+				:aria-hidden="!isReady"
 				label="Finished at"
 				placeholder="Choose..."
 				class="modal-element"
@@ -44,7 +53,7 @@
 				class="btn__submit"
 				title="Submit"
 			/>
-			<span v-if="error" class="error">Form is incorrect</span>
+			<span role="alert" aria-relevant="all" v-if="error" class="error">Form is incorrect</span>
 		</div>
 	</div>
 </template>
@@ -103,7 +112,20 @@
 			},
 			closeModal () {
 				this.$store.dispatch(CLOSE_EDIT_MODAL)
+			},
+			onKeyDown (evt: KeyboardEvent) {
+				if (evt.key === 'Enter') {
+					this.submit()
+				} else if (evt.key === 'Escape') {
+					this.closeModal()
+				}
 			}
+		},
+		mounted () {
+			document.addEventListener('keydown', this.onKeyDown)
+		},
+		destroyed () {
+			document.removeEventListener('keydown', this.onKeyDown)
 		}
 	});
 </script>
