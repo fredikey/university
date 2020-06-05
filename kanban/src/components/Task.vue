@@ -106,10 +106,21 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		@include mediumTablet {
+			display: flex;
+			flex-direction: column;
+			justify-content: unset;
+			align-items: flex-start;
+		}
 	}
 	.task-date {
 		color: $color-always-white;
 		@include text(small);
+		&:last-child{
+			@include mediumTablet {
+				@include spacing(orange, bottom);
+			}
+		}
 	}
 	.task-title {
 		@include text(h4);
@@ -125,12 +136,24 @@
 	.task-actions {
 		display: flex;
 		align-items: center;
+		@include mediumTablet {
+			@include spacing(red, top);
+		}
 	}
 	.task-actions-container {
 		display: flex;
 		align-items: flex-end;
 		width: 100%;
 		justify-content: flex-end;
+		
+		@include mediumTablet {
+			display: flex;
+			flex-direction: column;
+			justify-content: unset;
+			align-items: flex-start;
+			@include spacing(orange, top);
+			
+		}
 		
 		&_Date {
 			justify-content: space-between;

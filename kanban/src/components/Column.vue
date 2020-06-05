@@ -48,8 +48,10 @@
 	.column {
 		width: 350px;
 		border-right: 1px solid $color-default;
-		height: 650px;
-		
+		max-height: 65vh;
+		@include mediumTablet {
+			max-height: 60vh;
+		}
 		&:first-of-type {
 			margin-left: 0;
 			@include spacing(yellow, right, padding);

@@ -61,7 +61,6 @@ export default Vue.extend({
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		background-color: $color-primary;
 		padding-left: 50px;
 		padding-right: 50px;
 		padding-top: 20px;
@@ -79,6 +78,7 @@ export default Vue.extend({
 		display: flex;
 		width: 100%;
 		margin-top: 50px;
+		margin-bottom: 50px;
 		justify-content: center;
 	}
 </style>
