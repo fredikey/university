@@ -2,23 +2,28 @@
 	<div role="button" :aria-labelledby="label" class="datepicker-container">
 		<span  class="datepicker-label">{{ label }}</span>
 		<Datepicker
-			class="datepicker"
-			input-class="datepicker-input"
 			v-bind="$attrs"
-			v-bind:value="value"
+			v-model="resVal"
 			v-on="inputListeners"
+			type="datetime"
+			placeholder="Select datetime"
 		/>
 	</div>
 </template>
 
 <script lang="ts">
 	import Vue from "vue";
-	import Datepicker from 'vuejs-datepicker';
+	import Datepicker from 'vue2-datepicker';
 	
 	export default Vue.extend({
 		inheritAttrs: false,
 		components: {
 			Datepicker
+		},
+		data () {
+			return {
+				resVal: new Date(this.value)
+			}
 		},
 		props: {
 			label: String,
@@ -35,7 +40,7 @@
 					{
 						// This ensures that the component works with v-model
 						input: (val: Date) => {
-							this.$emit('input', val.getTime())
+							this.$emit('input', val ? val.getTime() : undefined)
 						}
 					}
 				)
@@ -46,6 +51,10 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+	$default-color: #555;
+	$primary-color: #1284e7;
+	
+	@import '~vue2-datepicker/scss/index.scss';
 	.datepicker-container {
 		display: flex;
 		flex-direction: column;

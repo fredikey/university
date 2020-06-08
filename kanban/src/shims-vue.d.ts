@@ -3,7 +3,7 @@ declare module "*.vue" {
   export default Vue;
 }
 
-declare module 'vuejs-datepicker' {
+declare module 'vue2-datepicker' {
 	const content: any
 	export default content
 }
