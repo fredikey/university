@@ -13,7 +13,8 @@ $colors: (
 );
 
 $color-always-white: #fff;
-$color-always-gray: rgba(#fff,.7);
+$color-always-gray: rgba(#fff,.9);
+
 @mixin generateCssVariables ($theme_index, $isDefault: false) {
 
 	@if $theme_index != 1 and $theme_index != 2 {
