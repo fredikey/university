@@ -49,7 +49,7 @@ const store: GlobalStore = new Vuex.Store<IState>({
 		},
 		addTask (state, payload: string) {
 			const task: IBackLogTask = {
-				id: state.tasks.length + 1,
+				id: Math.max(...state.tasks.map(item => item.id)) + 1,
 				status: 'backlog',
 				description: payload
 			}
