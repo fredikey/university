@@ -48,8 +48,14 @@ const store: GlobalStore = new Vuex.Store<IState>({
 			localStorage.setItem('dark', JSON.stringify(payload))
 		},
 		addTask (state, payload: string) {
+			let id: number;
+			if (state.tasks.length === 0) {
+				id = 0
+			} else {
+				id = Math.max(...state.tasks.map(item => item.id)) + 1
+			}
 			const task: IBackLogTask = {
-				id: Math.max(...state.tasks.map(item => item.id)) + 1,
+				id,
 				status: 'backlog',
 				description: payload
 			}
