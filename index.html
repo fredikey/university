@@ -107,6 +107,7 @@
 					method="post"
 					name="registry-form"
 					id="registry-form"
+					oninput='confirmPassword.setCustomValidity(confirmPassword.value !== password.value ? "Пароли не совпадают." : "")'
 				>
 					<div class="form-group">
 						<label for="registry-form-name" class="col-form-label">Логин:</label>
@@ -114,7 +115,10 @@
 					</div>
 					<div class="form-group">
 						<label for="registry-form-password" class="col-form-label">Пароль:</label>
-						<input name="password" required  type="password" class="form-control" id="registry-form-password">
+						<input minlength="6" maxlength="20" name="password" required  type="password" class="form-control" id="registry-form-password">
+						<small class="form-text text-muted">
+							Пароль должен быть длиной от 6 до 20 символов, содержать буквы и цифры и не должен содержать пробелов или специальных символов.
+						</small>
 					</div>
 					<div class="form-group">
 						<label for="registry-form-confirm-password" class="col-form-label">Повторите пароль:</label>
