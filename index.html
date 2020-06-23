@@ -35,22 +35,6 @@
 					<!-- logout button -->
 					<button class="btn nav-logout-btn" type="button">Выход</button>
 				</li>
-<!--				<li class="nav-item">-->
-<!--					<a-->
-<!--						class="nav-link"-->
-<!--						href="#"-->
-<!--						data-toggle="modal"-->
-<!--						data-target="#registry-modal"-->
-<!--					>Регистрация</a>-->
-<!--				</li>-->
-<!--				<li class="nav-item">-->
-<!--					<a-->
-<!--						class="nav-link"-->
-<!--						href="#"-->
-<!--						data-toggle="modal"-->
-<!--						data-target="#sign-in-modal"-->
-<!--					>Войти</a>-->
-<!--				</li>-->
 			</ul>
 		</div>
 	</div>
@@ -68,80 +52,6 @@
 		content3
 	</section>
 </main>
-
-<!-- sign in Modal -->
-<div class="modal fade" id="sign-in-modal" tabindex="-1" role="dialog" aria-labelledby="sign-in-modal" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Вход</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<!-- sign in form -->
-				<form method="post" name="sign-in-form" id="sign-in-form">
-					<div class="form-group">
-						<label for="sign-in-form-name" class="col-form-label">Логин:</label>
-						<input name="login" required type="text" class="form-control" id="sign-in-form-name">
-					</div>
-					<div class="form-group">
-						<label for="sign-in-form-password" class="col-form-label">Пароль:</label>
-						<input name="password" required  type="password" class="form-control" id="sign-in-form-password">
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-				<button type="submit" form="sign-in-form" class="btn btn-primary">Войти</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- registry Modal -->
-<div class="modal fade" id="registry-modal" tabindex="-1" role="dialog" aria-labelledby="sign-in-modal" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Вход</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<!-- registry form -->
-				<form
-					method="post"
-					name="registry-form"
-					id="registry-form"
-					oninput='confirmPassword.setCustomValidity(confirmPassword.value !== password.value ? "Пароли не совпадают." : "")'
-				>
-					<div class="form-group">
-						<label for="registry-form-name" class="col-form-label">Логин:</label>
-						<input name="login" required type="text" class="form-control" id="registry-form-name">
-					</div>
-					<div class="form-group">
-						<label for="registry-form-password" class="col-form-label">Пароль:</label>
-						<input minlength="6" maxlength="20" name="password" required  type="password" class="form-control" id="registry-form-password">
-						<small class="form-text text-muted">
-							Пароль должен быть длиной от 6 до 20 символов, содержать буквы и цифры и не должен содержать пробелов или специальных символов.
-						</small>
-					</div>
-					<div class="form-group">
-						<label for="registry-form-confirm-password" class="col-form-label">Повторите пароль:</label>
-						<input name="confirmPassword" required  type="password" class="form-control" id="registry-form-confirm-password">
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-				<button type="submit" form="registry-form" class="btn btn-primary">Зарегистрироваться</button>
-			</div>
-		</div>
-	</div>
-</div>
 <footer class="container-fluid footer">
 	<p class="footer-item lead">
 		Козодаев Виктор Сергеевич
