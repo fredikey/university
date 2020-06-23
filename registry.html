@@ -30,20 +30,34 @@
 		</div>
 	</div>
 </nav>
+<!-- registry  -->
 <main class="main main__form container">
-	<h3 class="modal-title">Вход</h3>
-	<form method="post" name="sign-in-form" id="sign-in-form">
+	<h3 class="modal-title">Регистрация</h3>
+	
+	<form
+		method="post"
+		name="registry-form"
+		id="registry-form"
+		oninput='confirmPassword.setCustomValidity(confirmPassword.value !== password.value ? "Пароли не совпадают." : "")'
+	>
 		<div class="form-group">
-			<label for="sign-in-form-name" class="col-form-label">Логин:</label>
-			<input name="login" required type="text" class="form-control" id="sign-in-form-name">
+			<label for="registry-form-name" class="col-form-label">Логин:</label>
+			<input name="login" required type="text" class="form-control" id="registry-form-name">
 		</div>
 		<div class="form-group">
-			<label for="sign-in-form-password" class="col-form-label">Пароль:</label>
-			<input name="password" required  type="password" class="form-control" id="sign-in-form-password">
+			<label for="registry-form-password" class="col-form-label">Пароль:</label>
+			<input minlength="6" maxlength="20" name="password" required  type="password" class="form-control" id="registry-form-password">
+			<small class="form-text text-muted">
+				Пароль должен быть длиной от 6 до 20 символов, содержать буквы и цифры и не должен содержать пробелов или специальных символов.
+			</small>
+		</div>
+		<div class="form-group">
+			<label for="registry-form-confirm-password" class="col-form-label">Повторите пароль:</label>
+			<input name="confirmPassword" required  type="password" class="form-control" id="registry-form-confirm-password">
 		</div>
 	</form>
-	<button type="submit" form="sign-in-form" class="btn btn-primary">Войти</button>
-	<a class="main__form-link" href="./registry.html">Еще нет аккаунта?</a>
+	<button type="submit" form="registry-form" class="btn btn-primary">Зарегистрироваться</button>
+	<a class="main__form-link" href="./login.html">Уже зарегистрированы?</a>
 </main>
 
 <footer class="container-fluid footer">
