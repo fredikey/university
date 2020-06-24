@@ -3,13 +3,13 @@ require $_SERVER['DOCUMENT_ROOT'] . '/kozodaev-php-exam/config/database.php';
 
 use App\UsersController;
 use App\User;
-
-if (UsersController::isLogin()) header('Location: /'); //Чтобы не сидел тут!
+// зашита от авторизованного юзера
+if (UsersController::isLogin()) header('Location: /');
 
 if ($post) {
     if (!trim($_POST['login'])) $error = 'Логин не введен'; //Вторые проверки на любой случай жизни
-    if (!preg_match('/^[A-Za-z][A-Za-z0-9]{6,32}$/', $_POST['login'])) $error = 'Логин a-Z 6-32 символа';
-    if (strlen($_POST['password']) < 5 || strlen($_POST['password']) > 32) $error = 'Пароль a-Z 6-32 символа';
+    if (!preg_match('/^[A-Za-z][A-Za-z0-9]{6,32}$/', $_POST['login'])) $error = 'Логин должен содержать буквы и цифры';
+    if (strlen($_POST['password']) < 5 || strlen($_POST['password']) > 32) $error = 'Пароль должен содержать буквы и цифры';
     if (!trim($_POST['password'])) $error = 'Пароль не введен';
     if ($_POST['password'] !== $_POST['confirmPassword']) $error = 'Пароли не совпадают';
     if (User::where('login', $_POST['login'])->first()) $error = 'Логин занят';
@@ -84,7 +84,7 @@ if ($post) {
     >
         <div class="form-group">
             <label for="registry-form-name" class="col-form-label">Логин:</label>
-            <input name="login" required type="text" class="form-control" id="registry-form-name">
+            <input minlength="6" maxlength="32" name="login" required type="text" class="form-control" id="registry-form-name">
         </div>
         <div class="form-group">
             <label for="registry-form-password" class="col-form-label">Пароль:</label>
