@@ -1,5 +1,5 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/kozodaev-php-exam/config/database.php';
 
 use App\UsersController;
 
