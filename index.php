@@ -52,16 +52,21 @@ use App\UsersController;
 
 <!-- content -->
 <main class="main container">
-    <h1 class="text-success">
-        Привет, <?php echo (UsersController::isLogin()) ? $_SESSION['user']->login : 'Гость'; ?></h1>
-    <section>
-        content1
-    </section>
-    <section>
-        content2
-    </section>
-    <section>
-        content3
+    <h1 class="greetings">
+      Привет, <span class="text-primary"><?php echo (UsersController::isLogin()) ? $_SESSION['user']->login : 'Гость'; ?></span>
+    </h1>
+    <!-- list -->
+    <section class="list">
+      <div class="card list-item">
+        <div class="card-header">
+          Статья
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Заголовок статьи</h5>
+          <p class="card-text list-item-text">Текст статьи</p>
+          <a href="./article/index.php" class="btn btn-primary">Читать полностью</a>
+        </div>
+      </div>
     </section>
 </main>
 <footer class="container-fluid footer">

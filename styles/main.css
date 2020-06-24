@@ -23,7 +23,6 @@ body {
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	padding-top: 20px;
 	padding-bottom: 20px;
 }
 .main__form {
@@ -58,6 +57,33 @@ body {
 	color: rgba(255,255,255, 0.5);
 }
 
+.greetings {
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+/* items list */
+.list {
+	display: flex;
+	flex-direction: column;
+}
+
+.list-item {
+	margin-bottom: 30px;
+}
+
+.list-item-text {
+	max-height: 100px;
+	overflow: hidden;
+}
+.title-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.page-item-date {
+	color: gray;
+}
 @media screen and (max-width: 991.98px){
 	.nav-login {
 		justify-content: flex-start;
@@ -67,3 +93,4 @@ body {
 		width: 100%;
 	}
 }
+
