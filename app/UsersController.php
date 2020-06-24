@@ -10,7 +10,7 @@ class UsersController
         $user = User::where('login', '=', $login)->first();
         if (!$user) return 'Пользователь не найден';
         if (!password_verify($password, $user->password)) return 'Неверный пароль';
-        $_SESSION['logged_user'] = $user;
+        $_SESSION['user'] = $user;
         return null;
     }
 
@@ -22,7 +22,7 @@ class UsersController
 
     public static function isLogin(): bool
     {
-        if (!isset($_SESSION['logged_user'])) return false;
-        return ($_SESSION['logged_user'] instanceof User);
+        if (!isset($_SESSION['user'])) return false;
+        return ($_SESSION['user'] instanceof User);
     }
 }

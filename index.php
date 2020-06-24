@@ -34,7 +34,7 @@ use App\UsersController;
                 </li>
                 <?php if (UsersController::isLogin()) { ?>
                     <li class="nav-login">
-                        <span class="nav-login-label">Привет, <b><?= $_SESSION['logged_user']->login; ?></b></span>
+                        <span class="nav-login-label">Привет, <b><?= $_SESSION['user']->login; ?></b></span>
                         <a href="logout.php" class="btn nav-logout-btn">Выход</a>
                     </li>
                 <?php } else { ?>
@@ -53,7 +53,7 @@ use App\UsersController;
 <!-- content -->
 <main class="main container">
     <h1 class="text-success">
-        Привет, <?php echo (UsersController::isLogin()) ? $_SESSION['logged_user']->login : 'Гость'; ?></h1>
+        Привет, <?php echo (UsersController::isLogin()) ? $_SESSION['user']->login : 'Гость'; ?></h1>
     <section>
         content1
     </section>

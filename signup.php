@@ -19,7 +19,7 @@ if ($post) {
         $user->password = $_POST['password'];
         $user->role = 1;
         $user->save();
-        $_SESSION['logged_user'] = $user;
+        $_SESSION['user'] = $user;
         header('Location: /');
     }
 }

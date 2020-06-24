@@ -27,5 +27,5 @@ $post = $_SERVER['REQUEST_METHOD'] === 'POST'; //Облегчение прове
 
 session_start();
 
-if (UsersController::isLogin()) $_SESSION['logged_user'] = User::find($_SESSION['logged_user']->id); //Когда php не может найти класс пользователя
+if (UsersController::isLogin()) $_SESSION['user'] = User::find($_SESSION['user']->id); //Когда php не может найти класс пользователя
 
