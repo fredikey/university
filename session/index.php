@@ -13,12 +13,11 @@ $expert_session = ExpertSession::FindOrFail($expert_session_link->expert_session
 if ($post) {
     if (isset($_POST['fill'])) {
         unset($_POST['fill']);
-        ExpertSessionAnswer::create(['answer_json' => json_encode($_POST), 'author_ip' =>$_SERVER['REMOTE_ADDR'],'expert_session_id' => $expert_session->id]);
+        ExpertSessionAnswer::create(['answer_json' => json_encode($_POST), 'author_ip' =>$_SERVER['REMOTE_ADDR'],'expert_session_link_id' => $expert_session_link->id]);
     }
 }
 
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -67,7 +66,7 @@ if ($post) {
         foreach ($expert_session->questions as $expert_session_question) {
             $options = explode(',', $expert_session_question->options);
             ?>
-            <h3 class="mt-3"><?= $question_number; ?>. <?= $expert_session_question->title; ?></h3>
+            <h3 class="mt-3"><?= $question_number+1; ?>. <?= $expert_session_question->title; ?></h3>
             <?php switch ($expert_session_question->type) {
                 case 1: ?>
                     <!--	case 1 -->
@@ -107,9 +106,9 @@ if ($post) {
                         <span class="col-form-label mb-2">Ответ:</span>
                         <select name="answer[<?= $question_number; ?>][]" class="form-control mt-2" required>
                             <?php foreach ($options as $option) {
-                                $option_title_and_value[] = explode('=', $option);
+                                $option_title_and_value = explode('=', $option);
                                 ?>
-                                <option value="<?= $option_title_and_value[1]; ?>"><?= $option_title_and_value[0]; ?></option>
+                                <option value="<?= $option_title_and_value[0]; ?>"><?= $option_title_and_value[0]; ?></option>
                             <?php } ?>
                         </select>
                     </label>

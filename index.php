@@ -57,37 +57,37 @@ if ($post) {
 </nav>
 <!-- create  -->
 <?php if (UsersController::isLogin()) { ?>
-	<main class="main main__form container">
-    <h3 class="modal-title mt-5 mb-4">Создание экспертной сессии</h3>
-    <form
-            method="post"
-            name="create-form"
-            id="create-form"
-    >
-        <div class="form-group">
-            <label for="session-title" class="col-form-label">Название:</label>
-            <input name="title" required type="text" class="form-control" id="session-title">
-        </div>
-        <button name="create" class="btn btn-primary w-100">Создать</button>
-    </form>
-    <br>
-    <h3 class="modal-title mt-5 mb-4">Мои сессии</h3>
-    <div class="container">
-        <?php foreach ($_SESSION['user']->ExpertSessions as $expert_session) { ?>
-          <li>
-            <div class="session-item">
-              <h6 class="mr-4"><?= $expert_session->title; ?></h6>
-              <a class="btn btn-primary" href="/kozodaev-php-exam/sessions?session_id=<?= $expert_session->id; ?>">Перейти</a>
+    <main class="main main__form container">
+        <h3 class="modal-title mt-5 mb-4">Создание экспертной сессии</h3>
+        <form
+                method="post"
+                name="create-form"
+                id="create-form"
+        >
+            <div class="form-group">
+                <label for="session-title" class="col-form-label">Название:</label>
+                <input name="title" required type="text" class="form-control" id="session-title">
             </div>
-          </li>
-        <?php } ?>
-    </div>
-	</main>
+            <button name="create" class="btn btn-primary w-100">Создать</button>
+        </form>
+        <br>
+        <h3 class="modal-title mt-5 mb-4">Мои сессии</h3>
+        <div class="container">
+            <?php foreach ($_SESSION['user']->ExpertSessions as $expert_session) { ?>
+                <li>
+                    <div class="session-item">
+                        <h6 class="mr-4"><?= $expert_session->title; ?></h6>
+                        <a class="btn btn-primary" href="/kozodaev-php-exam/sessions?session_id=<?= $expert_session->id; ?>">Перейти</a>
+                    </div>
+                </li>
+            <?php } ?>
+        </div>
+    </main>
 <?php } else { ?>
-	  <main class="main main__center container">
-	    <h2 class="modal-title mt-5 mb-4">Приветствуем вас на лучшем сервисе опросов !</h2>
-	    <span style="max-width: 500px">Вы можете участвовать в них без регистрации, по специальной ссылке! Но если очень хочется зарегистрироваться, такую возможность мы тоже предусмотрели )0)0</span>
-	  </main>
+    <main class="main main__center container">
+        <h2 class="modal-title mt-5 mb-4">Приветствуем вас на лучшем сервисе опросов !</h2>
+        <span style="max-width: 500px">Вы можете участвовать в них без регистрации, по специальной ссылке! Но если очень хочется зарегистрироваться, такую возможность мы тоже предусмотрели )0)0</span>
+    </main>
 <?php } ?>
 
 <footer class="container-fluid footer">

@@ -3,8 +3,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/kozodaev-php-exam/config/database.php';
 
 use App\UsersController;
 use App\User;
-// зашита от авторизованного юзера
-if (UsersController::isLogin()) header('Location: /kozodaev-php-exam/');
+
+if (UsersController::isLogin()) header('Location: /kozodaev-php-exam/'); //Чтобы не сидел тут!
 
 if ($post) {
     if (!trim($_POST['login'])) $error = 'Логин не введен'; //Вторые проверки на любой случай жизни

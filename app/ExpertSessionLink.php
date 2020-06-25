@@ -12,8 +12,8 @@ class ExpertSessionLink extends Model
     protected $guarded = [];
     public $timestamps = false;
 
-    public function ExpertSession()
+    public function answers()
     {
-        return $this->belongsTo('App\ExpertSession');
+        return $this->hasMany('App\ExpertSessionAnswer');
     }
 }

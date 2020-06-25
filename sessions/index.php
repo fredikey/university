@@ -78,49 +78,40 @@ if ($post) {
         <h3 class="text-danger"><?= $error; ?></h3>
     <?php } ?>
     <h3 class="modal-title mt-5 mb-4"><?= $expert_session->title; ?></h3>
-    <button class="btn btn-primary mb-2" type="button" data-toggle="collapse" data-target="#questions_collapse" aria-expanded="false" aria-controls="collapse">
-        Вопросы
-    </button>
+    <p class="mb-2">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#questions_collapse" aria-expanded="false" aria-controls="collapse">
+            Вопросы
+        </button>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#links_collapse" aria-expanded="false" aria-controls="collapse">
+            Ссылки
+        </button>
+    </p>
     <div class="collapse" id="questions_collapse">
         <div class="card card-body">
             <div class="container">
                 <?php
                 $question_number = 1;
                 foreach ($expert_session->questions as $expert_session_question) { ?>
-                    <form method="post">
+                    <form method="post" class="link-item">
                         <input name="question_id" type="hidden" value="<?= $expert_session_question->id; ?>">
-                        <div class="row">
-                            <div class="col-9">
-                                <h3> <?= $question_number++; ?>. <?= $expert_session_question->title; ?></h3></div>
-                            <div class="col-3">
-                                <button name="delete_question" class="btn btn-danger">Удалить вопрос</button>
-                            </div>
-                        </div>
+                        <h5><?= $question_number++; ?>. <?= $expert_session_question->title; ?></h5>
+                        <button name="delete_question" class="btn btn-outline-danger btn-sm">Удалить вопрос</button>
                     </form>
                 <?php } ?>
             </div>
         </div>
     </div>
-    <button class="btn btn-primary mt-2 mb-2" type="button" data-toggle="collapse" data-target="#links_collapse" aria-expanded="false" aria-controls="collapse">
-        Ссылки
-    </button>
     <div class="collapse" id="links_collapse">
         <div class="card card-body">
             <div class="container">
                 <?php
                 $link_number = 1;
                 foreach ($expert_session->links as $expert_session_link) { ?>
-                    <form method="post">
+                    <form method="post" class="link-item">
                         <input name="link_id" type="hidden" value="<?= $expert_session_link->id; ?>">
-                        <div class="row">
-                            <div class="col-9">
-                                <h3>
-                                    it4u.fun/kozodaev-php-exam/session?random_id=<?= $expert_session_link->random_id; ?></h3>
-                            </div>
-                            <div class="col-3">
-                                <button name="delete_link" class="btn btn-danger">Удалить ссылку</button>
-                            </div>
-                        </div>
+                        <a class="link-item_label btn-sm" href="http://it4u.fun/kozodaev-php-exam/session?random_id=<?= $expert_session_link->random_id; ?>">it4u.fun/kozodaev-php-exam/session?random_id=<?= $expert_session_link->random_id; ?></a>
+                        <a class="btn btn-primary btn-sm" href="/kozodaev-php-exam/answers?link_id=<?= $expert_session_link->id; ?>">Ответы</a>
+                        <button name="delete_link" class="btn btn-outline-danger btn-sm">Удалить ссылку</button>
                     </form>
                 <?php } ?>
             </div>
@@ -169,20 +160,20 @@ if ($post) {
         </div>
         <div class="mb-3 mt-3" id="options-list" style="display: none">
             <input id="options-value" name="options" type="text" style="display: none">
-						<h6 class="mb-2" style="display: flex">Добавить варианты ответа:</h6>
+            <h6 class="mb-2" style="display: flex">Добавить варианты ответа:</h6>
             <ul id="options-render">
             </ul>
             <div class="form-group">
-              <div class="input-group mb-3">
-                <input id="options-input" type="text" class="form-control" placeholder="Введите текст" aria-label="Recipient's username" aria-describedby="basic-addon2">
-              </div>
-              <span class="mb-2" style="display: flex">Кол-во баллов:</span>
-              <div class="input-group mb-3">
-                <input min="-100" max="100" value="50" id="options-points" type="number" class="form-control" placeholder="Кол-во баллов:" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button id="options-btn" class="btn btn-outline-secondary" type="button">Добавить</button>
+                <div class="input-group mb-3">
+                    <input id="options-input" type="text" class="form-control" placeholder="Введите текст" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 </div>
-              </div>
+                <span class="mb-2" style="display: flex">Кол-во баллов:</span>
+                <div class="input-group mb-3">
+                    <input min="-100" max="100" value="50" id="options-points" type="number" class="form-control" placeholder="Кол-во баллов:" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button id="options-btn" class="btn btn-outline-secondary" type="button">Добавить</button>
+                    </div>
+                </div>
             </div>
         </div>
         <button name="add_question" form="create-form" class="btn btn-primary w-100 mb-2">Добавить</button>
@@ -229,15 +220,15 @@ if ($post) {
     const optionPoints = document.getElementById('options-points')
     const optionValue = document.getElementById('options-value')
 
-    let options = []
+    let options = {}
     optionBtn.addEventListener('click', () => {
         const val = optionInput.value
-        const points =  Number(optionPoints.value)
+        const points = Number(optionPoints.value)
         const el = document.createElement('li')
         el.classList.add('mb-2')
-        el.textContent = `val + ,  Баллов: ${points}`
+        el.textContent = val + `, Баллов: ${points}`
         const deleteOptionBtn = document.createElement('button')
-        deleteOptionBtn.classList.add('btn', 'btn-outline-danger', 'btn-sm', 'ml-2')
+        deleteOptionBtn.classList.add('btn', 'btn-outline-danger', 'btn-sm', 'float-right', 'ml-2')
         deleteOptionBtn.textContent = 'Удалить'
         deleteOptionBtn.type = 'button'
         el.appendChild(deleteOptionBtn)
@@ -245,20 +236,25 @@ if ($post) {
             // kostili
             const el = event.target.parentElement
             const val = el.innerText.split(',')[0]
-            options = options.filter(item => item[0] !== val)
-            optionValue.value = options.map(item => item.join('=')).join(',')
+            delete options[val];
+            optionValue.value = JSON.stringify(options)
             el.remove()
+            console.log(options, optionValue.value)
         })
         if (val && !isNaN(points) && points <= 100 && points >= -100) {
             el.classList.add('options-item')
-            options.push([val, points])
+            options[val] = points
             optionRender.appendChild(el)
+
         }
         // clear
         optionPoints.value = '50'
         optionInput.value = ''
-        optionValue.value = options.map(item => item.join('=')).join(',')
+        optionValue.value = JSON.stringify(options)
+        console.log(options, optionValue.value)
     })
 </script>
 </body>
 </html>
+
+

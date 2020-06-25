@@ -99,6 +99,21 @@ body {
 .session-item h6 {
 	margin-bottom: 0;
 }
+.link-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+.link-item h5 {
+	margin-bottom: 0;
+}
+.link-item_label {
+	max-width: 60%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow:ellipsis;
+}
 @media screen and (max-width: 991.98px){
 	.nav-login {
 		justify-content: flex-start;
