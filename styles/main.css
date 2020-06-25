@@ -91,6 +91,14 @@ body {
 .page-item-date {
 	color: gray;
 }
+.session-item {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.session-item h6 {
+	margin-bottom: 0;
+}
 @media screen and (max-width: 991.98px){
 	.nav-login {
 		justify-content: flex-start;
