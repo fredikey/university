@@ -135,7 +135,7 @@ if ($post) {
     >
         <div class="form-group">
             <label for="create-form-title" class="col-form-label">Вопрос:</label>
-            <input name="title" type="text" class="form-control" id="create-form-title">
+            <input placeholder="Введите вопрос" name="title" required type="text" class="form-control" id="create-form-title">
         </div>
         <div class="form-group">
             <label for="question-type">Тип вопроса:</label>
@@ -170,16 +170,20 @@ if ($post) {
         </div>
         <div class="mb-3 mt-3" id="options-list" style="display: none">
             <input id="options-value" name="options" type="text" style="display: none">
-            <span class="mb-2" style="display: flex">Возможные варианты ответа:</span>
+						<h6 class="mb-2" style="display: flex">Добавить варианты ответа:</h6>
             <ul id="options-render">
             </ul>
             <div class="form-group">
-                <div class="input-group mb-3">
-                    <input id="options-input" type="text" class="form-control" placeholder="Вариант ответа:" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button id="options-btn" class="btn btn-outline-secondary" type="button">Добавить</button>
-                    </div>
+              <div class="input-group mb-3">
+                <input id="options-input" type="text" class="form-control" placeholder="Введите текст" aria-label="Recipient's username" aria-describedby="basic-addon2">
+              </div>
+              <span class="mb-2" style="display: flex">Кол-во баллов:</span>
+              <div class="input-group mb-3">
+                <input min="-100" max="100" value="50" id="options-points" type="number" class="form-control" placeholder="Кол-во баллов:" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button id="options-btn" class="btn btn-outline-secondary" type="button">Добавить</button>
                 </div>
+              </div>
             </div>
         </div>
         <button name="add_question" form="create-form" class="btn btn-primary w-100 mb-2">Добавить</button>
@@ -208,36 +212,54 @@ if ($post) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script>
-    const selectEl = document.getElementById('question-type')
-    const optionsList = document.getElementById('options-list')
-    selectEl.addEventListener('change', (event) => {
-        const val = Number(event.target.value)
-        console.log('render', val)
-        if (val === 5 || val === 6) {
-            optionsList.style.display = 'block'
-        } else {
-            optionsList.style.display = 'none'
-        }
-    })
-    //	options logic
-    const optionBtn = document.getElementById('options-btn')
-    const optionRender = document.getElementById('options-render')
-    const optionInput = document.getElementById('options-input')
-    const optionValue = document.getElementById('options-value')
-    let options = []
-    optionBtn.addEventListener('click', () => {
-        const val = optionInput.value
-        const el = document.createElement('li')
-        el.textContent = val
-        if (val) {
-            el.classList.add('options-item')
-            options.push(val)
-            optionRender.appendChild(el)
-        }
-        // clear
-        optionInput.value = ''
-        optionValue.value = options.join(',')
-    })
+ const selectEl = document.getElementById('question-type')
+ const optionsList = document.getElementById('options-list')
+ selectEl.addEventListener('change', (event) => {
+ 	const val = Number(event.target.value)
+	 console.log('render', val)
+	 if (val === 5 || val === 6) {
+		 optionsList.style.display = 'block'
+	 } else {
+		 optionsList.style.display = 'none'
+	 }
+ })
+//	options logic
+	const optionBtn = document.getElementById('options-btn')
+	const optionRender = document.getElementById('options-render')
+	const optionInput = document.getElementById('options-input')
+ const optionPoints = document.getElementById('options-points')
+ const optionValue = document.getElementById('options-value')
+
+ let options = []
+ optionBtn.addEventListener('click', () => {
+	  const val = optionInput.value
+	  const points =  Number(optionPoints.value)
+	  const el = document.createElement('li')
+	 el.classList.add('mb-2')
+	 el.textContent = val + `,  Баллов: ${points}`
+	 const deleteOptionBtn = document.createElement('button')
+	 deleteOptionBtn.classList.add('btn', 'btn-outline-danger', 'btn-sm', 'ml-2')
+	 deleteOptionBtn.textContent = 'Удалить'
+	 deleteOptionBtn.type = 'button'
+	 el.appendChild(deleteOptionBtn)
+	 deleteOptionBtn.addEventListener('click', (event) => {
+		 // kostili
+		 const el = event.target.parentElement
+		 const val = el.innerText.split(',')[0]
+		 options = options.filter(item => item[0] !== val)
+		 optionValue.value = options.map(item => item.join('=')).join(',')
+		 el.remove()
+	 })
+	 if (val && !isNaN(points) && points <= 100 && points >= -100) {
+		 el.classList.add('options-item')
+		 options.push([val, points])
+		 optionRender.appendChild(el)
+	 }
+	 // clear
+	 optionPoints.value = '50'
+	 optionInput.value = ''
+	 optionValue.value = options.map(item => item.join('=')).join(',')
+ })
 </script>
 </body>
 </html>
