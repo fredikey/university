@@ -17,7 +17,7 @@ class UsersController
     public static function logout(): void
     {
         session_destroy();
-        header('Location: /');
+        header('Location: /kozodaev-php-exam/');
     }
 
     public static function isLogin(): bool

@@ -23,4 +23,7 @@ class User extends Model
         $this->save();
     }
 
+    public function ExpertSessions(){
+        return $this->hasMany('App\ExpertSession');
+    }
 }
