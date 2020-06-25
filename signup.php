@@ -4,7 +4,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/kozodaev-php-exam/config/database.php';
 use App\UsersController;
 use App\User;
 // зашита от авторизованного юзера
-if (UsersController::isLogin()) header('Location: /');
+if (UsersController::isLogin()) header('Location: /kozodaev-php-exam/');
 
 if ($post) {
     if (!trim($_POST['login'])) $error = 'Логин не введен'; //Вторые проверки на любой случай жизни
@@ -20,7 +20,7 @@ if ($post) {
         $user->role = 1;
         $user->save();
         $_SESSION['user'] = $user;
-        header('Location: /');
+        header('Location: /kozodaev-php-exam/');
     }
 }
 

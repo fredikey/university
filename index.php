@@ -2,6 +2,14 @@
 require $_SERVER['DOCUMENT_ROOT'] . '/kozodaev-php-exam/config/database.php';
 
 use App\UsersController;
+use App\ExpertSession;
+
+if ($post) {
+    if (isset($_POST['create'])) {
+        $expert_session = ExpertSession::create(['title' => $_POST['title']]); //Создаем экспертную сессию
+        header('Location: /kozodaev-php-exam/sessions?session_id=' . $expert_session->id); //Сразу кидаем на её страницу
+    }
+}
 
 ?>
 <!doctype html>
@@ -49,25 +57,34 @@ use App\UsersController;
         </div>
     </div>
 </nav>
-
-<!-- content -->
-<main class="main container">
-    <h1 class="greetings">
-      Привет, <span class="text-primary"><?php echo (UsersController::isLogin()) ? $_SESSION['user']->login : 'Гость'; ?></span>
-    </h1>
-    <!-- list -->
-    <section class="list">
-      <div class="card list-item">
-        <div class="card-header">
-          Статья
+<!-- create  -->
+<main class="main main__form container">
+    <?php if (UsersController::isLogin()) { ?>
+        <h3 class="modal-title mt-5 mb-4">Создание экспертной сессии</h3>
+        <form
+                method="post"
+                name="create-form"
+                id="create-form"
+        >
+            <div class="form-group">
+                <label for="session-title" class="col-form-label">Название:</label>
+                <input name="title" required type="text" class="form-control" id="session-title">
+            </div>
+            <button name="create" class="btn btn-primary w-100">Создать</button>
+        </form>
+        <br>
+        <h3 class="modal-title mt-5 mb-4">Мои сессии</h3>
+        <div class="container">
+            <?php foreach ($_SESSION['user']->ExpertSessions as $expert_session) { ?>
+                <div class="row">
+                    <div class="col-9"><h3><?= $expert_session->title; ?></h3></div>
+                    <div class="col-3">
+                        <a class="btn btn-primary w-100" href="/kozodaev-php-exam/session?session_id=<?= $expert_session->id; ?>">Перейти</a>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
-        <div class="card-body">
-          <h5 class="card-title">Заголовок статьи</h5>
-          <p class="card-text list-item-text">Текст статьи</p>
-          <a href="./article/index.php" class="btn btn-primary">Читать полностью</a>
-        </div>
-      </div>
-    </section>
+    <?php } ?>
 </main>
 <footer class="container-fluid footer">
     <p class="footer-item lead">

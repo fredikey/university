@@ -3,11 +3,12 @@ require $_SERVER['DOCUMENT_ROOT'] . '/kozodaev-php-exam/config/database.php';
 
 use App\UsersController;
 
-if (UsersController::isLogin()) header('Location: /'); //Чтобы не сидел тут!
+if (UsersController::isLogin()) header('Location: /kozodaev-php-exam/'); //Чтобы не сидел тут!
 
 if ($post) {
+    echo json_encode($_POST);
     $error = UsersController::login($_POST['login'], $_POST['password']);
-    if($error === null) header('Location: /');
+    if($error === null) header('Location: /kozodaev-php-exam/');
 }
 
 ?>
