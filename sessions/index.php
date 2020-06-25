@@ -11,11 +11,12 @@ use App\ExpertSessionLink;
 $expert_session = ExpertSession::FindOrFail($_GET['session_id']); //Не нашло сессию? уйди отсюда
 
 if ($post) {
+    $options = json_decode($_POST['options'], 1);
     if (isset($_POST['add_question'])) {
         if (empty($_POST['title'])) $error = 'Вопрос не введен';
         if (empty($_POST['type'])) $error = 'Тип вопроса не выбран';
-        if ($_POST['type'] == 5 and sizeof(explode(',', $_POST['options'])) < 2) $error = 'Минимум 2 варианта ответов';
-        if ($_POST['type'] == 6 and sizeof(explode(',', $_POST['options'])) < 3) $error = 'Минимум 3 варианта ответов';
+        if ($_POST['type'] == 5 and sizeof($options) < 2) $error = 'Минимум 2 варианта ответов';
+        if ($_POST['type'] == 6 and sizeof($options) < 3) $error = 'Минимум 3 варианта ответов';
         if (empty($error)) {
             ExpertSessionQuestion::create(['title' => $_POST['title'], 'type' => $_POST['type'], 'options' => $_POST['options'], 'expert_session_id' => $expert_session->id]);
         }
@@ -25,6 +26,10 @@ if ($post) {
         ExpertSessionLink::create(['random_id' => bin2hex(random_bytes(32)), 'expert_session_id' => $expert_session->id]);
     } elseif (isset($_POST['delete_link'])) {
         ExpertSessionLink::destroy($_POST['link_id']);
+    } elseif (isset($_POST['close_session'])) {
+        $expert_session->close();
+    } elseif (isset($_POST['delete_session'])) {
+        $expert_session->delete();
     }
     if (empty($error)) header('Location: /kozodaev-php-exam/sessions?session_id=' . $expert_session->id); //Защита от повторной отправки формы
 }
@@ -39,33 +44,33 @@ if ($post) {
     <!--	Add bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--	Custom styles -->
-    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="/kozodaev-php-exam/styles/main.css">
     <title>Exam</title>
 </head>
 <body>
 <!-- Header with Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-		<img src="https://fit.mospolytech.ru/assets/img/logo.svg" alt="logo" class="logo">
+        <img src="https://fit.mospolytech.ru/assets/img/logo.svg" alt="logo" class="logo">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php">Главная</a>
+                    <a class="nav-link" href="/kozodaev-php-exam/">Главная</a>
                 </li>
                 <?php if (UsersController::isLogin()) { ?>
                     <li class="nav-login">
                         <span class="nav-login-label">Привет, <b><?= $_SESSION['user']->login; ?></b></span>
-                        <a href="logout.php" class="btn nav-logout-btn">Выход</a>
+                        <a href="/kozodaev-php-exam/logout.php" class="btn nav-logout-btn">Выход</a>
                     </li>
                 <?php } else { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="signup.php">Регистрация</a>
+                        <a class="nav-link" href="/kozodaev-php-exam/signup.php">Регистрация</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php">Войти</a>
+                        <a class="nav-link" href="/kozodaev-php-exam/login.php">Войти</a>
                     </li>
                 <?php } ?>
             </ul>
@@ -179,7 +184,13 @@ if ($post) {
         <button name="add_question" form="create-form" class="btn btn-primary w-100 mb-2">Добавить</button>
     </form>
     <form method="post">
-        <button name="add_link" type="submit" form="create-form" class="btn btn-primary w-100">Новая ссылка</button>
+        <button name="add_link" type="submit" class="btn btn-primary w-100 mb-2">Новая ссылка</button>
+        <?php if ($expert_session->is_open) { ?>
+            <button name="close_session" type="submit" class="btn btn-danger w-100 mb-2">Закрыть сессию</button>
+        <?php } else { ?>
+            <h5 class="text-danger">Сессия закрыта</h5>
+        <?php } ?>
+        <button name="delete_session" type="submit" class="btn btn-danger w-100">Удалить</button>
     </form>
 </main>
 

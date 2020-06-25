@@ -2,6 +2,8 @@
 
 require $_SERVER['DOCUMENT_ROOT'] . '/kozodaev-php-exam/config/database.php';
 
+use App\UsersController;
+
 use App\ExpertSession;
 use App\ExpertSessionLink;
 use App\ExpertSessionAnswer;
@@ -21,28 +23,35 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
     <!--	Add bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--	Custom styles -->
-    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="/kozodaev-php-exam/styles/main.css">
     <title>Exam</title>
 </head>
 <body>
 <!-- Header with Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-		<img src="https://fit.mospolytech.ru/assets/img/logo.svg" alt="logo" class="logo">
+        <img src="https://fit.mospolytech.ru/assets/img/logo.svg" alt="logo" class="logo">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="../index.php">Главная</a>
+                    <a class="nav-link" href="/kozodaev-php-exam/">Главная</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../signup.php">Регистрация</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../login.php">Войти</a>
-                </li>
+                <?php if (UsersController::isLogin()) { ?>
+                    <li class="nav-login">
+                        <span class="nav-login-label">Привет, <b><?= $_SESSION['user']->login; ?></b></span>
+                        <a href="/kozodaev-php-exam/logout.php" class="btn nav-logout-btn">Выход</a>
+                    </li>
+                <?php } else { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/kozodaev-php-exam/signup.php">Регистрация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/kozodaev-php-exam/login.php">Войти</a>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
     </div>
@@ -58,7 +67,9 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
         <tr>
             <th scope="col">IP адрес</th>
             <th scope="col">Дата</th>
-            <?php foreach ($expert_session->questions as $experts_session_question) {?>
+            <?php foreach ($expert_session->questions as $experts_session_question) {
+                $questions[] = $experts_session_question->options;
+                ?>
                 <th scope="col"><?= $experts_session_question->title; ?></th>
             <?php } ?>
         </tr>
@@ -66,7 +77,9 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
         <tbody>
         <?php
         $answer_count = 0;
+        $total_points = 0;
         foreach ($expert_session_link->answers as $experts_session_link_answer) {
+            $points = 0;
             $json = json_decode($experts_session_link_answer->answer_json, 1);
             ?>
             <tr>
@@ -76,6 +89,10 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
                     <th>
                         <?php
                         if (is_array($answer)) {
+                            foreach($answer as $answer_value){
+                                $points += json_decode($questions[$answer_count],1)[$answer_value];
+                                $total_points += $points;
+                            }
                             echo implode(',  ', $answer);
                         } else  echo $answer;
                         ?>
@@ -85,6 +102,8 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
             <?php
             $answer_count++;
         }
+        $avg_points = $points / sizeof($questions);
+        $total_avg_points = $total_points / sizeof($expert_session->questions()->count());
         ?>
         </tbody>
     </table>
@@ -96,8 +115,8 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Сумма</h5>
-                    <p class="card-text">Суммарный набранный балл по всем вопросам</p>
-                    <div class="btn btn-info disabled">300 баллов</div>
+                    <p class="card-text">Общий набранный балл по всем вопросам</p>
+                    <div class="btn btn-info disabled"><?=$points;?> баллов</div>
                 </div>
             </div>
         </div>
@@ -106,7 +125,7 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
                 <div class="card-body">
                     <h5 class="card-title">Среднее</h5>
                     <p class="card-text">Средний балл по экспертной сессии в целом</p>
-                    <div class="btn btn-info disabled">50 баллов</div>
+                    <div class="btn btn-info disabled"><?=$avg_points;?> баллов</div>
                 </div>
             </div>
         </div>

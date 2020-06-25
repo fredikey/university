@@ -36,7 +36,7 @@ if ($post) {
     <!--	Add bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--	Custom styles -->
-    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="/kozodaev-php-exam/styles/main.css">
     <title>Exam</title>
 </head>
 <body>
@@ -50,18 +50,18 @@ if ($post) {
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php">Главная</a>
+                    <a class="nav-link" href="/kozodaev-php-exam/">Главная</a>
                 </li>
                 <li class="nav-item active">
                     <a
                             class="nav-link"
-                            href="signup.php"
+                            href="/kozodaev-php-exam/signup.php"
                     >Регистрация</a>
                 </li>
                 <li class="nav-item">
                     <a
                             class="nav-link"
-                            href="login.php"
+                            href="/kozodaev-php-exam/login.php"
                     >Войти</a>
                 </li>
             </ul>

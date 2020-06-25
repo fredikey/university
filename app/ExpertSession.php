@@ -33,5 +33,6 @@ class ExpertSession extends Model
     public function close()
     { //Закрываем сессию от ответов
         $this->is_open = false;
+        $this->save();
     }
 }

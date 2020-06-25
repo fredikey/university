@@ -22,7 +22,7 @@ if ($post) {
     <!--	Add bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--	Custom styles -->
-    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="/kozodaev-php-exam/styles/main.css">
     <title>Exam</title>
 </head>
 <body>
@@ -36,12 +36,12 @@ if ($post) {
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php">Главная</a>
+                    <a class="nav-link" href="/kozodaev-php-exam/">Главная</a>
                 </li>
                 <?php if (UsersController::isLogin()) { ?>
                     <li class="nav-login">
                         <span class="nav-login-label">Привет, <b><?= $_SESSION['user']->login; ?></b></span>
-                        <a href="logout.php" class="btn nav-logout-btn">Выход</a>
+                        <a href="/kozodaev-php-exam/logout.php" class="btn nav-logout-btn">Выход</a>
                     </li>
                 <?php } else { ?>
                     <li class="nav-item">
@@ -72,7 +72,7 @@ if ($post) {
         </form>
         <br>
         <h3 class="modal-title mt-5 mb-4">Мои сессии</h3>
-        <div class="container">
+        <ul class="container">
             <?php foreach ($_SESSION['user']->ExpertSessions as $expert_session) { ?>
                 <li>
                     <div class="session-item">
@@ -81,7 +81,7 @@ if ($post) {
                     </div>
                 </li>
             <?php } ?>
-        </div>
+        </ul>
     </main>
 <?php } else { ?>
     <main class="main main__center container">
