@@ -7,8 +7,8 @@ use App\UsersController;
 use App\ExpertSession;
 use App\ExpertSessionQuestion;
 use App\ExpertSessionLink;
-// Если не нашло сессию? то редирект
-$expert_session = ExpertSession::FindOrFail($_GET['session_id']);
+
+$expert_session = ExpertSession::FindOrFail($_GET['session_id']); //Не нашло сессию? уйди отсюда
 
 if ($post) {
     if (isset($_POST['add_question'])) {
@@ -116,7 +116,8 @@ if ($post) {
                         <input name="link_id" type="hidden" value="<?= $expert_session_link->id; ?>">
                         <div class="row">
                             <div class="col-9">
-                                <h3>it4u.fun/kozodaev-php-exam/session?random_id=<?= $expert_session_link->random_id; ?></h3>
+                                <h3>
+                                    it4u.fun/kozodaev-php-exam/session?random_id=<?= $expert_session_link->random_id; ?></h3>
                             </div>
                             <div class="col-3">
                                 <button name="delete_link" class="btn btn-danger">Удалить ссылку</button>
@@ -135,7 +136,7 @@ if ($post) {
     >
         <div class="form-group">
             <label for="create-form-title" class="col-form-label">Вопрос:</label>
-            <input placeholder="Введите вопрос" name="title" required type="text" class="form-control" id="create-form-title">
+            <input placeholder="Введите вопрос" name="title" type="text" class="form-control" id="create-form-title">
         </div>
         <div class="form-group">
             <label for="question-type">Тип вопроса:</label>
@@ -212,55 +213,54 @@ if ($post) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script>
- const selectEl = document.getElementById('question-type')
- const optionsList = document.getElementById('options-list')
- selectEl.addEventListener('change', (event) => {
- 	const val = Number(event.target.value)
-	 console.log('render', val)
-	 if (val === 5 || val === 6) {
-		 optionsList.style.display = 'block'
-	 } else {
-		 optionsList.style.display = 'none'
-	 }
- })
-//	options logic
-	const optionBtn = document.getElementById('options-btn')
-	const optionRender = document.getElementById('options-render')
-	const optionInput = document.getElementById('options-input')
- const optionPoints = document.getElementById('options-points')
- const optionValue = document.getElementById('options-value')
+    const selectEl = document.getElementById('question-type')
+    const optionsList = document.getElementById('options-list')
+    selectEl.addEventListener('change', (event) => {
+        const val = Number(event.target.value)
+        console.log('render', val)
+        if (val === 5 || val === 6) {
+            optionsList.style.display = 'block'
+        } else {
+            optionsList.style.display = 'none'
+        }
+    })
+    //    options logic
+    const optionBtn = document.getElementById('options-btn')
+    const optionRender = document.getElementById('options-render')
+    const optionInput = document.getElementById('options-input')
+    const optionPoints = document.getElementById('options-points')
+    const optionValue = document.getElementById('options-value')
 
- let options = []
- optionBtn.addEventListener('click', () => {
-	  const val = optionInput.value
-	  const points =  Number(optionPoints.value)
-	  const el = document.createElement('li')
-	 el.classList.add('mb-2')
-	 el.textContent = val + `,  Баллов: ${points}`
-	 const deleteOptionBtn = document.createElement('button')
-	 deleteOptionBtn.classList.add('btn', 'btn-outline-danger', 'btn-sm', 'ml-2')
-	 deleteOptionBtn.textContent = 'Удалить'
-	 deleteOptionBtn.type = 'button'
-	 el.appendChild(deleteOptionBtn)
-	 deleteOptionBtn.addEventListener('click', (event) => {
-		 // kostili
-		 const el = event.target.parentElement
-		 const val = el.innerText.split(',')[0]
-		 options = options.filter(item => item[0] !== val)
-		 optionValue.value = options.map(item => item.join('=')).join(',')
-		 el.remove()
-	 })
-	 if (val && !isNaN(points) && points <= 100 && points >= -100) {
-		 el.classList.add('options-item')
-		 options.push([val, points])
-		 optionRender.appendChild(el)
-	 }
-	 // clear
-	 optionPoints.value = '50'
-	 optionInput.value = ''
-	 optionValue.value = options.map(item => item.join('=')).join(',')
- })
+    let options = []
+    optionBtn.addEventListener('click', () => {
+        const val = optionInput.value
+        const points =  Number(optionPoints.value)
+        const el = document.createElement('li')
+        el.classList.add('mb-2')
+        el.textContent = `val + ,  Баллов: ${points}`
+        const deleteOptionBtn = document.createElement('button')
+        deleteOptionBtn.classList.add('btn', 'btn-outline-danger', 'btn-sm', 'ml-2')
+        deleteOptionBtn.textContent = 'Удалить'
+        deleteOptionBtn.type = 'button'
+        el.appendChild(deleteOptionBtn)
+        deleteOptionBtn.addEventListener('click', (event) => {
+            // kostili
+            const el = event.target.parentElement
+            const val = el.innerText.split(',')[0]
+            options = options.filter(item => item[0] !== val)
+            optionValue.value = options.map(item => item.join('=')).join(',')
+            el.remove()
+        })
+        if (val && !isNaN(points) && points <= 100 && points >= -100) {
+            el.classList.add('options-item')
+            options.push([val, points])
+            optionRender.appendChild(el)
+        }
+        // clear
+        optionPoints.value = '50'
+        optionInput.value = ''
+        optionValue.value = options.map(item => item.join('=')).join(',')
+    })
 </script>
 </body>
 </html>
-
