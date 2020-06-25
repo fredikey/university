@@ -79,7 +79,7 @@ if ($post) {
                 <div class="row">
                     <div class="col-9"><h3><?= $expert_session->title; ?></h3></div>
                     <div class="col-3">
-                        <a class="btn btn-primary w-100" href="/kozodaev-php-exam/session?session_id=<?= $expert_session->id; ?>">Перейти</a>
+                        <a class="btn btn-primary w-100" href="/kozodaev-php-exam/sessions?session_id=<?= $expert_session->id; ?>">Перейти</a>
                     </div>
                 </div>
             <?php } ?>
