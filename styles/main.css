@@ -25,6 +25,12 @@ body {
 	flex: 1;
 	padding-bottom: 20px;
 }
+.main__center {
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 150px;
+	text-align: center;
+}
 .main__form {
 	width: 50%;
 	align-self: center;
