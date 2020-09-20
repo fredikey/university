@@ -1,0 +1,9 @@
+# Idea
+.idea/
+.vscode/**
+
+# OSX
+.DS_Store
+
+# generated output
+node_modules/**
