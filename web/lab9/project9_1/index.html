@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		body {
+			padding: 0;
+			margin: 0;
+			font-family: sans-serif;
+			background-color: #34495e;
+		}
+		.title {
+			color: #fff;
+			font-size: 32px;
+		}
+		.form {
+			display: none;
+			flex-direction: column;
+			margin-top: 100px;
+			align-items: center;
+		}
+		.form-row {
+			display: flex;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+		.form-row > *:not(:last-of-type) {
+			margin-right: 20px;
+		}
+		.form-field {
+			display: flex;
+			flex-direction: column;
+		}
+		.field-label {
+			color: #fff;
+			font-size: 12px;
+			margin-left: 5px;
+		}
+		.field-input {
+			font-family: sans-serif;
+			border: none;
+			height: 30px;
+			width: 200px;
+			padding-left: 5px;
+			box-shadow: none;
+			margin-top: 4px;
+			border-radius: 6px;
+		}
+		.form-btn {
+			border: none;
+			box-shadow: none;
+			height: 25px;
+			width: 120px;
+			cursor: pointer;
+			border-radius: 6px;
+			background-color: #3498db;
+			color: #fff;
+			font-family: sans-serif;
+			font-size: 14px;
+		}
+		
+		.form-select {
+			font-family: sans-serif;
+			font-size: 14px;
+			margin-top: 5px;
+			height: 30px;
+			width: 200px;
+		}
+		.info {
+			display: none;
+			flex-direction: column;
+			margin-left: 20px;
+			color: #fff;
+		}
+		.info-item {
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+<form id="form-ticket" class="form">
+	<h2 class="title">Tickets</h2>
+	<div class="form-row">
+		<label class="form-field">
+			<span class="field-label">Your name</span>
+			<input id="form-ticket-name" class="field-input" type="text" required placeholder="Type here...">
+		</label>
+		<label class="form-field">
+			<span class="field-label">Your ID</span>
+			<input id="form-ticket-id" class="field-input" type="text" required placeholder="Type here...">
+		</label>
+	</div>
+	<div class="form-row">
+		<label class="form-field">
+			<span class="field-label">Your Email</span>
+			<input id="form-ticket-email" class="field-input" type="email" required placeholder="Type here...">
+		</label>
+		<label class="form-field">
+			<span class="field-label">Birthday</span>
+			<input id="form-ticket-birthday" class="field-input" type="date" required placeholder="Type here...">
+		</label>
+	</div>
+	<div class="form-row">
+		<label class="form-field">
+			<span class="field-label">Select ticket</span>
+			<select class="form-select" id="form-ticket-ticket">
+				<option value="1">ticket 1</option>
+				<option value="1">ticket 1</option>
+				<option value="2">ticket 2</option>
+				<option value="3">ticket 3</option>
+				<option value="4">ticket 4</option>
+				<option value="5">ticket 5</option>
+				<option value="6">ticket 6</option>
+				<option value="7">ticket 7</option>
+				<option value="8">ticket 8</option>
+				<option value="9">ticket 9</option>
+				<option value="10">ticket 10</option>
+			</select>
+		</label>
+	</div>
+	<button class="form-btn" id="form-ticket-btn">Submit</button>
+</form>
+<form id="form-booking" class="form">
+	<h2 class="title">Booking</h2>
+	<div class="form-row">
+		<label class="form-field">
+			<span class="field-label">State date</span>
+			<input id="form-booking-startDate" class="field-input" type="date" required placeholder="Type here...">
+		</label>
+		<label class="form-field">
+			<span class="field-label">End date</span>
+			<input id="form-booking-endDate" class="field-input" type="date" required placeholder="Type here...">
+		</label>
+	</div>
+	<div class="form-row">
+		<label class="form-field">
+			<span class="field-label">Select hotel</span>
+			<select class="form-select" id="form-booking-hotel">
+				<option value="1">Hotel 1</option>
+				<option value="1">Hotel 1</option>
+				<option value="2">Hotel 2</option>
+				<option value="3">Hotel 3</option>
+				<option value="4">Hotel 4</option>
+				<option value="5">Hotel 5</option>
+				<option value="6">Hotel 6</option>
+				<option value="7">Hotel 7</option>
+				<option value="8">Hotel 8</option>
+				<option value="9">Hotel 9</option>
+				<option value="10">Hotel 10</option>
+			</select>
+		</label>
+	</div>
+	<button class="form-btn" id="form-booking-btn">Submit</button>
+</form>
+<form id="form-visa" class="form">
+	<h2 class="title">Visa</h2>
+	<div class="form-row">
+		<label class="form-field">
+			<span class="field-label">Some info for visa 1</span>
+			<input id="form-visa-visaInfo1" class="field-input" type="text" required placeholder="Type here...">
+		</label>
+		<label class="form-field">
+			<span class="field-label">Some info for visa 2</span>
+			<input id="form-visa-visaInfo2" class="field-input" type="text" required placeholder="Type here...">
+		</label>
+	</div>
+	<button class="form-btn" id="form-visa-btn">Submit</button>
+</form>
+
+<div id="info" class="info">
+	<h2 class="title">Your tickets info</h2>
+</div>
+
+<script src="./script.js"></script>
+</body>
+</html>
