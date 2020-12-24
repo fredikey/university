@@ -6,17 +6,19 @@ import { MyWorkerType, MyWorker } from 'src/app/shared/worker.model';
   templateUrl: './addform-worker.component.html',
   styleUrls: ['./addform-worker.component.css'],
 })
-export class AddformWorkerComponent implements OnInit {
+export class AddformWorkerComponent {
   myWorkerType = MyWorkerType;
-  name: string;
-  surname: string;
+  name = '';
+  surname = '';
   type = 0;
 
   @Output() addWorker = new EventEmitter<MyWorker>();
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  clear () {
+    this.name = ''
+    this.surname = ''
+    this.type = 0
+  }
 
   onAddWorker() {
     this.addWorker.emit({
@@ -24,5 +26,10 @@ export class AddformWorkerComponent implements OnInit {
       surname: this.surname,
       type: this.type,
     });
+    this.clear()
+  }
+
+  get isButtonDisabled () {
+    return this.name.trim() === '' || this.surname.trim() === ''
   }
 }

@@ -27,6 +27,6 @@
     </select>
   </div>
   <div class="col-12 mt-1">
-    <button class="btn btn-outline-primary btn-sm" (click)="onAddWorker()">Добавить</button>
+    <button [disabled]="isButtonDisabled" class="btn btn-outline-primary btn-sm" (click)="onAddWorker()">Добавить</button>
   </div>
 </div>
