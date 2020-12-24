@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IWorker } from 'src/app/lib';
+import {phoneMask, phoneRegex} from 'src/app/lib/utils'
 
 @Component({
   selector: 'app-table',
@@ -7,6 +8,8 @@ import { IWorker } from 'src/app/lib';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent {
+  phoneMask = phoneMask
+
   @Input() title = '';
   @Input() workers: IWorker[] = [];
 
@@ -44,6 +47,9 @@ export class TableComponent {
   get isButtonDisabled () {
     if (!this.editedWorker) return false
 
-    return this.editedWorker.surname.trim() === '' || this.editedWorker.name.trim() === ''
+    return this.editedWorker.surname.trim() === '' ||
+    this.editedWorker.name.trim() === '' ||
+    this.editedWorker.phone.trim() === '' ||
+    !phoneRegex.test(this.editedWorker.phone)
   }
 }

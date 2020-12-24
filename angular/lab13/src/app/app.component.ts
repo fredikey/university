@@ -42,7 +42,7 @@ export class AppComponent {
     if (idx !== -1) {
       this.workers[idx].surname = worker.surname
       this.workers[idx].name = worker.name
-      this.workers[idx].name = worker.name
+      this.workers[idx].phone = worker.phone
     }
   }
 }
