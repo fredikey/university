@@ -1,0 +1,7 @@
+<div class="card" [ngClass]="{'card_Offline': !data.isOnline}">
+  <h4 class="card-heading">{{ data.id }}</h4>
+  <p class="card-body">
+    {{ data.name }}
+  </p>
+  <button class="card-button card-button_danger" (click)="onDelete(data.id)">Delete</button>
+</div>
