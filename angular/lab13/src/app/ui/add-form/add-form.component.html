@@ -1,4 +1,4 @@
-<div class="row mb-3">
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()" class="row mb-3">
   <div class="col-12">
     <h5>Добавить сотрудника</h5>
   </div>
@@ -7,7 +7,7 @@
       type="text"
       class="form-control"
       placeholder="Имя"
-      [(ngModel)]="name"
+      formControlName="name"
     />
   </div>
   <div class="col-4">
@@ -15,18 +15,18 @@
       type="text"
       class="form-control"
       placeholder="Фамилия"
-      [(ngModel)]="surname"
+      formControlName="surname"
     />
   </div>
   <div class="col-4">
-    <select class="custom-select" [(ngModel)]="type">
-      <option [ngValue]="myWorkerType.Programmer">Программист</option>
-      <option [ngValue]="myWorkerType.Designer">Дизайнер</option>
-      <option [ngValue]="myWorkerType.Copywriter">Рекламщик</option>
-      <option [ngValue]="myWorkerType.Manager">Менеджер</option>
+    <select class="custom-select" formControlName="type">
+      <option [ngValue]="workerType.Programmer">Программист</option>
+      <option [ngValue]="workerType.Designer">Дизайнер</option>
+      <option [ngValue]="workerType.Copywriter">Рекламщик</option>
+      <option [ngValue]="workerType.Manager">Менеджер</option>
     </select>
   </div>
   <div class="col-12 mt-1">
-    <button [disabled]="isButtonDisabled" class="btn btn-outline-primary btn-sm" (click)="onAddWorker()">Добавить</button>
+    <button [disabled]="!addForm.valid" class="btn btn-outline-primary btn-sm">Добавить</button>
   </div>
-</div>
+</form>

@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { WorkerType, IWorker } from 'src/app/lib';
+import {FormControl, FormGroup,Validators} from '@angular/forms'
 
 @Component({
   selector: 'app-add-form',
@@ -7,29 +8,18 @@ import { WorkerType, IWorker } from 'src/app/lib';
   styleUrls: ['./add-form.component.scss'],
 })
 export class AddFormComponent {
-  myWorkerType = WorkerType;
-  name = '';
-  surname = '';
-  type = 0;
+  workerType = WorkerType;
+
+  addForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    surname: new FormControl('', Validators.required),
+    type: new FormControl(WorkerType.Programmer)
+  });
 
   @Output() addWorker = new EventEmitter<Omit<IWorker, 'id'>>();
 
-  clear () {
-    this.name = ''
-    this.surname = ''
-    this.type = 0
-  }
-
-  onAddWorker() {
-    this.addWorker.emit({
-      name: this.name,
-      surname: this.surname,
-      type: this.type
-    });
-    this.clear()
-  }
-
-  get isButtonDisabled () {
-    return this.name.trim() === '' || this.surname.trim() === ''
+  onSubmit() {
+    this.addWorker.emit(this.addForm.value);
+    this.addForm.reset({name: '', surname: '', type: WorkerType.Programmer})
   }
 }
