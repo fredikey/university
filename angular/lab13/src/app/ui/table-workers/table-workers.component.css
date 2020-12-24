@@ -1,0 +1,7 @@
+.actions {
+  display: flex;
+}
+
+.actions  .btn:first-of-type {
+  margin-right: 10px;
+}
