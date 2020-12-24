@@ -14,15 +14,44 @@
         <tbody>
           <tr *ngFor="let worker of workers">
             <th scope="row">{{ worker.id }}</th>
-            <td>{{ worker.name }}</td>
-            <td>{{ worker.surname }}</td>
-            <td>
-              <button
-                class="btn btn-outline-danger btn-sm"
-                (click)="onDeleteWorker(worker.id)"
-              >
-                Удалить
-              </button>
+            <ng-container *ngIf="!editMode">
+              <td>{{ worker.name }}</td>
+              <td>{{ worker.surname }}</td>
+            </ng-container>
+            <ng-container *ngIf="editMode">
+              <td><input type="text" name="editedName" [(ngModel)]="editedName" /></td>
+              <td><input type="text" name="editedSurname" [(ngModel)]="editedSurname" /></td>
+            </ng-container>
+            <td class="actions">
+              <ng-container *ngIf="!editMode">
+                <button
+                  class="btn btn-outline-primary btn-sm"
+                  (click)="enableEditMode(worker)"
+                >
+                  Редактировать
+                </button>
+                <button
+                  class="btn btn-outline-danger btn-sm"
+                  (click)="onDeleteWorker(worker.id)"
+                >
+                  Удалить
+                </button>
+              </ng-container>
+              <ng-container *ngIf="editMode">
+                <button
+                  [disabled]="isButtonDisabled"
+                  class="btn btn-outline-success btn-sm"
+                  (click)="onEditWorker(worker)"
+                >
+                  Сохранить
+                </button>
+                <button
+                  class="btn btn-outline-primary btn-sm"
+                  (click)="disableEditMode()"
+                >
+                  Отмена
+                </button>
+              </ng-container>
             </td>
           </tr>
         </tbody>

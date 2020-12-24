@@ -34,4 +34,13 @@ export class AppComponent {
     worker.id = id;
     this.workers.push(worker);
   }
+
+  onEditWorker(worker) {
+    let idx = this.workers.findIndex(item => item.id === worker.id)
+    if (idx !== -1) {
+      this.workers[idx].surname = worker.surname
+      this.workers[idx].name = worker.name
+      this.workers[idx].name = worker.name
+    }
+  }
 }
