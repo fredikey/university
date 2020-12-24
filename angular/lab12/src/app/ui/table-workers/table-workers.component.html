@@ -14,16 +14,16 @@
         <tbody>
           <tr *ngFor="let worker of workers">
             <th scope="row">{{ worker.id }}</th>
-            <ng-container *ngIf="!editMode">
+            <ng-container *ngIf="!isEditedMode(worker)">
               <td>{{ worker.name }}</td>
               <td>{{ worker.surname }}</td>
             </ng-container>
-            <ng-container *ngIf="editMode">
-              <td><input type="text" name="editedName" [(ngModel)]="editedName" /></td>
-              <td><input type="text" name="editedSurname" [(ngModel)]="editedSurname" /></td>
+            <ng-container *ngIf="isEditedMode(worker)">
+              <td><input type="text" name="editedName" [(ngModel)]="editedWorker.name" /></td>
+              <td><input type="text" name="editedSurname" [(ngModel)]="editedWorker.surname" /></td>
             </ng-container>
             <td class="actions">
-              <ng-container *ngIf="!editMode">
+              <ng-container *ngIf="!isEditedMode(worker)">
                 <button
                   class="btn btn-outline-primary btn-sm"
                   (click)="enableEditMode(worker)"
@@ -37,11 +37,11 @@
                   Удалить
                 </button>
               </ng-container>
-              <ng-container *ngIf="editMode">
+              <ng-container *ngIf="isEditedMode(worker)">
                 <button
                   [disabled]="isButtonDisabled"
                   class="btn btn-outline-success btn-sm"
-                  (click)="onEditWorker(worker)"
+                  (click)="onEditWorker()"
                 >
                   Сохранить
                 </button>

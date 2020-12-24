@@ -18,24 +18,30 @@ export class TableWorkersComponent {
     this.deleteWorker.emit(id);
   }
 
+  // Feat: Edit worker
   editMode = false
-  editedName = ''
-  editedSurname = ''
+  editedWorker?: MyWorker
+  isEditedMode (worker) {
+    if (!this.editedWorker) return false
+    return this.editedWorker.id === worker.id && this.editMode
+  }
   enableEditMode (worker: MyWorker) {
     this.editMode = true
-    this.editedName = worker.name
-    this.editedSurname = worker.surname
+    // shallow copy object
+    this.editedWorker = {...worker}
   }
   disableEditMode () {
     this.editMode = false
-    this.editedName = ''
-    this.editedSurname = ''
+    this.editedWorker = undefined
   }
-  get isButtonDisabled () {
-   return this.editedSurname.trim() === '' || this.editedName.trim() === ''
-  }
-  onEditWorker(worker: MyWorker) {
-    this.editWorker.emit({...worker, name: this.editedName, surname: this.editedSurname})
+  onEditWorker() {
+    this.editWorker.emit(this.editedWorker)
     this.disableEditMode()
+  }
+
+  get isButtonDisabled () {
+    if (!this.editedWorker) return false
+
+    return this.editedWorker.surname.trim() === '' || this.editedWorker.name.trim() === ''
   }
 }
