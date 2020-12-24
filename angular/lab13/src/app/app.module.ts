@@ -5,12 +5,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
-import { TableWorkersComponent } from './ui/table-workers/table-workers.component';
-import { AddformWorkerComponent } from './ui/addform-worker/addform-worker.component';
+import { TableComponent } from './ui/table/table.component';
+import { AddFormComponent } from './ui/add-form/add-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent, TableWorkersComponent, AddformWorkerComponent],
+  declarations: [AppComponent, TableComponent, AddFormComponent],
   imports: [
     BrowserModule,
     FormsModule,

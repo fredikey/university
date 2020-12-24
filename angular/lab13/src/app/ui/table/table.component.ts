@@ -1,17 +1,17 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MyWorker } from 'src/app/shared/worker.model';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { IWorker } from 'src/app/lib';
 
 @Component({
-  selector: 'app-table-workers',
-  templateUrl: './table-workers.component.html',
-  styleUrls: ['./table-workers.component.css'],
+  selector: 'app-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss'],
 })
-export class TableWorkersComponent {
-  @Input() title: string;
-  @Input() workers: MyWorker[] = [];
+export class TableComponent {
+  @Input() title = '';
+  @Input() workers: IWorker[] = [];
 
   @Output() deleteWorker = new EventEmitter<number>();
-  @Output() editWorker = new EventEmitter<MyWorker>();
+  @Output() editWorker = new EventEmitter<IWorker>();
 
 
   onDeleteWorker(id: number) {
@@ -20,18 +20,20 @@ export class TableWorkersComponent {
 
   // Feat: Edit worker
   editMode = false
-  editedWorker?: MyWorker
-  isEditedMode (worker) {
+  // @ts-expect-error Workaround to suppress error from html template
+  editedWorker: IWorker
+  isEditedMode (worker: IWorker) {
     if (!this.editedWorker) return false
     return this.editedWorker.id === worker.id && this.editMode
   }
-  enableEditMode (worker: MyWorker) {
+  enableEditMode (worker: IWorker) {
     this.editMode = true
     // shallow copy object
     this.editedWorker = {...worker}
   }
   disableEditMode () {
     this.editMode = false
+    // @ts-expect-error
     this.editedWorker = undefined
   }
   onEditWorker() {

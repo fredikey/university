@@ -1,18 +1,18 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { MyWorkerType, MyWorker } from 'src/app/shared/worker.model';
+import { WorkerType, IWorker } from 'src/app/lib';
 
 @Component({
-  selector: 'app-addform-worker',
-  templateUrl: './addform-worker.component.html',
-  styleUrls: ['./addform-worker.component.css'],
+  selector: 'app-add-form',
+  templateUrl: './add-form.component.html',
+  styleUrls: ['./add-form.component.scss'],
 })
-export class AddformWorkerComponent {
-  myWorkerType = MyWorkerType;
+export class AddFormComponent {
+  myWorkerType = WorkerType;
   name = '';
   surname = '';
   type = 0;
 
-  @Output() addWorker = new EventEmitter<MyWorker>();
+  @Output() addWorker = new EventEmitter<Omit<IWorker, 'id'>>();
 
   clear () {
     this.name = ''
@@ -24,7 +24,7 @@ export class AddformWorkerComponent {
     this.addWorker.emit({
       name: this.name,
       surname: this.surname,
-      type: this.type,
+      type: this.type
     });
     this.clear()
   }

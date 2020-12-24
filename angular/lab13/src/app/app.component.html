@@ -4,84 +4,29 @@
       <h1>{{ title }}</h1>
     </div>
   </div>
-  <app-addform-worker (addWorker)="onAddWorker($event)"></app-addform-worker>
-  <app-table-workers
+  <app-add-form (addWorker)="onAddWorker($event)"></app-add-form>
+  <app-table
     [title]="'Программисты'"
-    [workers]="getByType(myWorkerType.programmer)"
+    [workers]="getByType(workerType.Programmer)"
     (deleteWorker)="onDeleteById($event)"
     (editWorker)="onEditWorker($event)"
-  ></app-table-workers>
-  <app-table-workers
+  ></app-table>
+  <app-table
     [title]="'Дизайнеры'"
-    [workers]="getByType(myWorkerType.designer)"
+    [workers]="getByType(workerType.Designer)"
     (deleteWorker)="onDeleteById($event)"
     (editWorker)="onEditWorker($event)"
-  ></app-table-workers>
-  <app-table-workers
+  ></app-table>
+  <app-table
     [title]="'Рекламщики'"
-    [workers]="getByType(myWorkerType.copywriter)"
+    [workers]="getByType(workerType.Copywriter)"
     (deleteWorker)="onDeleteById($event)"
     (editWorker)="onEditWorker($event)"
-  ></app-table-workers>
-  <app-table-workers
+  ></app-table>
+  <app-table
     [title]="'Менеджеры'"
-    [workers]="getByType(myWorkerType.manager)"
+    [workers]="getByType(workerType.Manager)"
     (deleteWorker)="onDeleteById($event)"
     (editWorker)="onEditWorker($event)"
-  ></app-table-workers>
-
-  <hr />
-  <div class="row">
-    <div class="col">
-      <div ngbDropdown class="d-inline-block">
-        <button
-          class="btn btn-outline-primary"
-          id="dropdownForm1"
-          ngbDropdownToggle
-        >
-          Toggle dropdown
-        </button>
-        <div ngbDropdownMenu aria-labelledby="dropdownForm1">
-          <form class="px-4 py-3">
-            <div class="form-group">
-              <label for="exampleDropdownFormEmail1">Email address</label>
-              <input
-                type="email"
-                class="form-control"
-                id="exampleDropdownFormEmail1"
-                placeholder="email@example.com"
-              />
-            </div>
-            <div class="form-group">
-              <label for="exampleDropdownFormPassword1">Password</label>
-              <input
-                type="password"
-                class="form-control"
-                id="exampleDropdownFormPassword1"
-                placeholder="Password"
-              />
-            </div>
-            <div class="form-check">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                id="dropdownCheck"
-              />
-              <label class="form-check-label" for="dropdownCheck">
-                Remember me
-              </label>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
-          </form>
-          <div class="dropdown-divider"></div>
-          <button ngbDropdownItem>New around here? Sign up</button>
-          <button ngbDropdownItem>Forgot password?</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr />
-  <div class="row mb-3">
-    <mat-spinner></mat-spinner>
-  </div>
+  ></app-table>
 </div>

@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import {
-  MyWorker,
-  MyWorkersDatabase,
-  MyWorkerType,
-} from './shared/worker.model';
+  IWorker,
+  WorkersDatabase,
+  WorkerType,
+} from './lib';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'Список сотрудников';
-  workers: MyWorker[] = MyWorkersDatabase;
-  myWorkerType = MyWorkerType;
+  workers = WorkersDatabase;
+  workerType = WorkerType;
 
   getByType(type: number) {
     return this.workers.filter((worker) => worker.type === type);
@@ -26,16 +26,18 @@ export class AppComponent {
     }
   }
 
-  onAddWorker(worker) {
-    let id =
-      this.workers.length > 0
-        ? this.workers[this.workers.length - 1].id + 1
-        : 0;
-    worker.id = id;
-    this.workers.push(worker);
+  get uniqueId () {
+    return Math.max(...this.workers.map(item => item.id)) + 1
   }
 
-  onEditWorker(worker) {
+  onAddWorker(worker: Omit<IWorker, 'id'>) {
+    this.workers.push({
+      ...worker,
+      id: this.uniqueId
+    });
+  }
+
+  onEditWorker(worker: IWorker) {
     let idx = this.workers.findIndex(item => item.id === worker.id)
     if (idx !== -1) {
       this.workers[idx].surname = worker.surname

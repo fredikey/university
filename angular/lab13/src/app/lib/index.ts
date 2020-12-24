@@ -1,18 +1,18 @@
-export interface MyWorker {
-  id?: number;
+export enum WorkerType {
+  Programmer,
+  Designer,
+  Copywriter,
+  Manager
+}
+
+export interface IWorker {
+  id: number;
   name: string;
   surname: string;
-  type: number;
+  type: WorkerType;
 }
 
-export enum MyWorkerType {
-  programmer,
-  designer,
-  copywriter,
-  manager,
-}
-
-export let MyWorkersDatabase: MyWorker[] = [
+export let WorkersDatabase: IWorker[] = [
   { id: 1, name: 'Иван', surname: 'Иванов', type: 0 },
   { id: 2, name: 'Петр', surname: 'Петров', type: 1 },
   { id: 3, name: 'Сидор', surname: 'Сидоров', type: 2 },
