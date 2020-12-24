@@ -1,0 +1,39 @@
+.card {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  border-radius: 10px;
+  background-color: #2ecc71;
+  padding: 20px;
+
+  &_Offline {
+    background-color: #e74c3c;
+  }
+
+  &-heading {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  &-body {
+    display: flex;
+    flex: 1;
+  }
+
+  &-button {
+    font-family: sans-serif;
+    border: none;
+    font-size: 14px;
+    height: 25px;
+    cursor: pointer;
+    width: 80px;
+    color: #fff;
+    align-self: end;
+
+    &_danger {
+      background-color: #c0392b;
+    }
+  }
+}
+

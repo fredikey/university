@@ -1,0 +1,12 @@
+<form class="form" (submit)="onSubmit($event)">
+  <h2 class="form-title">Add card</h2>
+  <label class="form-field">
+    <span class="form-label">Name</span>
+    <input name="name" [(ngModel)]="name" class="form-input" type="text" placeholder="Name...">
+  </label>
+  <label class="form-field">
+    <span class="form-label">Is online</span>
+    <input name="isOnline" class="form-input" type="checkbox" [(ngModel)]="isOnline">
+  </label>
+  <button [disabled]="isDisabled" class="form-btn">Submit</button>
+</form>

@@ -1,0 +1,6 @@
+<main class="content">
+  <div class="card-container">
+    <app-card *ngFor="let item of list" [data]="item" [onDelete]="deleteItem"></app-card>
+  </div>
+  <app-form [onAddItem]="addItem"></app-form>
+</main>
