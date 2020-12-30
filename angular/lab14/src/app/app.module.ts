@@ -9,10 +9,12 @@ import { AppComponent } from './app.component';
 import { TableComponent } from './ui/table/table.component';
 import { AddFormComponent } from './ui/add-form/add-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [AppComponent, TableComponent, AddFormComponent],
   imports: [
+    HttpClientModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

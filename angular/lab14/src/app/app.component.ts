@@ -4,6 +4,7 @@ import {
   WorkersDatabase,
   WorkerType,
 } from './lib';
+import {WorkersService} from './services/workers.service'
 
 @Component({
   selector: 'app-root',
@@ -11,15 +12,26 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  workersServices: WorkersService;
+
   title = 'Список сотрудников';
-  workers = WorkersDatabase;
+  workers: IWorker[] = []
   workerType = WorkerType;
+
+  constructor(workersService: WorkersService) {
+    this.workersServices = workersService
+
+    this.workersServices.getWorkers().then(data => {
+      this.workers = data
+    })
+  }
 
   getByType(type: number) {
     return this.workers.filter((worker) => worker.type === type);
   }
 
-  onDeleteById(id: number) {
+  async onDeleteById(id: number) {
+    await this.workersServices.deleteWorker(id)
     let index = this.workers.findIndex((worker) => worker.id === id);
     if (index !== -1) {
       this.workers.splice(index, 1);
@@ -30,14 +42,16 @@ export class AppComponent {
     return Math.max(...this.workers.map(item => item.id)) + 1
   }
 
-  onAddWorker(worker: Omit<IWorker, 'id'>) {
-    this.workers.push({
+  async onAddWorker(worker: Omit<IWorker, 'id'>) {
+    const data = await this.workersServices.addWorker({
       ...worker,
       id: this.uniqueId
-    });
+    })
+    this.workers.push(data)
   }
 
-  onEditWorker(worker: IWorker) {
+  async onEditWorker(worker: IWorker) {
+    await this.workersServices.editWorker(worker)
     let idx = this.workers.findIndex(item => item.id === worker.id)
     if (idx !== -1) {
       this.workers[idx].surname = worker.surname
