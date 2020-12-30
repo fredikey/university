@@ -4,22 +4,22 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InfoComponent } from './pages/info/info.component';
-import { ListComponent } from './pages/list/list.component';
+import { WorkersListComponent } from './pages/workers/workers-list.component';
 import { HeaderComponent } from './ui/header/header.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {TableComponent} from './ui/table/table.component'
 import {TextMaskModule} from 'angular2-text-mask';
-import { AddFormComponent } from './pages/add-form/add-form.component'
+import { AddWorkerComponent } from './pages/add-worker/add-worker.component'
 import {WorkersFilterPipe} from './pipes/workers-filter.pipe'
 
 @NgModule({
   declarations: [
     AppComponent,
     InfoComponent,
-    ListComponent,
+    WorkersListComponent,
     HeaderComponent,
     TableComponent,
-    AddFormComponent,
+    AddWorkerComponent,
     WorkersFilterPipe
   ],
   imports: [

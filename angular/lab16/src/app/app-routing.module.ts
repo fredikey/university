@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {InfoComponent} from './pages/info/info.component'
-import {ListComponent} from './pages/list/list.component'
-import {AddFormComponent} from './pages/add-form/add-form.component'
+import {WorkersListComponent} from './pages/workers/workers-list.component'
+import {AddWorkerComponent} from './pages/add-worker/add-worker.component'
 
 const routes: Routes = [
   {path: '', component: InfoComponent},
-  {path: 'list', component: ListComponent},
-  {path: 'add-form', component: AddFormComponent},
+  {path: 'workers-list', component: WorkersListComponent},
+  {path: 'add-worker', component: AddWorkerComponent},
 ];
 
 

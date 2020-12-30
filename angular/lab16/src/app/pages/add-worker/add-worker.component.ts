@@ -7,10 +7,10 @@ import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-form',
-  templateUrl: './add-form.component.html',
-  styleUrls: ['./add-form.component.scss']
+  templateUrl: './add-worker.component.html',
+  styleUrls: ['./add-worker.component.scss']
 })
-export class AddFormComponent {
+export class AddWorkerComponent {
   phoneMask = phoneMask;
   workerTypeMap = workerTypeMap;
   workerTypeList = Object.keys(workerTypeMap).map(key => Number(key)) as WorkerType[];
@@ -35,6 +35,6 @@ export class AddFormComponent {
   onSubmit() {
     this.workersService.addWorker(this.addForm.value)
     this.addForm.reset({phone: '', email: '', name: '', patronymic: '', surname: '', type: WorkerType.IT, birthDay: ''})
-    this.router.navigate(['list'])
+    this.router.navigate(['workers-list'])
   }
 }

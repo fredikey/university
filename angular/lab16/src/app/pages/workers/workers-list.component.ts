@@ -4,10 +4,10 @@ import {WorkersService} from '../../services/workers.service'
 
 @Component({
   selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  templateUrl: './workers-list.component.html',
+  styleUrls: ['./workers-list.component.scss']
 })
-export class ListComponent {
+export class WorkersListComponent {
   workers: IWorker[] = []
   searchString = ''
 
