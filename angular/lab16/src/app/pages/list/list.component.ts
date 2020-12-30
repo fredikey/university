@@ -17,10 +17,7 @@ export class ListComponent {
     this.workers = this.workersService.getWorkers()
   }
   async onDeleteById(id: number) {
-    let index = this.workers.findIndex((worker) => worker.id === id);
-    if (index !== -1) {
-      this.workers.splice(index, 1);
-    }
+    this.workersService.deleteWorker(id)
   }
 
   async onEditWorker(worker: IWorker) {

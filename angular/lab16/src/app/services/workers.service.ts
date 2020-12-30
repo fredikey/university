@@ -30,7 +30,10 @@ export class WorkersService {
   }
 
   public deleteWorker (id: number) {
-  //
+    let index = this.workers.findIndex((worker) => worker.id === id);
+    if (index !== -1) {
+      this.workers.splice(index, 1);
+    }
   }
 
   public editWorker (data: IWorker) {
