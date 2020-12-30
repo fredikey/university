@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IWorker, WorkerType, workerTypeMap } from '../../lib';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { phoneRegex, phoneMask } from '../../lib/utils';
+import { PHONE_MASK, PHONE_REGEX } from './utils';
 
 type WorkerData = Omit<IWorker, 'id'>;
 let EMPTY_WORKER: WorkerData = {
@@ -25,7 +25,7 @@ export class FormComponent implements OnInit {
 
   @Output() submit = new EventEmitter<WorkerData>();
 
-  phoneMask = phoneMask;
+  phoneMask = PHONE_MASK;
   workerTypeMap = workerTypeMap;
   workerTypeList = Object.keys(workerTypeMap).map((key) =>
     Number(key)
@@ -43,7 +43,7 @@ export class FormComponent implements OnInit {
       ),
       phone: new FormControl(this.workerData.phone, [
         Validators.required,
-        Validators.pattern(phoneRegex),
+        Validators.pattern(PHONE_REGEX),
       ]),
       email: new FormControl(this.workerData.email, [
         Validators.required,
