@@ -12,7 +12,7 @@
   </div>
   <app-table
     [workers]="workers | workersFilter: searchString"
-    (deleteWorker)="onDeleteById($event)"
+    (deleteWorker)="onDeleteWorker($event)"
     (editWorker)="onEditWorker($event)"
   ></app-table>
 </div>

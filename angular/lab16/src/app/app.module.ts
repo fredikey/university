@@ -10,7 +10,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {TableComponent} from './ui/table/table.component'
 import {TextMaskModule} from 'angular2-text-mask';
 import { AddWorkerComponent } from './pages/add-worker/add-worker.component'
-import {WorkersFilterPipe} from './pipes/workers-filter.pipe'
+import {WorkersFilterPipe} from './pipes/workers-filter.pipe';
+import { FormComponent } from './ui/form/form.component';
+import { EditWorkerComponent } from './pages/edit-worker/edit-worker.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import {WorkersFilterPipe} from './pipes/workers-filter.pipe'
     HeaderComponent,
     TableComponent,
     AddWorkerComponent,
-    WorkersFilterPipe
+    WorkersFilterPipe,
+    FormComponent,
+    EditWorkerComponent
   ],
   imports: [
     BrowserModule,

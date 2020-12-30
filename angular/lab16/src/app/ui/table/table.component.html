@@ -12,22 +12,14 @@
   <tbody>
     <tr *ngFor="let worker of workers">
       <th scope="row">{{ worker.id }}</th>
-      <ng-container *ngIf="!isEditedMode(worker)">
         <td>{{ worker.name }}</td>
         <td>{{ worker.surname }}</td>
         <td>{{ getAge(worker.birthDay) }}</td>
         <td>{{ workerTypeMap[worker.type] }}</td>
-      </ng-container>
-<!--      <ng-container *ngIf="isEditedMode(worker)">-->
-<!--        <td><input type="text" name="editedName" [(ngModel)]="editedWorker.name" /></td>-->
-<!--        <td><input type="text" name="editedSurname" [(ngModel)]="editedWorker.surname" /></td>-->
-<!--        <td><input [textMask]="{mask: phoneMask}" type="text" name="editedPhone" [(ngModel)]="editedWorker.phone" /></td>-->
-<!--      </ng-container>-->
       <td class="actions">
-        <ng-container *ngIf="!isEditedMode(worker)">
           <button
             class="btn btn-outline-primary btn-sm"
-            (click)="enableEditMode(worker)"
+            (click)="onEditWorker(worker.id)"
           >
             Редактировать
           </button>
@@ -37,22 +29,6 @@
           >
             Удалить
           </button>
-        </ng-container>
-        <ng-container *ngIf="isEditedMode(worker)">
-          <button
-            [disabled]="isButtonDisabled"
-            class="btn btn-outline-success btn-sm"
-            (click)="onEditWorker()"
-          >
-            Сохранить
-          </button>
-          <button
-            class="btn btn-outline-primary btn-sm"
-            (click)="disableEditMode()"
-          >
-            Отмена
-          </button>
-        </ng-container>
       </td>
     </tr>
   </tbody>

@@ -1,31 +1,26 @@
 import { Component } from '@angular/core';
-import {IWorker} from '../../lib'
-import {WorkersService} from '../../services/workers.service'
+import { IWorker } from '../../lib';
+import { WorkersService } from '../../services/workers.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-workers-list',
   templateUrl: './workers-list.component.html',
-  styleUrls: ['./workers-list.component.scss']
+  styleUrls: ['./workers-list.component.scss'],
 })
 export class WorkersListComponent {
-  workers: IWorker[] = []
-  searchString = ''
+  workers: IWorker[] = [];
+  searchString = '';
 
-  workersService: WorkersService
-  constructor(workersService: WorkersService) {
-    this.workersService = workersService
-    this.workers = this.workersService.getWorkers()
-  }
-  async onDeleteById(id: number) {
-    this.workersService.deleteWorker(id)
+  constructor(private workersService: WorkersService, private router: Router) {
+    this.workers = this.workersService.getWorkers();
   }
 
-  async onEditWorker(worker: IWorker) {
-    let idx = this.workers.findIndex(item => item.id === worker.id)
-    if (idx !== -1) {
-      this.workers[idx].surname = worker.surname
-      this.workers[idx].name = worker.name
-      this.workers[idx].phone = worker.phone
-    }
+  onDeleteWorker(id: number) {
+    this.workersService.deleteWorker(id);
+  }
+
+  onEditWorker(id: number) {
+    this.router.navigate(['/edit-worker', id]);
   }
 }

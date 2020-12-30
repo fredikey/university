@@ -4,66 +4,8 @@
       <h1>Добавить сотрудника</h1>
     </div>
   </div>
-  <form [formGroup]="addForm" (ngSubmit)="onSubmit()" class="mb-3 mt-5">
-    <div class="row mb-3">
-      <div class="col-3">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Имя"
-          formControlName="name"
-        />
-      </div>
-      <div class="col-3">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Фамилия"
-          formControlName="surname"
-        />
-      </div>
-      <div class="col-3">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Отчество"
-          formControlName="patronymic"
-        />
-      </div>
-    </div>
-    <div class="row mb-3">
-      <div class="col-3">
-        <input
-          type="tel"
-          [textMask]="{mask: phoneMask}"
-          class="form-control"
-          placeholder="Телефон"
-          formControlName="phone"
-        />
-      </div>
-      <div class="col-3">
-        <input
-          type="email"
-          class="form-control"
-          placeholder="Email"
-          formControlName="email"
-        />
-      </div>
-    </div>
-    <div class="row">
-      <label class="col-3">
-        Отдел:
-        <select class="custom-select mt-1" formControlName="type">
-          <option *ngFor="let value of workerTypeList" [ngValue]="value">{{ workerTypeMap[value] }}</option>
-        </select>
-      </label>
-      <label class="col-3">
-        Дата рождения:
-        <input class="form-control mt-1" type="date" formControlName="birthDay">
-      </label>
-    </div>
-    <div class="col-12 mt-3" style="padding: 0">
-      <button [disabled]="!addForm.valid" class="btn btn-primary">Добавить</button>
-    </div>
-  </form>
+  <app-form
+    (submit)="onSubmit($event)"
+    [submitTitle]="'Добавить'"
+  ></app-form>
 </div>
