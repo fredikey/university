@@ -16,7 +16,7 @@ export class TableComponent {
   phoneMask = phoneMask
   workerTypeMap = workerTypeMap
 
-  getAge (birthday: number) {
+  getAge (birthday: string) {
     const ageDifMs = Date.now() - new Date(birthday).getTime();
     const ageDate = new Date(ageDifMs);
     return Math.abs(ageDate.getUTCFullYear() - 1970);

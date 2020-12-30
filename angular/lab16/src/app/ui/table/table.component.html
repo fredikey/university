@@ -15,7 +15,7 @@
       <ng-container *ngIf="!isEditedMode(worker)">
         <td>{{ worker.name }}</td>
         <td>{{ worker.surname }}</td>
-        <td>{{ getAge(worker.birthDate) }}</td>
+        <td>{{ getAge(worker.birthDay) }}</td>
         <td>{{ workerTypeMap[worker.type] }}</td>
       </ng-container>
 <!--      <ng-container *ngIf="isEditedMode(worker)">-->

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {IWorker, WorkersDatabase} from '../../lib'
+import {IWorker} from '../../lib'
+import {WorkersService} from '../../services/workers.service'
 
 @Component({
   selector: 'app-list',
@@ -7,8 +8,13 @@ import {IWorker, WorkersDatabase} from '../../lib'
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  workers: IWorker[] = WorkersDatabase
+  workers: IWorker[] = []
 
+  workersService: WorkersService
+  constructor(workersService: WorkersService) {
+    this.workersService = workersService
+    this.workers = this.workersService.getWorkers()
+  }
   async onDeleteById(id: number) {
     let index = this.workers.findIndex((worker) => worker.id === id);
     if (index !== -1) {
