@@ -9,10 +9,11 @@ import { AppComponent } from './app.component';
 import { TableComponent } from './ui/table/table.component';
 import { AddFormComponent } from './ui/add-form/add-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { WorkersFilterPipe } from './pipes/workers-filter.pipe'
 
 @NgModule({
-  declarations: [AppComponent, TableComponent, AddFormComponent],
+  declarations: [AppComponent, TableComponent, AddFormComponent, WorkersFilterPipe],
   imports: [
     HttpClientModule,
     BrowserModule,

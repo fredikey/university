@@ -14,6 +14,9 @@ import {WorkersService} from './services/workers.service'
 export class AppComponent {
   workersServices: WorkersService;
 
+  filterName = ''
+  filterSurname = ''
+
   title = 'Список сотрудников';
   workers: IWorker[] = []
   workerType = WorkerType;
