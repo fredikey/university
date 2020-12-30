@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-12">
+      <h1>{{ title }}</h1>
+    </div>
+  </div>
+  <app-add-form (addWorker)="onAddWorker($event)"></app-add-form>
+  <div class="row mt-5 mb-5">
+    <h3>Фильтр</h3>
+    <div class="col-3 ml-3">
+      <input
+        type="text"
+        placeholder="Имя"
+        [(ngModel)]="filterName"
+      />
+    </div>
+    <div class="col-3">
+      <input
+        type="text"
+        placeholder="Фамилия"
+        [(ngModel)]="filterSurname"
+      />
+    </div>
+  </div>
+  <app-table
+    [title]="'Программисты'"
+    [workers]="getByType(workerType.Programmer) | workersFilter : filterName : filterSurname"
+    (deleteWorker)="onDeleteById($event)"
+    (editWorker)="onEditWorker($event)"
+  ></app-table>
+  <app-table
+    [title]="'Дизайнеры'"
+    [workers]="getByType(workerType.Designer) | workersFilter : filterName : filterSurname"
+    (deleteWorker)="onDeleteById($event)"
+    (editWorker)="onEditWorker($event)"
+  ></app-table>
+  <app-table
+    [title]="'Рекламщики'"
+    [workers]="getByType(workerType.Copywriter) | workersFilter : filterName : filterSurname"
+    (deleteWorker)="onDeleteById($event)"
+    (editWorker)="onEditWorker($event)"
+  ></app-table>
+  <app-table
+    [title]="'Менеджеры'"
+    [workers]="getByType(workerType.Manager) | workersFilter : filterName : filterSurname"
+    (deleteWorker)="onDeleteById($event)"
+    (editWorker)="onEditWorker($event)"
+  ></app-table>
+</div>
