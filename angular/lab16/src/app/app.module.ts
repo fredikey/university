@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {TableComponent} from './ui/table/table.component'
 import {TextMaskModule} from 'angular2-text-mask';
 import { AddFormComponent } from './pages/add-form/add-form.component'
+import {WorkersFilterPipe} from './pipes/workers-filter.pipe'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AddFormComponent } from './pages/add-form/add-form.component'
     ListComponent,
     HeaderComponent,
     TableComponent,
-    AddFormComponent
+    AddFormComponent,
+    WorkersFilterPipe
   ],
   imports: [
     BrowserModule,

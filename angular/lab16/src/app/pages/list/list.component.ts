@@ -9,6 +9,7 @@ import {WorkersService} from '../../services/workers.service'
 })
 export class ListComponent {
   workers: IWorker[] = []
+  searchString = ''
 
   workersService: WorkersService
   constructor(workersService: WorkersService) {

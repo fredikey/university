@@ -6,12 +6,12 @@ import {IWorker} from '../lib'
 })
 export class WorkersFilterPipe implements PipeTransform {
 
-  transform(list: IWorker[], name: string, surname: string) {
+  transform(list: IWorker[], searchString: string) {
+    if (searchString.trim() === '') return list
+
+    const [name, surname] = searchString.split(' ')
     const resName = name.trim().toLowerCase()
-    const resSurname = surname.trim().toLowerCase()
-    if (resName === '' && resSurname === '') {
-      return list
-    }
+    const resSurname = !surname ? '' : surname.trim().toLowerCase()
 
     return list.filter(item => {
       const isNameMatch = (item.name.toLowerCase()).includes(resName)
