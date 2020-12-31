@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IWorker, workerTypeMap } from 'src/app/lib';
 
+type SortKey = 'id' | 'age';
+type SortMode = 'up' | 'down';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -26,5 +28,24 @@ export class TableComponent {
 
   onEditWorker(id: number) {
     this.editWorker.emit(id);
+  }
+
+  // sort
+  sortKey?: SortKey = undefined;
+  sortMode?: SortMode = 'up';
+
+  onSort(key: SortKey) {
+    if (this.sortKey === key) {
+      this.sortMode = this.sortMode === 'down' ? 'up' : 'down';
+    }
+    const getVal = (val: IWorker) =>
+      key === 'age' ? new Date(val['birthDay']).getTime() : val[key];
+    this.workers.sort((a, b) => {
+      let aVal = getVal(a);
+      let bVal = getVal(b);
+
+      return this.sortMode === 'up' ? bVal - aVal : aVal - bVal;
+    });
+    this.sortKey = key;
   }
 }

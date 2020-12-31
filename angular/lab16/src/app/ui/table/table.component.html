@@ -1,10 +1,10 @@
 <table class="table" *ngIf="workers.length > 0">
   <thead>
     <tr>
-      <th scope="col" [style.width]="'60px'">#</th>
+      <th (click)="onSort('id')" class="interactive-col" scope="col" [style.width]="'60px'">#</th>
       <th scope="col">Имя</th>
       <th scope="col">Фамилия</th>
-      <th scope="col">Возраст</th>
+      <th (click)="onSort('age')" class="interactive-col" scope="col">Возраст</th>
       <th scope="col">Отдел</th>
       <th scope="col" [style.width]="'150px'"></th>
     </tr>
