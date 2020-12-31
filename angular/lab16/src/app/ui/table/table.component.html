@@ -1,0 +1,36 @@
+<table class="table" *ngIf="workers.length > 0">
+  <thead>
+    <tr>
+      <th (click)="onSort('id')" class="interactive-col" scope="col" [style.width]="'60px'">#</th>
+      <th scope="col">Имя</th>
+      <th scope="col">Фамилия</th>
+      <th (click)="onSort('age')" class="interactive-col" scope="col">Возраст</th>
+      <th scope="col">Отдел</th>
+      <th scope="col" [style.width]="'150px'"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let worker of workers">
+      <th scope="row">{{ worker.id }}</th>
+        <td>{{ worker.name }}</td>
+        <td>{{ worker.surname }}</td>
+        <td>{{ getAge(worker.birthDay) }}</td>
+        <td>{{ workerTypeMap[worker.type] }}</td>
+      <td class="actions">
+          <button
+            class="btn btn-outline-primary btn-sm"
+            (click)="onEditWorker(worker.id)"
+          >
+            Редактировать
+          </button>
+          <button
+            class="btn btn-outline-danger btn-sm"
+            (click)="onDeleteWorker(worker.id)"
+          >
+            Удалить
+          </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="lead text-center mt-5" *ngIf="workers.length === 0">Не найдено</p>

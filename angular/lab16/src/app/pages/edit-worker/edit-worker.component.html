@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row mb-4 mt-5">
+    <div class="col-12">
+      <h1>Редактирование сотрудника</h1>
+    </div>
+  </div>
+  <app-form
+    *ngIf="workerData !== undefined"
+    [submitTitle]="'Редактировать'"
+    [workerData]="workerData"
+    (submit)="onSubmit($event)"
+  ></app-form>
+</div>
