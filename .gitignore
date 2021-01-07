@@ -7,3 +7,4 @@
 
 # generated output
 node_modules/**
+django/project/__pycache__/
