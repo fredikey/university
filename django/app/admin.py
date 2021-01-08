@@ -36,12 +36,16 @@ class EventTypeAdmin(admin.ModelAdmin):
 	class Meta:
 		verbose_name_plural = "Event types"
 
+def make_finished(modeladmin, request, queryset):
+	queryset.update(status=4)
+
 # register Event Type
 @admin.register(Event)
 class EventTypeAdmin(admin.ModelAdmin):
   list_display = ('name', 'event_type', 'status', 'address', 'display_short_description', 'sale_start', 'time_start', 'time_end')
   list_filter = ('event_type', 'status', 'address', 'time_start' ,'time_end')
   search_fields = ('name', )
+  actions=(make_finished, )
   class Meta:
     verbose_name_plural = "Events"
 
