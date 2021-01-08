@@ -16,10 +16,10 @@ class Address(models.Model):
 
 class Seat(models.Model):
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
-    row_number = models.IntegerField()
-    seat_number = models.IntegerField()
+    row_number = models.IntegerField(blank=True)
+    seat_number = models.IntegerField(blank=True)
     def __str__(self):
-        	     return 'Ряд: ' + self.row_number + '; ' + 'Место: ' + self.seat_number
+        return 'Ряд: {0}; Место: {1}'.format(self.row_number, self.seat_number)
 
 
 class EventType(models.Model):
@@ -49,6 +49,11 @@ class Event(models.Model):
 		def __str__(self):
 	  		return self.name
 
+		def display_short_description(self):
+		    if (len(self.description) >= 50):
+		        return self.description[0:50] + '...'
+		    return self.description
+
 
 class TicketClass(models.Model):
     class TicketType(models.IntegerChoices):
@@ -70,7 +75,10 @@ class Ticket(models.Model):
     seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     def __str__(self):
-	     return self
+	     return self.event.name
+
+    def display_address(self):
+        return self.event.address.name
 
 class User(models.Model):
     name = models.CharField(max_length=50)
@@ -83,7 +91,7 @@ class Order(models.Model):
     email = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
-	     return self.name
+	     return self.ticket.event.name
 
 class SeatTicketClass(models.Model):
     seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
