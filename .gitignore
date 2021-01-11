@@ -9,3 +9,4 @@
 node_modules/**
 django/project/__pycache__/
 django/app/__pycache__/
+django/venv/
