@@ -13,11 +13,13 @@ export class WorkersListComponent {
   searchString = '';
 
   constructor(private workersService: WorkersService, private router: Router) {
-    this.workers = this.workersService.getWorkers();
+    this.workersService.getWorkers().then((data) => {
+      this.workers = data;
+    });
   }
 
-  onDeleteWorker(id: number) {
-    this.workersService.deleteWorker(id);
+  async onDeleteWorker(id: number) {
+    await this.workersService.deleteWorker(id);
   }
 
   onEditWorker(id: number) {

@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class AddWorkerComponent {
   constructor(private workersService: WorkersService, private router: Router) {}
-  onSubmit(data: Omit<IWorker, 'id'>) {
-    this.workersService.addWorker(data);
+  async onSubmit(data: Omit<IWorker, 'id'>) {
+    await this.workersService.addWorker(data);
     this.router.navigate(['workers-list']);
   }
 }

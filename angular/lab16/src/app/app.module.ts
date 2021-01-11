@@ -6,13 +6,14 @@ import { AppComponent } from './app.component';
 import { InfoComponent } from './pages/info/info.component';
 import { WorkersListComponent } from './pages/workers/workers-list.component';
 import { HeaderComponent } from './ui/header/header.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms'
-import {TableComponent} from './ui/table/table.component'
-import {TextMaskModule} from 'angular2-text-mask';
-import { AddWorkerComponent } from './pages/add-worker/add-worker.component'
-import {WorkersFilterPipe} from './pipes/workers-filter.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TableComponent } from './ui/table/table.component';
+import { TextMaskModule } from 'angular2-text-mask';
+import { AddWorkerComponent } from './pages/add-worker/add-worker.component';
+import { WorkersFilterPipe } from './pipes/workers-filter.pipe';
 import { FormComponent } from './ui/form/form.component';
-import { EditWorkerComponent } from './pages/edit-worker/edit-worker.component'
+import { EditWorkerComponent } from './pages/edit-worker/edit-worker.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,10 @@ import { EditWorkerComponent } from './pages/edit-worker/edit-worker.component'
     AddWorkerComponent,
     WorkersFilterPipe,
     FormComponent,
-    EditWorkerComponent
+    EditWorkerComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -34,6 +36,6 @@ import { EditWorkerComponent } from './pages/edit-worker/edit-worker.component'
     ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -23,7 +23,7 @@ export class FormComponent implements OnInit {
   @Input() workerData: WorkerData = EMPTY_WORKER;
   @Input() submitTitle = 'Отправить';
 
-  @Output() submit = new EventEmitter<WorkerData>();
+  @Output() submitForm = new EventEmitter<WorkerData>();
 
   phoneMask = PHONE_MASK;
   workerTypeMap = workerTypeMap;
@@ -55,7 +55,7 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submit.emit((this.form as FormGroup).value);
+    this.submitForm.emit((this.form as FormGroup).value);
     (this.form as FormGroup).reset(EMPTY_WORKER);
   }
 }

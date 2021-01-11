@@ -19,13 +19,14 @@ export class EditWorkerComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
-      this.workerData = this.workersService.getWorkerById(params.id) as IWorker;
-      console.log(params.id, this.workerData);
+      this.workersService.getWorkerById(params.id).then((data) => {
+        this.workerData = data;
+      });
     });
   }
 
-  onSubmit(data: Omit<IWorker, 'id'>) {
-    this.workersService.editWorker({
+  async onSubmit(data: Omit<IWorker, 'id'>) {
+    await this.workersService.editWorker({
       id: (this.workerData as IWorker).id,
       ...data,
     });
