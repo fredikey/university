@@ -6,7 +6,7 @@
 * Generate static files
 
 ```md
-python3 -m venv ./venv && ./venv/bin/activation && pip3 -r requirements.txt && ./manage.py makemigrations && ./manage.py migrate && ./manage.py collectstatic
+python3 -m venv ./venv && source ./venv/bin/activate && pip3 -r requirements.txt && ./manage.py makemigrations && ./manage.py migrate && ./manage.py collectstatic
 ```
 
 # Run an app
@@ -15,3 +15,8 @@ python3 -m venv ./venv && ./venv/bin/activation && pip3 -r requirements.txt && .
 ./manage.py runserver
 ```
 
+# Export dependencies
+
+```md
+pip3 freeze > requirements.txt
+```
