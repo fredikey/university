@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IProduct, productCategoryMap } from 'src/app/lib';
 
-type SortKey = 'price' | 'amount';
+type SortKey = 'price' | 'amount' | 'id';
 type SortMode = 'up' | 'down';
 @Component({
   selector: 'app-table',

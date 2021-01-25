@@ -1,11 +1,11 @@
 <table class="table" *ngIf="products.length > 0">
   <thead>
     <tr>
-      <th scope="col" [style.width]="'60px'">#</th>
+      <th (click)="onSort('id')" scope="col" class="interactive-col" [style.width]="'60px'">#</th>
       <th scope="col" [style.width]="'200px'">Название</th>
       <th scope="col">Категория</th>
       <th scope="col">Вес</th>
-      <th (click)="onSort('price')"scope="col" class="interactive-col" >Цена</th>
+      <th (click)="onSort('price')" scope="col" class="interactive-col" >Цена</th>
       <th (click)="onSort('amount')" scope="col" class="interactive-col" >Кол-во на складе</th>
       <th scope="col" [style.width]="'150px'"></th>
     </tr>

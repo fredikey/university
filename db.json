@@ -6,7 +6,7 @@
       "article": "191-321",
       "price": 30000,
       "weight": 1,
-      "amount": 100,
+      "amount": 107,
       "producer": "Huawei",
       "category": 3
     },
@@ -40,7 +40,7 @@
     },
     {
       "name": "Тестовый телефон",
-      "amount": 99,
+      "amount": 1120,
       "price": 75000,
       "producer": "Apple",
       "category": 3,
@@ -50,7 +50,7 @@
     },
     {
       "name": "Тестовый телефон 2",
-      "amount": 24,
+      "amount": 31,
       "price": 90000,
       "producer": "",
       "category": 3,
