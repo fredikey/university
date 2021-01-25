@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { IProduct } from '../../lib';
-import { ProductsService } from '../../services/products.service';
-import { Router } from '@angular/router';
+import {Component} from '@angular/core'
+import {IProduct, productCategoriesList, productCategoryMap, ProductType} from '../../lib'
+import {ProductsService} from '../../services/products.service'
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-products-list',
@@ -10,7 +10,12 @@ import { Router } from '@angular/router';
 })
 export class ProductsListComponent {
   products: IProduct[] = [];
-  searchString = '';
+
+  // filter
+  amountFilter = true;
+  categoryFilter: ProductType | -1 = -1;
+  productCategoryMap = productCategoryMap;
+  productTypeList = productCategoriesList
 
   constructor(private productsService: ProductsService, private router: Router) {
     this.productsService.getProducts().then((data) => {

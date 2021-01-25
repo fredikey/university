@@ -11,6 +11,9 @@ export const productCategoryMap: Record<ProductType, string> = {
   [ProductType.Book]: 'Книга',
   [ProductType.Phone]: 'Телефон',
 }
+export const productCategoriesList = Object.keys(productCategoryMap).map((key) =>
+  Number(key)
+) as ProductType[];
 
 export interface IProduct {
   id: number;

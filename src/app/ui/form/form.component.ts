@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
-import {IProduct, productCategoryMap, ProductType} from '../../lib'
+import {IProduct, productCategoriesList, productCategoryMap, ProductType} from '../../lib'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
 
 type ProductData = Omit<IProduct, 'id'>;
@@ -25,9 +25,7 @@ export class FormComponent implements OnInit {
   @Output() submitForm = new EventEmitter<ProductData>();
 
   productCategoryMap = productCategoryMap;
-  productTypeList = Object.keys(productCategoryMap).map((key) =>
-    Number(key)
-  ) as ProductType[];
+  productTypeList = productCategoriesList
   form?: FormGroup;
 
   // init form with props or default data

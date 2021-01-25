@@ -12,6 +12,7 @@ import { AddProductComponent } from './pages/add-product/add-product.component';
 import { FormComponent } from './ui/form/form.component';
 import { EditProductComponent } from './pages/edit-product/edit-product.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductsFilterPipe } from './pipes/products-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     AddProductComponent,
     FormComponent,
     EditProductComponent,
+    ProductsFilterPipe,
   ],
   imports: [
     HttpClientModule,
