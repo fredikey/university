@@ -25,4 +25,8 @@ export class ProductsListComponent {
   onEditProduct(id: number) {
     this.router.navigate(['/edit-product', id]);
   }
+
+  async onEditProductAmount({id, amount}: Pick<IProduct, 'id' | 'amount'>) {
+    await this.productsService.editProductAmount({id, amount})
+  }
 }

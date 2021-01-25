@@ -13,6 +13,7 @@ export class TableComponent {
 
   @Output() deleteProduct = new EventEmitter<number>();
   @Output() editProduct = new EventEmitter<number>();
+  @Output() editProductAmount = new EventEmitter<Pick<IProduct, 'id' | 'amount'>>();
 
   productCategoryMap = productCategoryMap;
 
@@ -24,6 +25,9 @@ export class TableComponent {
     this.editProduct.emit(id);
   }
 
+  onEditAmount (id: number, amount: number) {
+    this.editProductAmount.emit({id, amount})
+  }
   // sort
   sortKey?: SortKey = undefined;
   sortMode?: SortMode = 'up';

@@ -16,7 +16,7 @@
       "article": "191-322",
       "price": 1000,
       "weight": 10,
-      "amount": 100,
+      "amount": 99,
       "producer": "Ikea",
       "category": 0
     },
@@ -35,12 +35,12 @@
       "article": "191-324",
       "price": 10650,
       "weight": 5,
-      "amount": 45,
+      "amount": 44,
       "category": 1
     },
     {
       "name": "Тестовый телефон",
-      "amount": 100,
+      "amount": 99,
       "price": 75000,
       "producer": "Apple",
       "category": 3,
@@ -50,7 +50,7 @@
     },
     {
       "name": "Тестовый телефон 2",
-      "amount": 25,
+      "amount": 24,
       "price": 90000,
       "producer": "",
       "category": 3,

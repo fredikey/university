@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th scope="col" [style.width]="'60px'">#</th>
-      <th scope="col">Название</th>
+      <th scope="col" [style.width]="'200px'">Название</th>
       <th scope="col">Категория</th>
       <th scope="col">Вес</th>
       <th (click)="onSort('price')"scope="col" class="interactive-col" >Цена</th>
@@ -17,7 +17,21 @@
       <td>{{ productCategoryMap[product.category] }}</td>
       <td>{{ product.weight }}</td>
       <td>{{ product.price }}</td>
-      <td>{{ product.amount }}</td>
+      <td class="table-amount">
+        <button
+          class="btn btn-outline-primary btn-sm"
+          (click)="onEditAmount(product.id, product.amount + 1)"
+        >
+          +
+        </button>
+        {{ product.amount }}
+        <button
+          class="btn btn-outline-primary btn-sm"
+          (click)="onEditAmount(product.id, product.amount - 1)"
+        >
+          -
+        </button>
+      </td>
       <td class="actions">
           <button
             class="btn btn-outline-primary btn-sm"

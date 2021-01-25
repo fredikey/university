@@ -9,3 +9,15 @@
 .interactive-col {
   cursor: pointer;
 }
+
+.table-amount {
+  align-items: center;
+
+  .btn:first-of-type {
+    margin-right: 5px;
+  }
+
+  .btn:last-of-type {
+    margin-left: 5px;
+  }
+}

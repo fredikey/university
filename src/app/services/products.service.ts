@@ -41,4 +41,13 @@ export class ProductsService {
       this.products[idx] = data;
     }
   }
+
+  public async editProductAmount(data: Pick<IProduct, 'id' | 'amount'>) {
+    const product = this.products.find(item => item.id === data.id)
+    if (product !== undefined) {
+      const productShallowCopy = Object.assign({}, product)
+      productShallowCopy.amount = data.amount
+      await this.editProduct(productShallowCopy)
+    }
+  }
 }
