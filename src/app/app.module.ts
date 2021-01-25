@@ -1,31 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InfoComponent } from './pages/info/info.component';
-import { WorkersListComponent } from './pages/workers/workers-list.component';
+import { ProductsListComponent } from './pages/products-list/products-list.component';
 import { HeaderComponent } from './ui/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableComponent } from './ui/table/table.component';
 import { TextMaskModule } from 'angular2-text-mask';
-import { AddWorkerComponent } from './pages/add-worker/add-worker.component';
-import { WorkersFilterPipe } from './pipes/workers-filter.pipe';
+import { AddProductComponent } from './pages/add-product/add-product.component';
 import { FormComponent } from './ui/form/form.component';
-import { EditWorkerComponent } from './pages/edit-worker/edit-worker.component';
+import { EditProductComponent } from './pages/edit-product/edit-product.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     InfoComponent,
-    WorkersListComponent,
+    ProductsListComponent,
     HeaderComponent,
     TableComponent,
-    AddWorkerComponent,
-    WorkersFilterPipe,
+    AddProductComponent,
     FormComponent,
-    EditWorkerComponent,
+    EditProductComponent,
   ],
   imports: [
     HttpClientModule,

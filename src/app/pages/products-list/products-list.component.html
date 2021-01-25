@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mb-4 mt-5 align-items-center">
-    <h1 class="col-9">Список сотрудников</h1>
+    <h1 class="col-9">Список товаров</h1>
     <div class="col-3 d-flex justify-content-end">
       <input
         class="w-100"
@@ -11,8 +11,8 @@
     </div>
   </div>
   <app-table
-    [workers]="workers | workersFilter: searchString"
-    (deleteWorker)="onDeleteWorker($event)"
-    (editWorker)="onEditWorker($event)"
+    [products]="products"
+    (deleteProduct)="onDeleteProduct($event)"
+    (editProduct)="onEditProduct($event)"
   ></app-table>
 </div>

@@ -1,24 +1,24 @@
-export enum WorkerType {
-  IT,
-  Sales,
-  Delivery,
-  Juridical
+export enum ProductType {
+  Furniture,
+  Tech,
+  Book,
+  Phone
 }
 
-export const workerTypeMap: Record<WorkerType, string> = {
-  [WorkerType.IT]: 'IT отдел',
-  [WorkerType.Delivery]: 'Отдел доставки',
-  [WorkerType.Sales]: 'Отдел продаж',
-  [WorkerType.Juridical]: 'Юридический отдел',
+export const productCategoryMap: Record<ProductType, string> = {
+  [ProductType.Furniture]: 'Мебель',
+  [ProductType.Tech]: 'Техника',
+  [ProductType.Book]: 'Книга',
+  [ProductType.Phone]: 'Телефон',
 }
 
-export interface IWorker {
+export interface IProduct {
   id: number;
   name: string;
-  surname: string;
-  patronymic: string;
-  email: string;
-  birthDay: string;
-  phone: string
-  type: WorkerType;
+  article: string;
+  price: number;
+  weight: number;
+  amount: number;
+  category: ProductType;
+  producer?: string;
 }

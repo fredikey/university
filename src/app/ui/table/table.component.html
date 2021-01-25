@@ -1,31 +1,33 @@
-<table class="table" *ngIf="workers.length > 0">
+<table class="table" *ngIf="products.length > 0">
   <thead>
     <tr>
-      <th (click)="onSort('id')" class="interactive-col" scope="col" [style.width]="'60px'">#</th>
-      <th scope="col">Имя</th>
-      <th scope="col">Фамилия</th>
-      <th (click)="onSort('age')" class="interactive-col" scope="col">Возраст</th>
-      <th scope="col">Отдел</th>
+      <th scope="col" [style.width]="'60px'">#</th>
+      <th scope="col">Название</th>
+      <th scope="col">Категория</th>
+      <th scope="col">Вес</th>
+      <th (click)="onSort('price')"scope="col" class="interactive-col" >Цена</th>
+      <th (click)="onSort('amount')" scope="col" class="interactive-col" >Кол-во на складе</th>
       <th scope="col" [style.width]="'150px'"></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let worker of workers">
-      <th scope="row">{{ worker.id }}</th>
-        <td>{{ worker.name }}</td>
-        <td>{{ worker.surname }}</td>
-        <td>{{ getAge(worker.birthDay) }}</td>
-        <td>{{ workerTypeMap[worker.type] }}</td>
+    <tr *ngFor="let product of products">
+      <th scope="row">{{ product.id }}</th>
+      <td>{{ product.name }}</td>
+      <td>{{ productCategoryMap[product.category] }}</td>
+      <td>{{ product.weight }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.amount }}</td>
       <td class="actions">
           <button
             class="btn btn-outline-primary btn-sm"
-            (click)="onEditWorker(worker.id)"
+            (click)="onEditProduct(product.id)"
           >
             Редактировать
           </button>
           <button
             class="btn btn-outline-danger btn-sm"
-            (click)="onDeleteWorker(worker.id)"
+            (click)="onDeleteProduct(product.id)"
           >
             Удалить
           </button>
@@ -33,4 +35,4 @@
     </tr>
   </tbody>
 </table>
-<p class="lead text-center mt-5" *ngIf="workers.length === 0">Не найдено</p>
+<p class="lead text-center mt-5" *ngIf="products.length === 0">Не найдено</p>

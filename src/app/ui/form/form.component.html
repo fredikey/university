@@ -1,59 +1,68 @@
 <form *ngIf="form !== undefined" [formGroup]="form" (ngSubmit)="onSubmit()" class="mb-3 mt-5">
   <div class="row mb-3">
-    <div class="col-3">
+    <label class="col-3">
+      Название:
       <input
         type="text"
         class="form-control"
-        placeholder="Имя"
+        placeholder="Название"
         formControlName="name"
       />
-    </div>
-    <div class="col-3">
+    </label>
+    <label class="col-3">
+      Артикуль:
       <input
         type="text"
         class="form-control"
-        placeholder="Фамилия"
-        formControlName="surname"
+        placeholder="Артикуль"
+        formControlName="article"
       />
-    </div>
-    <div class="col-3">
+    </label>
+    <label class="col-3">
+      Производитель:
       <input
         type="text"
         class="form-control"
-        placeholder="Отчество"
-        formControlName="patronymic"
+        placeholder="Производитель"
+        formControlName="producer"
       />
-    </div>
+    </label>
   </div>
   <div class="row mb-3">
-    <div class="col-3">
+    <label class="col-3">
+      Количество на складе:
       <input
-        type="tel"
-        [textMask]="{mask: phoneMask}"
+        type="number"
         class="form-control"
-        placeholder="Телефон"
-        formControlName="phone"
+        placeholder="Количество на складе"
+        formControlName="amount"
       />
-    </div>
-    <div class="col-3">
+    </label>
+    <label class="col-3">
+      Вес:
       <input
-        type="email"
+        type="number"
         class="form-control"
-        placeholder="Email"
-        formControlName="email"
+        placeholder="Вес"
+        formControlName="weight"
       />
-    </div>
+    </label>
+    <label class="col-3">
+      Цена:
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Цена"
+        formControlName="price"
+      />
+    </label>
   </div>
   <div class="row">
     <label class="col-3">
-      Отдел:
-      <select class="custom-select mt-1" formControlName="type">
-        <option *ngFor="let value of workerTypeList" [ngValue]="value">{{ workerTypeMap[value] }}</option>
+      Категория:
+      <select class="custom-select mt-1" formControlName="category">
+        <option *ngFor="let value of productTypeList" [ngValue]="value">{{ productCategoryMap[value] }}</option>
       </select>
-    </label>
-    <label class="col-3">
-      Дата рождения:
-      <input class="form-control mt-1" type="date" formControlName="birthDay">
     </label>
   </div>
   <div class="col-12 mt-3" style="padding: 0">
