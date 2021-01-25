@@ -26,6 +26,7 @@
         </button>
         {{ product.amount }}
         <button
+          [disabled]="product.amount === 0"
           class="btn btn-outline-primary btn-sm"
           (click)="onEditAmount(product.id, product.amount - 1)"
         >
