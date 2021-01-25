@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row mb-4 mt-5 align-items-center">
+    <h1 class="col-9">Список сотрудников</h1>
+    <div class="col-3 d-flex justify-content-end">
+      <input
+        class="w-100"
+        type="text"
+        placeholder="Фильтрация по Имени и Фамилии"
+        [(ngModel)]="searchString"
+      />
+    </div>
+  </div>
+  <app-table
+    [workers]="workers | workersFilter: searchString"
+    (deleteWorker)="onDeleteWorker($event)"
+    (editWorker)="onEditWorker($event)"
+  ></app-table>
+</div>
