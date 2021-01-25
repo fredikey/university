@@ -1,8 +1,8 @@
 <div class="container">
-  <div class="row mb-4 mt-5 align-items-center">
-    <h1 class="col-6">Список товаров</h1>
-    <div class="col-6 d-flex">
-      <div class="form-check d-flex col align-items-center">
+  <div class="row mb-4 mt-5 align-items-center flex-sm-column flex-md-row">
+    <h1 class="col-md-12 col-lg-6">Список товаров</h1>
+    <div class="col-md-12 col-lg-6 d-flex flex-md-row flex-column">
+      <div class="col form-check d-flex align-items-center mb-1 mb-md-0">
         <input [(ngModel)]="amountFilter" type="checkbox" class="form-check-input" id="amountFilter">
         <label class="form-check-label" for="amountFilter">Показать позиции, кол-во которых больше 0</label>
       </div>

@@ -22,6 +22,7 @@ export class ProductsFilterPipe implements PipeTransform {
       if (categoryFilter !== -1) {
         return item.category === categoryFilter
       }
+      return false
     })
   }
 

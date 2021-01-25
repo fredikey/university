@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th (click)="onSort('id')" scope="col" class="interactive-col" [style.width]="'60px'">#</th>
-      <th scope="col" [style.width]="'200px'">Название</th>
+      <th scope="col" [style.width]="'180px'">Название</th>
       <th scope="col">Категория</th>
       <th scope="col">Вес</th>
       <th (click)="onSort('price')" scope="col" class="interactive-col" >Цена</th>
@@ -17,7 +17,7 @@
       <td>{{ productCategoryMap[product.category] }}</td>
       <td>{{ product.weight }}</td>
       <td>{{ product.price }}</td>
-      <td class="table-amount">
+      <td class="table-amount flex-row">
         <button
           class="btn btn-outline-primary btn-sm"
           (click)="onEditAmount(product.id, product.amount + 1)"
@@ -32,9 +32,9 @@
           -
         </button>
       </td>
-      <td class="actions">
+      <td class="actions flex-column flex-lg-row">
           <button
-            class="btn btn-outline-primary btn-sm"
+            class="btn btn-outline-primary btn-sm mb-1 mb-lg-0"
             (click)="onEditProduct(product.id)"
           >
             Редактировать

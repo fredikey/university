@@ -1,10 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand">Kozodaev1058</a>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" [routerLink]="'/'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Главная</a>
-      <a class="nav-item nav-link" [routerLink]="'/products-list'" routerLinkActive="active">Список товаров</a>
-      <a class="nav-item nav-link" [routerLink]="'/add-product'" routerLinkActive="active">Добавление нового товара</a>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Kozodaev1058</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" (click)="isShown = !isShown" [attr.aria-expanded]="isShown"  aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': isShown }" id="navbarSupportedContent" >
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" (click)="isShown = false" [routerLink]="'/'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="isShown = false" [routerLink]="'/products-list'" routerLinkActive="active">Список товаров</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="isShown = false" [routerLink]="'/add-product'" routerLinkActive="active">Добавление нового товара</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

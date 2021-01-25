@@ -1,3 +1,13 @@
+.table {
+  overflow:auto;
+  display: block;
+  white-space: nowrap;
+}
+.table tbody,
+.table thead{
+  min-width: 930px;
+  width: 100%;
+}
 .actions {
   display: flex;
 

@@ -39,16 +39,6 @@
       "category": 1
     },
     {
-      "name": "Тестовый телефон",
-      "amount": 1120,
-      "price": 75000,
-      "producer": "Apple",
-      "category": 3,
-      "article": "191-400",
-      "weight": 1,
-      "id": 5
-    },
-    {
       "name": "Тестовый телефон 2",
       "amount": 0,
       "price": 90000,
