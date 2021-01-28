@@ -11,8 +11,8 @@ use App\ExpertSessionLink;
 $expert_session = ExpertSession::FindOrFail($_GET['session_id']); //Не нашло сессию? уйди отсюда
 
 if ($post) {
-    $options = json_decode($_POST['options'], 1);
     if (isset($_POST['add_question'])) {
+        $options = json_decode($_POST['options'], 1);
         if (empty($_POST['title'])) $error = 'Вопрос не введен';
         if (empty($_POST['type'])) $error = 'Тип вопроса не выбран';
         if ($_POST['type'] == 5 and sizeof($options) < 2) $error = 'Минимум 2 варианта ответов';
@@ -30,8 +30,10 @@ if ($post) {
         $expert_session->close();
     } elseif (isset($_POST['delete_session'])) {
         $expert_session->delete();
+        header('Location: /kozodaev-php-exam');
+    } else {
+        if (empty($error)) header('Location: /kozodaev-php-exam/sessions?session_id=' . $expert_session->id); //Защита от повторной отправки формы
     }
-    if (empty($error)) header('Location: /kozodaev-php-exam/sessions?session_id=' . $expert_session->id); //Защита от повторной отправки формы
 }
 ?>
 <!doctype html>
@@ -100,7 +102,9 @@ if ($post) {
                     <form method="post" class="link-item">
                         <input name="question_id" type="hidden" value="<?= $expert_session_question->id; ?>">
                         <h5><?= $question_number++; ?>. <?= $expert_session_question->title; ?></h5>
-                        <button name="delete_question" class="btn btn-outline-danger btn-sm">Удалить вопрос</button>
+                        <?php if (!$expert_session->links) { ?>
+                            <button name="delete_question" class="btn btn-outline-danger btn-sm">Удалить вопрос</button>
+                        <?php } ?>
                     </form>
                 <?php } ?>
             </div>
@@ -122,67 +126,72 @@ if ($post) {
             </div>
         </div>
     </div>
-    <h3 class="modal-title mt-4 mb-3">Создание вопроса</h3>
-    <form
-            method="post"
-            name="create-form"
-            id="create-form"
-    >
-        <div class="form-group">
-            <label for="create-form-title" class="col-form-label">Вопрос:</label>
-            <input placeholder="Введите вопрос" name="title" type="text" class="form-control" id="create-form-title">
-        </div>
-        <div class="form-group">
-            <label for="question-type">Тип вопроса:</label>
-            <select name="type" class="form-control" id="question-type">
-                <option value="1">
-                    с открытым ответом (число) – ответ на вопрос предполагает ввод с клавиатуры
-                    чисел;
-                </option>
-                <option value="2">
-                    с открытым ответом (положительное число) – ответ на вопрос предполагает ввод с
-                    клавиатуры положительных чисел, включая «0»;
-                </option>
-                <option value="3">
-                    с открытым ответом (строка) – ответ на вопрос предполагает ввод с клавиатуры
-                    текстовой информации от 1 до 30 символов;
-                </option>
-                <option value="4">
-                    с открытым ответом (текст) – ответ на вопрос предполагает ввод с клавиатуры
-                    текстовой информации от 1 до 255 символов;
-                </option>
-                <option value="5">
-                    с единственным выбором – ответ на вопрос предполагает выбор одного варианта из
-                    предложенных (количество вариантов в вопросе может быть любым, но не менее
-                    2);
-                </option>
-                <option value="6">
-                    с множественным выбором – ответ на вопрос предполагает выбор одного или
-                    нескольких вариантов из предложенных (количество вариантов в вопросе может
-                    быть любым, но не менее 3).
-                </option>
-            </select>
-        </div>
-        <div class="mb-3 mt-3" id="options-list" style="display: none">
-            <input id="options-value" name="options" type="text" style="display: none">
-            <h6 class="mb-2" style="display: flex">Добавить варианты ответа:</h6>
-            <ul id="options-render">
-            </ul>
+    <?php if (!$expert_session->links->count()) { ?>
+        <h3 class="modal-title mt-4 mb-3">Создание вопроса</h3>
+        <form
+                method="post"
+                name="create-form"
+                id="create-form"
+        >
             <div class="form-group">
-                <div class="input-group mb-3">
-                    <input id="options-input" type="text" class="form-control" placeholder="Введите текст" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                </div>
-                <span class="mb-2" style="display: flex">Кол-во баллов:</span>
-                <div class="input-group mb-3">
-                    <input min="-100" max="100" value="50" id="options-points" type="number" class="form-control" placeholder="Кол-во баллов:" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button id="options-btn" class="btn btn-outline-secondary" type="button">Добавить</button>
+                <label for="create-form-title" class="col-form-label">Вопрос:</label>
+                <input placeholder="Введите вопрос" name="title" type="text" class="form-control" id="create-form-title">
+            </div>
+            <div class="form-group">
+                <label for="question-type">Тип вопроса:</label>
+                <select name="type" class="form-control" id="question-type">
+                    <option value="1">
+                        с открытым ответом (число) – ответ на вопрос предполагает ввод с клавиатуры
+                        чисел;
+                    </option>
+                    <option value="2">
+                        с открытым ответом (положительное число) – ответ на вопрос предполагает ввод с
+                        клавиатуры положительных чисел, включая «0»;
+                    </option>
+                    <option value="3">
+                        с открытым ответом (строка) – ответ на вопрос предполагает ввод с клавиатуры
+                        текстовой информации от 1 до 30 символов;
+                    </option>
+                    <option value="4">
+                        с открытым ответом (текст) – ответ на вопрос предполагает ввод с клавиатуры
+                        текстовой информации от 1 до 255 символов;
+                    </option>
+                    <option value="5">
+                        с единственным выбором – ответ на вопрос предполагает выбор одного варианта из
+                        предложенных (количество вариантов в вопросе может быть любым, но не менее
+                        2);
+                    </option>
+                    <option value="6">
+                        с множественным выбором – ответ на вопрос предполагает выбор одного или
+                        нескольких вариантов из предложенных (количество вариантов в вопросе может
+                        быть любым, но не менее 3).
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3 mt-3" id="options-list" style="display: none">
+                <input id="options-value" name="options" type="text" style="display: none">
+                <h6 class="mb-2" style="display: flex">Добавить варианты ответа:</h6>
+                <ul id="options-render">
+                </ul>
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <input id="options-input" type="text" class="form-control" placeholder="Введите текст" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    </div>
+                    <span class="mb-2" style="display: flex">Кол-во баллов:</span>
+                    <div class="input-group mb-3">
+                        <input min="-100" max="100" value="50" id="options-points" type="number" class="form-control" placeholder="Кол-во баллов:" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button id="options-btn" class="btn btn-outline-secondary" type="button">Добавить</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <button name="add_question" form="create-form" class="btn btn-primary w-100 mb-2">Добавить</button>
-    </form>
+            <button name="add_question" form="create-form" class="btn btn-primary w-100 mb-2">Добавить</button>
+        </form>
+    <?php } else { ?>
+        <h2 class="text-danger" style="margin-top: 100px; margin-bottom: 100px;">Добавление / редактирование вопросов
+            недоступно</h2>
+    <?php } ?>
     <form method="post">
         <button name="add_link" type="submit" class="btn btn-primary w-100 mb-2">Новая ссылка</button>
         <?php if ($expert_session->is_open) { ?>

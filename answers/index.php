@@ -62,21 +62,34 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
     $type_5_total_points = 0;
     $type_6_total_points = 0;
 ?>
-<?php if($expert_session_link->answers->count() > 0){ ?>
 <!-- content -->
 <main class="main container">
+    <?php if($expert_session_link->answers->count() > 0){ ?>
     <h2 class="mt-4 mb-4">
         Ответы на <?php echo $expert_session->title; ?>
     </h2>
+        <div class="card card-body">
+            <div class="container">
+                <?php
+                $question_number = 1;
+                foreach ($expert_session->questions as $expert_session_question) { ?>
+                    <div class="link-item">
+                        <input name="question_id" type="hidden" value="<?= $expert_session_question->id; ?>">
+                        <h5><?= $question_number++; ?>. <?= $expert_session_question->title; ?></h5>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
     <table class="table table-striped">
         <thead>
         <tr>
             <th scope="col">IP адрес</th>
             <th scope="col">Дата</th>
+            <?php $questions_count = 1; ?>
             <?php foreach ($expert_session->questions as $experts_session_question) {
                 $questions[] = ['options' => $experts_session_question->options, 'type' => $experts_session_question->type];
                 ?>
-                <th scope="col"><?= $experts_session_question->title; ?></th>
+                <th scope="col"><?= $questions_count++; ?></th>
             <?php } ?>
             <th scope="col">Сумма</th>
         </tr>
@@ -109,7 +122,7 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
                                    $type_6_total_points += $points;
                                }
 
-                               $total_points += $points;
+                                $total_points += $points;
                                 $total_answer_points += $points;
                             }
                             echo implode(',  ', $answer);
@@ -125,7 +138,7 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
             </tr>
             <?php
         }
-        $total_avg_points = $total_points / $expert_session->questions->whereIn('type', [5,6])->count();
+        $total_avg_points = round($total_points / $expert_session_link->answers->count());
         ?>
         </tbody>
     </table>
@@ -147,11 +160,10 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
         Диаграмма
     </h2>
     <canvas id="myChart"></canvas>
+    <?php } else { ?>
+        <h1 class="text-danger">Ответов еще нет</h1>
+    <?php } ?>
 </main>
-    <?php
-    var_dump($type_6_total_points);
-    ?>
-<?php } ?>
 <footer class="container-fluid footer">
     <p class="footer-item lead">
         Козодаев Виктор Сергеевич
@@ -179,7 +191,7 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
             labels: ['Вопрос 5', 'Вопрос 6'],
             datasets: [{
                 label: 'Среднее кол-во баллов',
-                data: [<?= $type_5_total_points / $type_5_questions_count ?>, <?= $type_6_total_points / $type_6_questions_count ?>],
+                data: [<?= round($type_5_total_points / $type_5_questions_count) ?>, <?= round($type_6_total_points / $type_6_questions_count) ?>],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(153, 102, 255, 0.2)'

@@ -140,6 +140,8 @@ if ($post) {
             } ?>
             <button name="fill" class="btn btn-primary w-100">Заполнить</button>
         </form>
+    <?php } else {?>
+        <h1 class="text-danger">Сессия закрыта</h1>
     <?php } ?>
 </main>
 <footer class="container-fluid footer">
