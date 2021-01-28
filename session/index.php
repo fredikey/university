@@ -15,7 +15,6 @@ $expert_session = ExpertSession::FindOrFail($expert_session_link->expert_session
 if ($post) {
     if (isset($_POST['fill'])) {
         unset($_POST['fill']);
-        echo( json_encode($_POST));
         ExpertSessionAnswer::create(['answer_json' => json_encode($_POST), 'author_ip' => $_SERVER['REMOTE_ADDR'], 'expert_session_link_id' => $expert_session_link->id]);
         header('Location: /kozodaev-php-exam/feedback.php');
     }
