@@ -56,11 +56,11 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
         </div>
     </div>
 </nav>
-
+<?php if($expert_session_link->answers){ ?>
 <!-- content -->
 <main class="main container">
     <h2 class="mt-4 mb-4">
-        Ответы
+        Ответы на <?php echo $expert_session->title; ?>
     </h2>
     <table class="table table-striped">
         <thead>
@@ -135,6 +135,7 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
     </h2>
     <canvas id="myChart"></canvas>
 </main>
+<?php } ?>
 <footer class="container-fluid footer">
     <p class="footer-item lead">
         Козодаев Виктор Сергеевич

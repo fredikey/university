@@ -15,6 +15,7 @@ $expert_session = ExpertSession::FindOrFail($expert_session_link->expert_session
 if ($post) {
     if (isset($_POST['fill'])) {
         unset($_POST['fill']);
+        echo( json_encode($_POST));
         ExpertSessionAnswer::create(['answer_json' => json_encode($_POST), 'author_ip' => $_SERVER['REMOTE_ADDR'], 'expert_session_link_id' => $expert_session_link->id]);
         header('Location: /kozodaev-php-exam/feedback.php');
     }
@@ -73,11 +74,11 @@ if ($post) {
     <?php if ($expert_session->is_open) { ?>
         <form method="post">
             <?php
-            $question_number = 0;
+            $question_number = 1;
             foreach ($expert_session->questions as $expert_session_question) {
-                $options = json_decode($expert_session_question->options);
+                $options = explode(',',$expert_session_question->options);
                 ?>
-                <h3 class="mt-3"><?= $question_number + 1; ?>. <?= $expert_session_question->title; ?></h3>
+                <h3 class="mt-3"><?= $question_number; ?>. <?= $expert_session_question->title; ?></h3>
                 <?php switch ($expert_session_question->type) {
                     case 1: ?>
                         <!--	case 1 -->
@@ -116,8 +117,8 @@ if ($post) {
                         <label class="form-group">
                             <span class="col-form-label mb-2">Ответ:</span>
                             <select name="answer[<?= $question_number; ?>][]" class="form-control mt-2" required>
-                                <?php foreach ($options as $key => $value) { ?>
-                                    <option value="<?= $key; ?>"><?= $key; ?></option>
+                                <?php foreach ($options as $value) { ?>
+                                    <option value="<?= $value; ?>"><?= $value; ?></option>
                                 <?php } ?>
                             </select>
                         </label>
@@ -128,8 +129,8 @@ if ($post) {
                         <label class="form-group">
                             <span class="col-form-label mb-2">Ответ:</span>
                             <select name="answer[<?= $question_number; ?>][]" class="form-control mt-2" required multiple>
-                                <?php foreach ($options as $key => $value) { ?>
-                                    <option value="<?= $key; ?>"><?= $key; ?></option>
+                                <?php foreach ($options as $value) { ?>
+                                    <option value="<?= $value; ?>"><?= $value; ?></option>
                                 <?php } ?>
                             </select>
                         </label>

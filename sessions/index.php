@@ -114,7 +114,7 @@ if ($post) {
                 foreach ($expert_session->links as $expert_session_link) { ?>
                     <form method="post" class="link-item">
                         <input name="link_id" type="hidden" value="<?= $expert_session_link->id; ?>">
-                        <a class="link-item_label btn-sm" href="http://it4u.fun/kozodaev-php-exam/session?random_id=<?= $expert_session_link->random_id; ?>">it4u.fun/kozodaev-php-exam/session?random_id=<?= $expert_session_link->random_id; ?></a>
+                        <a class="link-item_label btn-sm" href="http://92.124.131.13/kozodaev-php-exam/session?random_id=<?= $expert_session_link->random_id; ?>">92.124.131.13/kozodaev-php-exam/session?random_id=<?= $expert_session_link->random_id; ?></a>
                         <a class="btn btn-primary btn-sm" href="/kozodaev-php-exam/answers?link_id=<?= $expert_session_link->id; ?>">Ответы</a>
                         <button name="delete_link" class="btn btn-outline-danger btn-sm">Удалить ссылку</button>
                     </form>
