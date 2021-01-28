@@ -4,6 +4,13 @@ body {
 	flex-direction: column;
 }
 
+.table th{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	max-width: 150px;
+	overflow-x: hidden;
+}
+
 .logo {
 	color: #fff;
 	height: 45px;
