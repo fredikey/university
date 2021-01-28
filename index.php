@@ -6,7 +6,7 @@ use App\ExpertSession;
 
 if ($post) {
     if (isset($_POST['create'])) {
-        $expert_session = ExpertSession::create(['title' => $_POST['title']]); //Создаем экспертную сессию
+        $expert_session = ExpertSession::create(['title' => $_POST['title'], 'user_id' => $_SESSION['user']->id]); //Создаем экспертную сессию
         header('Location: /kozodaev-php-exam/sessions?session_id=' . $expert_session->id); //Сразу кидаем на её страницу
     }
 }

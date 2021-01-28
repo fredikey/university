@@ -12,7 +12,7 @@ class ExpertSession extends Model
     use SoftDeletes;
 
     protected $table = 'expert_sessions';
-    public $fillable = ['title']; //Для статичного метода create
+    public $fillable = ['title', 'user_id']; //Для статичного метода create
     protected $guarded = [];
     protected $dates = [
         'created_at',
