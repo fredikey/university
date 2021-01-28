@@ -76,7 +76,7 @@ if ($post) {
             <?php
             $question_number = 1;
             foreach ($expert_session->questions as $expert_session_question) {
-                $options = explode(',',$expert_session_question->options);
+                $options = json_decode($expert_session_question->options,1);
                 ?>
                 <h3 class="mt-3"><?= $question_number; ?>. <?= $expert_session_question->title; ?></h3>
                 <?php switch ($expert_session_question->type) {
@@ -117,8 +117,8 @@ if ($post) {
                         <label class="form-group">
                             <span class="col-form-label mb-2">Ответ:</span>
                             <select name="answer[<?= $question_number; ?>][]" class="form-control mt-2" required>
-                                <?php foreach ($options as $value) { ?>
-                                    <option value="<?= $value; ?>"><?= $value; ?></option>
+                                <?php foreach ($options as $key => $value) { ?>
+                                    <option value="<?= $key; ?>"><?= $key; ?></option>
                                 <?php } ?>
                             </select>
                         </label>
@@ -129,8 +129,8 @@ if ($post) {
                         <label class="form-group">
                             <span class="col-form-label mb-2">Ответ:</span>
                             <select name="answer[<?= $question_number; ?>][]" class="form-control mt-2" required multiple>
-                                <?php foreach ($options as $value) { ?>
-                                    <option value="<?= $value; ?>"><?= $value; ?></option>
+                                <?php foreach ($options as $key => $value) { ?>
+                                    <option value="<?= $key; ?>"><?= $key; ?></option>
                                 <?php } ?>
                             </select>
                         </label>

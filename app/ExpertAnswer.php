@@ -15,8 +15,8 @@ class ExpertAnswer extends Model
         'updated_at'
     ];
 
-    public function ExpertSession(){
-        return $this->belongsTo('App\ExpertSession');
+    public function ExpertSessionLink(){
+        return $this->belongsTo('App\ExpertSessionLink');
     }
 
 }

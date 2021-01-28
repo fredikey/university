@@ -56,7 +56,13 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
         </div>
     </div>
 </nav>
-<?php if($expert_session_link->answers){ ?>
+<?php
+    $type_5_questions_count = 0;
+    $type_6_questions_count = 0;
+    $type_5_total_points = 0;
+    $type_6_total_points = 0;
+?>
+<?php if($expert_session_link->answers->count() > 0){ ?>
 <!-- content -->
 <main class="main container">
     <h2 class="mt-4 mb-4">
@@ -68,18 +74,19 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
             <th scope="col">IP адрес</th>
             <th scope="col">Дата</th>
             <?php foreach ($expert_session->questions as $experts_session_question) {
-                $questions[] = $experts_session_question->options;
+                $questions[] = ['options' => $experts_session_question->options, 'type' => $experts_session_question->type];
                 ?>
                 <th scope="col"><?= $experts_session_question->title; ?></th>
             <?php } ?>
+            <th scope="col">Сумма</th>
         </tr>
         </thead>
         <tbody>
         <?php
-        $answer_count = 0;
         $total_points = 0;
         foreach ($expert_session_link->answers as $experts_session_link_answer) {
-            $points = 0;
+            $answer_count = 0;
+            $total_answer_points = 0;
             $json = json_decode($experts_session_link_answer->answer_json, 1);
             ?>
             <tr>
@@ -89,21 +96,36 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
                     <th>
                         <?php
                         if (is_array($answer)) {
+                            if($questions[$answer_count]['type'] == 5){
+                                $type_5_questions_count++;
+                            }elseif($questions[$answer_count]['type'] == 6){
+                                $type_6_questions_count++;
+                            }
                             foreach($answer as $answer_value){
-                                $points += json_decode($questions[$answer_count],1)[$answer_value];
-                                $total_points += $points;
+                                $points = json_decode($questions[$answer_count]['options'],1)[$answer_value];
+                               if($questions[$answer_count]['type'] == 5){
+                                   $type_5_total_points += $points;
+                               }elseif($questions[$answer_count]['type'] == 6){
+                                   $type_6_total_points += $points;
+                               }
+
+                               $total_points += $points;
+                                $total_answer_points += $points;
                             }
                             echo implode(',  ', $answer);
                         } else  echo $answer;
                         ?>
                     </th>
-                <?php } ?>
+                <?php
+                    $answer_count++;
+                } ?>
+                <th>
+                    <?= $total_answer_points ?>
+                </th>
             </tr>
             <?php
-            $answer_count++;
         }
-        $avg_points = $points / sizeof($questions);
-        $total_avg_points = $total_points / sizeof($expert_session->questions()->count());
+        $total_avg_points = $total_points / $expert_session->questions->whereIn('type', [5,6])->count();
         ?>
         </tbody>
     </table>
@@ -114,18 +136,9 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Сумма</h5>
-                    <p class="card-text">Общий набранный балл по всем вопросам</p>
-                    <div class="btn btn-info disabled"><?=$points;?> баллов</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
                     <h5 class="card-title">Среднее</h5>
                     <p class="card-text">Средний балл по экспертной сессии в целом</p>
-                    <div class="btn btn-info disabled"><?=$avg_points;?> баллов</div>
+                    <div class="btn btn-info disabled"><?=$total_avg_points;?> баллов</div>
                 </div>
             </div>
         </div>
@@ -135,6 +148,9 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
     </h2>
     <canvas id="myChart"></canvas>
 </main>
+    <?php
+    var_dump($type_6_total_points);
+    ?>
 <?php } ?>
 <footer class="container-fluid footer">
     <p class="footer-item lead">
@@ -160,19 +176,17 @@ $expert_session = ExpertSession::Find($expert_session_link->expert_session_id);
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Вопрос 1', 'Вопрос 2', 'Вопрос 3'],
+            labels: ['Вопрос 5', 'Вопрос 6'],
             datasets: [{
                 label: 'Среднее кол-во баллов',
-                data: [12, 19, 3],
+                data: [<?= $type_5_total_points / $type_5_questions_count ?>, <?= $type_6_total_points / $type_6_questions_count ?>],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(153, 102, 255, 0.2)'
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    'rgba(153, 102, 255, 1)'
                 ],
                 borderWidth: 1
             }]

@@ -16,4 +16,8 @@ class ExpertSessionLink extends Model
     {
         return $this->hasMany('App\ExpertSessionAnswer');
     }
+
+    public function ExpertSession(){
+        return $this->belongsTo('App\ExpertSession');
+    }
 }
