@@ -98,7 +98,7 @@ if ($post) {
         191-321
     </p>
     <p class="footer-item lead">
-        25.06.2020
+        28.01.2021
     </p>
     <p class="footer-item lead">
         <a href="https://vk.com/fredikey">VK</a>
