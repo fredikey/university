@@ -1,4 +1,5 @@
 import Task from './Task'
+import AddTaskButton from './AddTaskButton'
 import DrawerMenu from './DrawerMenu'
-
-export { Task, DrawerMenu }
+import SidebarMenu from './SidebarMenu'
+export { Task, DrawerMenu, AddTaskButton, SidebarMenu }

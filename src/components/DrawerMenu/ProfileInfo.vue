@@ -64,4 +64,7 @@ export default {
 .blue .avatar {
   background-color: #5562d8;
 }
+.peach .avatar {
+	background-color: #FFB8A2;
+}
 </style>

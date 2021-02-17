@@ -1,5 +1,5 @@
 <template>
-  <div class="menuItemContainer" @click="onClick">
+  <div class="menuItemContainer" @click.passive="onClick">
     <router-link :to="this.path">{{ this.title }}</router-link>
     <div class="horizontalLine" />
   </div>
@@ -15,6 +15,9 @@ export default {
     onClick() {
       this.$router.push(this.path)
       this.$emit('onClickLink', this.menuThemeClassName)
+	    if (this.path === '/statistics') {
+	    	this.$store.commit('closeEditSidebar')
+	    }
     }
   }
 }

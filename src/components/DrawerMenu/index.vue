@@ -1,7 +1,6 @@
 <template>
   <div :class="`nav ${this.themeClassName}`">
     <ProfileInfo :themeClassName="this.themeClassName" />
-    <SearchBar />
     <Link
       v-for="(item, index) in this.menuItems"
       :title="item.title"
@@ -15,7 +14,6 @@
 
 <script>
 import MenuItem from './MenuItem'
-import SearchBar from './SearchBar'
 import ProfileInfo from './ProfileInfo'
 
 const menuItems = [
@@ -37,7 +35,7 @@ const menuItems = [
   {
     path: '/statistics',
     title: 'Статистика',
-    menuThemeClassName: 'purple'
+    menuThemeClassName: 'peach'
   }
 ]
 
@@ -61,7 +59,6 @@ export default {
   },
   components: {
     ProfileInfo,
-    SearchBar,
     Link: MenuItem
   }
 }
@@ -72,7 +69,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 100%;
+	min-height: 100vh;
   padding-top: 50px;
   padding-left: 60px;
   width: 355px;
@@ -96,4 +93,10 @@ export default {
 .blue .menuItemContainer {
   border-bottom-color: #7d8aff;
 }
+.peach {
+	background-color: #FFD3BA;
+}
+.peach .menuItemContainer {
+	 border-bottom-color: #FFB8A2;
+ }
 </style>

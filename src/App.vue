@@ -1,16 +1,21 @@
 <template>
   <div class="app">
-    <DrawerMenu />
+    <DrawerMenu/>
     <router-view />
+    <SidebarMenu/>
   </div>
 </template>
 <script>
-import { DrawerMenu } from './components'
+import { DrawerMenu, SidebarMenu } from './components'
 
 export default {
   components: {
-    DrawerMenu
-  }
+    DrawerMenu,
+    SidebarMenu
+  },
+	created() {
+  	this.$store.dispatch('loadData')
+	}
 }
 </script>
 <style>
@@ -25,13 +30,17 @@ body {
 }
 .app {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
+	height: 100%;
   flex: 1;
 }
 /*	тут пишем глобальные стили */
 .container {
   margin-top: 60px;
   margin-left: 90px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 .title {
   font-style: normal;
@@ -41,5 +50,11 @@ body {
   letter-spacing: 0.1em;
   margin-bottom: 60px;
   color: #333;
+}
+.emptyList {
+	font-style: normal;
+	font-weight: 300;
+	font-size: 24px;
+	color: #a09f9f;
 }
 </style>

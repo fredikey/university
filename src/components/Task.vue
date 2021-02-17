@@ -1,5 +1,8 @@
 <template>
-  <div :class="`taskContainer ${themeClassName}`">
+  <div
+    :class="`taskContainer ${isEditing ? (themeClassName + '-active') : themeClassName}`"
+    @click.self="openEditSidebar"
+  >
     <div class="checked" @click="toggleCompletedTask">
       <svg
         v-show="this.data.isCompleted"
@@ -17,9 +20,8 @@
       <span
         class="taskTitle"
         :style="this.data.isCompleted ? 'text-decoration: line-through;' : ''"
-        >{{ this.data.title }}</span
-      >
-      <span class="taskDate">{{ this.data.date }}</span>
+        >{{ renderTitle }}</span>
+      <span class="taskDate">{{ renderDate }}</span>
     </div>
     <svg
       @click="toggleImportantTask"
@@ -42,10 +44,12 @@
 </template>
 
 <script>
-const renderThemeClassName = item => {
+	import {formatDate, isMyDay} from '../utils'
+	
+	const renderThemeClassName = item => {
   if (item.isImportant) {
     return 'yellow'
-  } else if (item.isMyDay) {
+  } else if (isMyDay(item.date)) {
     return 'purple'
   }
   return 'blue'
@@ -62,12 +66,30 @@ export default {
     },
     toggleImportantTask() {
       this.$store.commit('toggleImportantTask', { id: this.data.id })
+    },
+    openEditSidebar() {
+      this.$store.commit('openEditSidebar', this.data)
     }
   },
   computed: {
     themeClassName() {
       return renderThemeClassName(this.data)
-    }
+    },
+    isEditing() {
+    	if (this.$store.state.editTask) {
+		    return this.data.id === this.$store.state.editTask.id
+	    } return false
+    },
+	  renderTitle () {
+    	if (this.data.title.length > 27) {
+    		return this.data.title.substr(0, 27) + '...'
+	    } return this.data.title
+	  },
+	  renderDate () {
+    	if (this.data.date) {
+		    return formatDate(this.data.date)
+	    } return ''
+	  }
   }
 }
 </script>
@@ -121,22 +143,38 @@ export default {
 .purple {
   border: 2px solid #bf54f1;
 }
-.purple .checked {
+.purple-active {
+	border: 2px solid #bf54f1;
+	background-color: rgba(191, 84, 241, 0.12);
+}
+.purple .checked,
+.purple-active .checked{
   background: rgba(228, 170, 255, 0.52);
   border: 2px solid #bf54f1;
 }
 .yellow {
   border: 2px solid #ffdf34;
 }
-.yellow .checked {
+.yellow-active {
+	border: 2px solid #ffdf34;
+	background-color: rgba(255, 223, 52, 0.1);
+}
+.yellow .checked,
+.yellow-active .checked{
   background: rgba(255, 223, 52, 0.4);
   border: 2px solid #ffdf34;
 }
 .blue {
   border: 2px solid #7d8aff;
 }
-.blue .checked {
+.blue-active {
+	border: 2px solid #7d8aff;
+	background-color: rgba(125, 138, 255, 0.09);
+}
+.blue .checked,
+.blue-active .checked{
   background: rgba(125, 138, 255, 0.4);
   border: 2px solid #7d8aff;
 }
+
 </style>
