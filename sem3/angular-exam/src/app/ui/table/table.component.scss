@@ -1,0 +1,33 @@
+.table {
+  overflow:auto;
+  display: block;
+  white-space: nowrap;
+}
+.table tbody,
+.table thead{
+  min-width: 930px;
+  width: 100%;
+}
+.actions {
+  display: flex;
+
+  .btn:first-of-type {
+    margin-right: 10px;
+  }
+}
+
+.interactive-col {
+  cursor: pointer;
+}
+
+.table-amount {
+  align-items: center;
+
+  .btn:first-of-type {
+    margin-right: 5px;
+  }
+
+  .btn:last-of-type {
+    margin-left: 5px;
+  }
+}

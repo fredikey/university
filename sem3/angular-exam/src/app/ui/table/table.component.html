@@ -1,0 +1,53 @@
+<table class="table" *ngIf="products.length > 0">
+  <thead>
+    <tr>
+      <th (click)="onSort('id')" scope="col" class="interactive-col" [style.width]="'60px'">#</th>
+      <th scope="col" [style.width]="'180px'">Название</th>
+      <th scope="col">Категория</th>
+      <th scope="col">Вес</th>
+      <th (click)="onSort('price')" scope="col" class="interactive-col" >Цена</th>
+      <th (click)="onSort('amount')" scope="col" class="interactive-col" >Кол-во на складе</th>
+      <th scope="col" [style.width]="'150px'"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <th scope="row">{{ product.id }}</th>
+      <td>{{ product.name }}</td>
+      <td>{{ productCategoryMap[product.category] }}</td>
+      <td>{{ product.weight }}</td>
+      <td>{{ product.price }}</td>
+      <td class="table-amount flex-row">
+        <button
+          class="btn btn-outline-primary btn-sm"
+          (click)="onEditAmount(product.id, product.amount + 1)"
+        >
+          +
+        </button>
+        {{ product.amount }}
+        <button
+          [disabled]="product.amount === 0"
+          class="btn btn-outline-primary btn-sm"
+          (click)="onEditAmount(product.id, product.amount - 1)"
+        >
+          -
+        </button>
+      </td>
+      <td class="actions flex-column flex-lg-row">
+          <button
+            class="btn btn-outline-primary btn-sm mb-1 mb-lg-0"
+            (click)="onEditProduct(product.id)"
+          >
+            Редактировать
+          </button>
+          <button
+            class="btn btn-outline-danger btn-sm"
+            (click)="onDeleteProduct(product.id)"
+          >
+            Удалить
+          </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="lead text-center mt-5" *ngIf="products.length === 0">Не найдено</p>

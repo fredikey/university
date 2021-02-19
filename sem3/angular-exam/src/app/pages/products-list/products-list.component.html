@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row mb-4 mt-5 align-items-center flex-sm-column flex-md-row">
+    <h1 class="col-md-12 col-lg-6">Список товаров</h1>
+    <div class="col-md-12 col-lg-6 d-flex flex-md-row flex-column">
+      <div class="col form-check d-flex align-items-center mb-1 mb-md-0">
+        <input [(ngModel)]="amountFilter" type="checkbox" class="form-check-input" id="amountFilter">
+        <label class="form-check-label" for="amountFilter">Показать позиции, кол-во которых больше 0</label>
+      </div>
+      <label class="col d-flex justify-content-end flex-column">
+        Категория:
+        <select [(ngModel)]="categoryFilter" class="custom-select mt-1">
+          <option [ngValue]="-1">Показать все</option>
+          <option *ngFor="let value of productTypeList" [ngValue]="value">{{ productCategoryMap[value] }}</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <app-table
+    [products]="products | productsFilter : categoryFilter : amountFilter"
+    (deleteProduct)="onDeleteProduct($event)"
+    (editProduct)="onEditProduct($event)"
+    (editProductAmount)="onEditProductAmount($event)"
+  ></app-table>
+</div>

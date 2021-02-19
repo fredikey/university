@@ -1,0 +1,52 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Honor 10",
+      "article": "191-321",
+      "price": 30000,
+      "weight": 1,
+      "amount": 107,
+      "producer": "Huawei",
+      "category": 3
+    },
+    {
+      "id": 2,
+      "name": "Офисный стул",
+      "article": "191-322",
+      "price": 1000,
+      "weight": 10,
+      "amount": 99,
+      "producer": "Ikea",
+      "category": 0
+    },
+    {
+      "id": 3,
+      "name": "1984 Джордж Оруэлл",
+      "article": "191-323",
+      "price": 650,
+      "weight": 1,
+      "amount": 78,
+      "category": 2
+    },
+    {
+      "id": 4,
+      "name": "Стиральная машинка Tefal",
+      "article": "191-324",
+      "price": 10650,
+      "weight": 5,
+      "amount": 44,
+      "category": 1
+    },
+    {
+      "name": "Тестовый телефон 2",
+      "amount": 0,
+      "price": 90000,
+      "producer": "",
+      "category": 3,
+      "article": "191-319",
+      "weight": 1,
+      "id": 6
+    }
+  ]
+}

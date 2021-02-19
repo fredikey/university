@@ -1,0 +1,71 @@
+<form *ngIf="form !== undefined" [formGroup]="form" (ngSubmit)="onSubmit()" class="mb-3 mt-5">
+  <div class="row mb-3">
+    <label class="col-md-3 com-sm-6 col-sm-6">
+      Название:
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Название"
+        formControlName="name"
+      />
+    </label>
+    <label class="col-md-3 com-sm-6">
+      Артикуль:
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Артикуль"
+        formControlName="article"
+      />
+    </label>
+    <label class="col-md-3 com-sm-6">
+      Производитель:
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Производитель"
+        formControlName="producer"
+      />
+    </label>
+  </div>
+  <div class="row mb-3">
+    <label class="col-md-3 com-sm-6">
+      Количество на складе:
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Количество на складе"
+        formControlName="amount"
+      />
+    </label>
+    <label class="col-md-3 com-sm-6">
+      Вес:
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Вес"
+        formControlName="weight"
+      />
+    </label>
+    <label class="col-md-3 com-sm-6">
+      Цена:
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Цена"
+        formControlName="price"
+      />
+    </label>
+  </div>
+  <div class="row">
+    <label class="col-md-3 com-sm-6">
+      Категория:
+      <select class="custom-select mt-1" formControlName="category">
+        <option *ngFor="let value of productTypeList" [ngValue]="value">{{ productCategoryMap[value] }}</option>
+      </select>
+    </label>
+  </div>
+  <div class="col-12 mt-3" style="padding: 0">
+    <button [disabled]="!form.valid" class="btn btn-primary">{{ submitTitle }}</button>
+  </div>
+</form>
