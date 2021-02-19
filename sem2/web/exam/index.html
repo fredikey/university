@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="./css/style.css">
+	<title>Точка кипения</title>
+</head>
+<body>
+<section class="promo-container">
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+		<div class="container">
+			<img class="navbar-brand nav-logo" src="./img/logo.svg" alt="logo">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="index.html">Главная</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./university2035.html">Униерситет 2035</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./direction.html">Направление: <b>Точка роста</b></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Остальные направления</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- promo -->
+	<div class="promo">
+		<img class="promo-bg" src="./img/promo.jpg" alt="bg">
+		<div class="promo-overlay"></div>
+		<div class="promo-content col-sm-8 col-md-6 col-12 col-lg-5 col-xl-4">
+			<h1 class="promo-title">Работа университетской Точки кипения</h1>
+			<button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#new-request-modal">Отправить заявку</button>
+		</div>
+	</div>
+</section>
+<!-- new request Modal -->
+<div class="modal fade" id="new-request-modal" tabindex="-1" role="dialog" aria-labelledby="new-request-label" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="new-request-label">Новая заявка</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="form-name" class="col-form-label">ФИО:</label>
+						<input required type="text" class="form-control" id="form-name">
+					</div>
+					<div class="form-group">
+						<label for="form-email" class="col-form-label">Email:</label>
+						<input required type="email" class="form-control" id="form-email">
+					</div>
+					<div class="form-group">
+						<label for="message-text" class="col-form-label">Почему вы хотите попасть в точку кипения?:</label>
+						<textarea class="form-control" id="message-text"></textarea>
+					</div>
+					
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Отправить</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Page Content -->
+<main class="container">
+	<div class="row">
+		<section class="col-lg-12" id="targets">
+			<h2 class="mt-5 title">Миссия / Цель / Задачи ТК</h2>
+			<div class="row">
+				<div class="algoritm-item col-lg-5 col-12 mr-3 mb-3">
+					<p class="lead">
+						Вовлечение 100% студентов, преподавателей, администрации в повестку развития университета
+					</p>
+				</div>
+				<div class="algoritm-item col-lg-5 col-12 mr-3 mb-3">
+					<p class="lead">
+						Тестирование способов достижения стратегических задач университета
+					</p>
+				</div>
+				<div class="algoritm-item col-lg-5  col-12 mr-3 mb-3">
+					<p class="lead">
+						Возможность связать стратегические цели и проекты с бизнес-
+						интересами сообществ университета
+					</p>
+				</div>
+				<div class="algoritm-item col-lg-5  col-12 mr-3 mb-3">
+					<p class="lead">
+						Обратная связь разработчикам по проектам
+					</p>
+				</div>
+			</div>
+		</section>
+		<section class="col-lg-12" id="strateg">
+			<h2 class="mt-5 title">Стратегическая цель</h2>
+			<p class="lead"><b>Формирование</b> культуры ответственности за выбор <b>личной</b> образовательной и <b>карьерной</b> траектории</p>
+		</section>
+		<section class="col-lg-12" id="role">
+			<h2 class="mt-5 title">Роль в вузе</h2>
+			<p class="lead">
+				Функционал в университете будущего – площадка <code>проработки стратегических проектов</code> университета
+			</p>
+			<p class="lead">
+				<code>Коммуникация</code> студентов, преподавателей, исследователей, администрации, бизнес-сообществ
+			</p>
+			<div class="column">
+				<img src="./img/role.jpeg" class="img-fluid" alt="role">
+				<em style="display: flex; align-self: center; font-size: 13px">Проект победитель конкурса каких-то проектов</em>
+			</div>
+		</section>
+		<section class="col-lg-12" id="opportunities">
+			<h2 class="mt-5 title">Возможности</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Для сотрудников</th>
+						<th scope="col">Для университета</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td class="lead">Экспертность – подтверждение или приобретение статуса эксперта, вовлечение сотрудников в новые экспертные области, направления</td>
+					<td class="lead">Возможность участия в конкурсах по линии Цифровой экономики</td>
+				</tr>
+				<tr>
+					<td class="lead">Привлечение партнеров – статус университета с ТК подтверждает включение в экосистему АСИ и НТИ, новые партнеры, усиление связей с партнерами</td>
+					<td class="lead">Сетевые мероприятия сети Точек Кипения (PR, привлечение экспертов, проектов)</td>
+				</tr>
+				<tr>
+					<td class="lead">Новые проекты – идеи и запросы внешних партнеров, а также инициативные проекты от студентов и сотрудников</td>
+					<td class="lead">Инфраструктура Точек Кипения – онлайн инструменты работы с сообществами, студентами, преподавателями, быстрые коммуникации и прочее</td>
+				</tr>
+				<tr>
+					<td class="lead"></td>
+					<td class="lead">Транслирование опыта – сотрудничество с другими университетами по передаче опыта</td>
+				</tr>
+				<tr>
+					<td class="lead"></td>
+					<td class="lead">Представление университета в повестке РФ</td>
+				</tr>
+				</tbody>
+			</table>
+		</section>
+	
+	</div>
+</main>
+<!-- footer -->
+<footer class="container-fluid footer">
+	<p class="footer-item lead">
+		Козодаев Виктор Сергеевич
+	</p>
+	<p class="footer-item lead">
+		191-321
+	</p>
+	<p class="footer-item lead">
+		01.06.2020
+	</p>
+	<p class="footer-item lead">
+		<a href="https://vk.com/fredikey">VK</a>
+	</p>
+</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

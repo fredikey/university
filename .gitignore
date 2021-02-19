@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Idea
 .idea/
 .vscode/**
@@ -12,3 +13,10 @@ sem3/django/project/__pycache__/
 sem3/django/app/__pycache__/
 sem3/django/venv/
 sem3/django/static/
+=======
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+>>>>>>> rk2-fredikey/master
