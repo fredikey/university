@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Idea
 .idea/
 .vscode/**
@@ -20,3 +21,16 @@ sem3/django/static/
 out
 gen
 >>>>>>> rk2-fredikey/master
+=======
+# macos specific file
+.DS_Store
+
+# idea
+.idea/
+
+#generated files
+lab1/compressed
+lab2/compressed
+lab3/compressed
+*.docx
+>>>>>>> database/master
