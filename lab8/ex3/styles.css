@@ -1,0 +1,115 @@
+body {
+	margin: 0;
+	background-color: white;
+	background-image: radial-gradient(#FFAE38 2px, transparent 1px);
+	background-size: 20px 20px;
+	background-repeat: repeat;
+}
+ul {
+	margin: 0;
+	list-style: none;
+	padding-left: 0;
+}
+
+.container {
+	height: 200px;
+	width: 200px;
+	position: absolute;
+	top: calc(50% - 100px);
+	left: calc(50% - 100px);
+}
+.clock {
+	background: #BDD0D7;
+	border-radius: 25px;
+	box-shadow: 6px 6px 0 #ABBABF;
+	height: 200px;
+	width: 200px;
+	position: relative;
+}
+
+.clock-inner {
+	background: #f9f9f9;
+	border-radius: 50%;
+	width: 160px;
+	height: 160px;
+	position: absolute;
+	left: calc(50% - 80px);
+	top: calc(50% - 80px);
+	box-shadow: inset 2px 2px 4px rgba(0,0,0,.3), inset -2px -2px 4px rgba(0,0,0,.3);
+}
+.clock-numbers {
+	height: 120px;
+	width: 120px;
+	position: absolute;
+	left: calc(50% - 60px);
+	top: calc(50% - 60px);
+}
+.clock-numbers li {
+	height: 20px;
+	width: 20px;
+	line-height: 20px;
+	margin: -10px;
+	position: absolute;
+	text-align: center;
+	font-family: 'Special Elite', cursive;
+	text-shadow: 1px 1px 2px rgba(0,0,0,.3);
+	color: #544E3E;
+	font-weight: bold;
+}
+.clock-numbers li:nth-child(1) {
+	left: 50%;
+	top: 0;
+}
+.clock-numbers li:nth-child(2) {
+	right: 0;
+	top: 50%;
+}
+.clock-numbers li:nth-child(3) {
+	bottom: 0;
+	left: 50%;
+}
+.clock-numbers li:nth-child(4) {
+	left: 0;
+	top: 50%;
+}
+
+@keyframes clock {
+	from {transform: rotate(0deg);}
+	to {transform: rotate(360deg);}
+}
+
+.clock-minutes {
+	height: 60px;
+	width: 2px;
+	background: #D56851;
+	border-radius: 2px;
+	position: absolute;
+	top: calc(50% - 60px);
+	left: calc(50% - 1px);
+	-webkit-transform-origin: 1px 60px;
+	transform-origin: 1px 60px;
+	box-shadow: 1px 1px 2px rgba(0,0,0,.3);
+	animation: clock 60s steps(60, end) infinite;
+}
+.clock-minutes:before {
+	content: "";
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #D56851;
+	box-shadow: 1px 1px 2px rgba(0,0,0,.3);
+	top: calc(100% - 4px);
+	left: calc(100% - 5px);
+}
+
+.clock:hover .clock-minutes{
+	animation-play-state: paused;
+}
+
+.title {
+	text-align: center;
+	font-family: 'Special Elite', cursive;
+	text-transform: uppercase;
+	margin-top: 30px;
+}

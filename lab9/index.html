@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
+	<title>Система доменных имен DNS. Рекурсивная и нерекурсивная схемы.</title>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+	<div class="container">
+		<a class="navbar-brand" href="#">Все о DNS</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="index.html">Главная</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="registry.html">Зарегистрируйся</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="mt-5">Что такое DNS ?</h1>
+			<div id="slider" class="carousel slide mt-5 mb-5" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#slider" data-slide-to="0" class="active"></li>
+					<li data-target="#slider" data-slide-to="1"></li>
+					<li data-target="#slider" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img class="d-block w-100" src="https://www.cloudflare.com/img/learning/dns/what-is-dns/dns-record-request-sequence-3.png" alt="First slide">
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="https://dyn.com/wp-content/uploads/2010/08/DNS.png" alt="Second slide">
+					</div>
+					<div class="carousel-item">
+						<img class="d-block w-100" src="https://www.thesslstore.com/blog/wp-content/uploads/2018/10/DNS.jpg" alt="Third slide">
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#slider" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#slider" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+			<p class="lead">Если вы хоть немного имели дело с интернетом и компьютерными сетями, то наверняка слышали о системе доменных имён (DNS). Прочитав статью узнаете, как это всё работает.</p>
+      <p class="lead">Само имя хоста не даст никакой информации о нахождении конкретной машины, с которой вы собираетесь связаться, поскольку все соединения происходят по IP-адресам.</p>
+			<p class="lead">Сервер доменных имён — это устройство, которое сопоставляет имя хоста с IP-адресом конкретной машины/железа.</p>
+			<p class="lead">В этой статье будет рассказано о деталях различных DNS-запросов, типах DNS-серверов и о разновидностях DNS-записей.</p>
+			<h3 class="mt-5">DNS-резолвер</h3>
+			<p class="lead">Это компьютеры, которые провайдеры используют для поиска в их базе данных конкретного узла, запрашиваемого пользователем. Когда данные получены, пользователь перенаправляется на соответствующий IP-адрес. Резолверы играют крайне важную роль в DNS.</p>
+			<p class="lead">DNS-резолвер кэширует информацию. К примеру, сайт example.com расположен на машине с IP-адресом 35.195.226.230. Поэтому кэши резолверов со всего мира будут содержать следующее соответствие: example.com→35.195.226.230.</p>
+			<p class="lead">Считается, что в будущем сайт может переместиться на любой другой хост с другим IP, скажем, 35.192.247.235. Кэши DNS-резолверов по всему миру некоторое время будут хранить прежний IP-адрес. Это может привести к недоступности сайта, пока изменения не дойдут до всех DNS.</p>
+			<div class="alert alert-secondary" role="alert">
+				Время, в течение которого запись хранится в резолвере, называется TTL (time to live).
+			</div>
+			<p class="lead">Его можно установить в панели управления сервиса, на котором приобретался домен.</p>
+			<h2 class="mt-5">Типы DNS-серверов</h2>
+			<h5 class="mt-3">Корневой DNS-сервер</h5>
+			<p class="lead">
+				Это DNS-сервер, который хранит в себе адреса всех TLD-серверов (TLD — top-level domain, домен верхнего уровня). По пути от имени хоста до IP-адреса запрос сначала попадает на корневой DNS-сервер.
+			</p>
+			<p class="lead">Существует 13 корневых DNS-серверов:</p>
+			<img src="https://cdn.tproger.ru/wp-content/uploads/2019/03/DNS-explained-pic-1.jpg" class="img-fluid" alt="root servers">
+			<p>
+				<small>Организации, управляющие корневыми DNS-серверами</small>
+			</p>
+			<p class="lead">Это не означает, что существует только 13 машин, которые обрабатывают все запросы со всего мира —
+			                существуют и второстепенные серверы, по которым распределяется трафик.</p>
+			<h5 class="mt-5">TLD-серверы</h5>
+			<p class="lead">Эти серверы связаны с доменами верхнего уровня (TLD). Обычно они идут после корневых DNS-серверов. В TLD-серверах содержится информация о домене верхнего уровня конкретного хоста.</p>
+			<p class="lead">Скажем, если вы запросите IP-адрес хоста <code>tproger.ru</code>, то будет опрашиваться тот TLD-сервер, который соответствует домену <code>.ru.</code> TLD-сервер возвращает адрес авторитативного DNS-сервера для резолвера.</p>
+			<p class="lead">Теперь возникает вопрос — откуда TLD-серверы знают адрес авторитативных серверов? Ответ прост — после того, как вы покупаете любой домен у регистраторов вроде Godaddy или Namecheap, регистраторы привязывают авторитативные серверы к TLD-серверу.</p>
+			<p class="lead">Сейчас некоторые провайдеры предоставляют возможность использовать сторонние авторитативные серверы. Вы можете выбрать конкретный авторитативный сервер имён у регистратора.</p>
+			<h5 class="mt-5">Авторитативный DNS-сервер</h5>
+			<p class="lead">Запрос на эти серверы поступает в самую последнюю очередь. Эти серверы хранят фактические записи типа A, NS, CNAME, TXT, и т. п.</p>
+			<p class="lead">Авторитативные DNS-серверы по возможности возвращают IP-адреса хостов. Если сервер этого сделать не может — он выдаёт ошибку, и на этом поиск IP-адреса по серверам заканчивается.</p>
+			<h2 class="mt-5">Типы DNS-запросов</h2>
+			<p class="lead">Существует 3 типа DNS-запросов:</p>
+			<ul>
+				<li>
+					<b>Рекурсивный:</b> подобные запросы выполняют пользователи к резолверу. Собственно, это первый запрос, который выполняется в процессе DNS-поиска. Резолвером чаще всего выступает ваш интернет провайдер или сетевой администратор.
+				</li>
+				<li class="mt-1">
+					<b>Нерекурсивные:</b> в нерекурсивных запросах резолвер сразу возвращает ответ без каких-либо дополнительных запросов на другие сервера имён. Это случается, если в локальном DNS-сервере закэширован необходимый IP-адрес либо если запросы поступают напрямую на авторитативные серверы, что позволяет избежать рекурсивных запросов.
+				</li>
+				<li class="mt-1">
+					<b>Итеративный:</b> итеративные запросы выполняются, когда резолвер не может вернуть ответ, потому что он не закэширован. Поэтому он выполняет запрос на корневой DNS-сервер. А тот уже знает, где найти фактический TLD-сервер.
+				</li>
+			</ul>
+			<p class="lead">К примеру, если вы пытаетесь получить IP-адрес <code>medium.com</code>, то корневой доменный сервер выдаст адрес TLD-сервера для .com. Этот адрес корневой сервер вернёт резолверу. После этого резолвер опросит TLD-сервер. TLD-сервер может не знать нужный IP-адрес, зато он может дать адрес авторитативного DNS-сервера для <code>medium.com.</code></p>
+			<p class="lead">Попробуем рассмотреть этот процесс на рисунке:</p>
+			<img src="https://cdn.tproger.ru/wp-content/uploads/2019/03/DNS-explained-pic-3.jpg" class="img-fluid" alt="root servers">
+			<p class="lead">Разберём рисунок выше:</p>
+			<ol>
+				<li>Пользователь выполняет запрос к резолверу для поиска IP-адреса. Это рекурсивный запрос.</li>
+				<li class="mt-1">Резолвер по возможности просматривает свой кэш на наличие необходимого IP-адреса.</li>
+				<li class="mt-1">Если у резолвера есть необходимый IP-адрес, то он возвращает его.</li>
+				<li class="mt-1">В противном случае резолвер выполняет итеративный запрос на корневой DNS-сервер. Корневой DNS-сервер ищет нужный TLD для запрашиваемого адреса. К примеру, если хост — <code>medium.com</code>, то TLD — <code>.com.</code> Корневой DNS-сервер находит адрес .com-домена и возвращает ответ резолверу.</li>
+				<li class="mt-1">Теперь резолвер выполняет итеративный запрос на TLD-сервер, чтобы получить необходимый IP-адрес. TLD-сервер возвращает адрес авторитативного сервера для запрашиваемого хоста.</li>
+				<li class="mt-1">Авторитативный сервер хранит фактические записи сопоставления имени хоста с IP-адресом, который возвращается резолверу (тот, в свою очередь, возвращает его пользователю).</li>
+				<li class="mt-1">Если на авторитативном сервере нужной записи не существует, то возвращается ошибка «<code>DNS_PROBE_FINISHED_NXDOMAIN</code>».</li>
+				<li class="mt-1">Для всех серверов, через которые проходит запрос, результат кэшируется, и в случае повторного запроса результат уже будет на сервере.</li>
+				<li class="mt-1">В среднем для DNS-поиска потребуется около 4 запросов, но время этого поиска будет составлять всего несколько миллисекунд.</li>
+			</ol>
+			<h2 class="mt-5">Что в итоге?</h2>
+			<div class="lead mb-5">Даже если вы измените запись у регистраторов, внесение изменений на резолверах всего мира займёт какое-то время. Этот процесс может длиться от 24 до 72 часов, но обычно завершается быстрее, т. к. за это время TTL-записи у провайдеров успевает истечь.</div>
+		</div>
+	</div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

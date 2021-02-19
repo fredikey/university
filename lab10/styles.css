@@ -1,0 +1,63 @@
+body{
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	font-family: sans-serif;
+}
+.main{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+.button {
+	width: 200px;
+	height: 50px;
+	border-radius: 15px;
+	box-shadow: none;
+	outline: none;
+	font-size: 18px;
+	margin-right: 5px;
+}
+.button_slide {
+	position: fixed;
+	right: 100px;
+	bottom: 100px;
+}
+.example{
+	margin-top: 100px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.text {
+	font-size: 16px;
+	margin: 5px;
+}
+.row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.element {
+	height: 100px;
+	width: 100px;
+	background-color: #007FFF;
+	border-radius: 15px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	font-size: 18px;
+}
+.element__red {
+	background-color: red;
+}
+
+.toggler { width: 500px; height: 200px; position: relative; }
+#effect { width: 240px; height: 170px; padding: 0.4em; position: relative; background: #fff; }
+#effect h3 { margin: 0; padding: 0.4em; text-align: center; }

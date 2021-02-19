@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+				content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Be.Pro</title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Playfair+Display:400,700,900i&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="main.css">
+</head>
+<body>
+	<header class="header">
+		<a class="logo" href="/">
+			Be.Pro
+		</a>
+		<nav class="nav">
+			<ul class="nav-list">
+				<li class="nav-item"><a href="#" class="nav-link">home <i class="icon-angle-down"></i></a></li>
+				<li class="nav-item"><a href="#" class="nav-link">shop</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">portfolio</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">page</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">blog</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">elements</a></li>
+			</ul>
+		</nav>
+		<div class="header-right-container">
+			<div class="cart">
+				<i class="icon-shopping-bag"></i>
+				<span>2</span>
+			</div>
+			<i class="icon-search"></i>
+		</div>
+	</header>
+	<section class="breadcrumbs-container">
+		<h2>Men’s Lifestyle Clothing</h2>
+		<div class="breadcrumbs">
+			<span>Home</span>
+			<span>Catalog</span>
+			<span>Men</span>
+			<span>Clothing</span>
+		</div>
+	</section>
+	<main class="main">
+		<section class="promo">
+			<div class="promo-skirt_container">
+				<div class="promo-info">
+					<span class="promo-info-tag">lifestyle</span>
+					<h4 class="promo-info-title">New Now: Striped cotton</h4>
+					<button class="promo-info-button">
+						More Info
+					</button>
+				</div>
+				<img src="./img/skirt.png" alt="skirt">
+			</div>
+			<div class="promo-girl_container">
+				<img src="./img/girl.png" alt="skirt">
+				<div class="promo-info">
+					<span class="promo-info-tag">lifestyle</span>
+					<h4 class="promo-info-title">Fashion Collecttion</h4>
+					<button class="promo-info-button">
+						More Info
+					</button>
+				</div>
+			</div>
+		</section>
+		<div class="filter">
+			<div class="filter-title">
+				Filter
+			</div>
+			<div class="filter-button hover">
+				<i class="icon-arrows-cw"></i>
+			</div>
+			<div class="filter-item hover"><span>Sort By:<span class="filter-item_selected">Price $ - $$</span></span><i class="icon-down-dir"></i></div>
+			<div class="filter-item hover"><span>Show:<span class="filter-item_selected">18</span></span><i class="icon-down-dir"></i></div>
+			<div class="filter-button hover">
+				<i class="icon-th"></i>
+			</div>
+			<div class="filter-button hover">
+				<i class="icon-th-list"></i>
+			</div>
+			<button class="filter-all">
+				View all
+			</button>
+		</div>
+		<section class="shop">
+			<div class="sidebar">
+				<div class="sidebar-block">
+					<div class="sidebar-block-header">
+						<span class="hover"><i class="icon-angle-down"></i>Categories</span>
+						<button class="sidebar-block-header-close hover">
+							<i class="icon-cancel"></i>
+						</button>
+					</div>
+					<div class="sidebar-categories">
+						<div class="sidebar-categories-item sidebar-categories-item_active">
+							<span>Lifestyle</span>
+							<span>01</span>
+						</div>
+						<div class="sidebar-categories-item">
+							<span>Running</span>
+							<span>15</span>
+						</div>
+						<div class="sidebar-categories-item">
+							<span>Training & Gym</span>
+							<span>20</span>
+						</div>
+						<div class="sidebar-categories-item">
+							<span>Clothing</span>
+							<span>25</span>
+						</div>
+						<div class="sidebar-categories-item">
+							<span>Scarves</span>
+							<span>30</span>
+						</div>
+						<div class="sidebar-categories-item">
+							<span>Accessories</span>
+							<span>35</span>
+						</div>
+						<div class="sidebar-categories-item">
+							<span>Shoes</span>
+							<span>45</span>
+						</div>
+						<div class="sidebar-categories-item">
+							<span>Fragrance</span>
+							<span>50</span>
+						</div>
+						<div class="sidebar-categories-item">
+							<span>Football</span>
+							<span>32</span>
+						</div>
+					</div>
+				</div>
+				<div class="sidebar-block">
+					<div class="sidebar-block-header">
+						<span class="hover"><i class="icon-angle-down"></i>Price range</span>
+						<button class="sidebar-block-header-close hover">
+							<i class="icon-cancel"></i>
+						</button>
+					</div>
+					<div class="sidebar-price">
+						<div class="sidebar-price-input">
+							<input type="text" value="50$">
+							<input type="text" value="150$">
+						</div>
+						<div class="sidebar-price-range">
+							<input type="range" id="range" multiple min="0" step="10" max="1000" data-values="300 500">
+							<div class="sidebar-price-range-labels">
+								<span>10$</span>
+								<span>1000$</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="sidebar-block">
+					<div class="sidebar-block-header">
+						<span class="hover"><i class="icon-angle-down"></i>Color</span>
+						<button class="sidebar-block-header-close hover">
+							<i class="icon-cancel"></i>
+						</button>
+					</div>
+					<div class="sidebar-color">
+						<div class="sidebar-color-item sidebar-color-item_selected" style="background-color:#fff;box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1)"></div>
+						<div class="sidebar-color-item" style="background-color: #f44336"></div>
+						<div class="sidebar-color-item" style="background-color:#ffeb3b"></div>
+						<div class="sidebar-color-item" style="background-color:#4caf50"></div>
+						<div class="sidebar-color-item" style="background-color:#2196f3"></div>
+						<div class="sidebar-color-item" style="background-color:#9c27b0"></div>
+						<div class="sidebar-color-item" style="background-color:#8bc34a"></div>
+						<div class="sidebar-color-item" style="background-color:#ff9800"></div>
+					</div>
+				</div>
+				<div class="sidebar-block">
+					<div class="sidebar-block-header">
+						<span class="hover"><i class="icon-angle-down"></i>Size</span>
+						<button class="sidebar-block-header-close hover">
+							<i class="icon-cancel"></i>
+						</button>
+					</div>
+					<div class="sidebar-size">
+						<div class="sidebar-size-item">s</div>
+						<div class="sidebar-size-item sidebar-size-item_selected">m</div>
+						<div class="sidebar-size-item">l</div>
+						<div class="sidebar-size-item">xl</div>
+					</div>
+				</div>
+			</div>
+			<div class="products">
+				<div class="products-list">
+					<div class="products-item">
+						<span class="products-item_sale">sale</span>
+						<div class="products-item-image-container">
+							<img src="./img/products/1.png" alt="">
+						</div>
+						<div class="products-item-descr">
+							<span class="products-item-descr-title">Essential cotton-blend</span>
+							<span class="products-item-descr-price"><span class="products-item-descr-price_sale">$200.00 USD</span>$100.00 USD</span>
+						</div>
+					</div>
+					<div class="products-item">
+						<div class="products-item-image-container">
+							<img src="./img/products/2.png" alt="">
+						</div>
+						<div class="products-item-descr">
+							<span class="products-item-descr-title">Flecked cotton-blend</span>
+							<span class="products-item-descr-price">$175.00 USD</span>
+						</div>
+					</div>
+					<div class="products-item">
+						<div class="products-item-image-container">
+							<img src="./img/products/3.png" alt="">
+						</div>
+						<div class="products-item-descr">
+							<span class="products-item-descr-title">Striped cotton t-shirt</span>
+							<span class="products-item-descr-price">$200.00 USD</span>
+						</div>
+					</div>
+					<div class="products-item">
+						<span class="products-item_sale">sale</span>
+						<div class="products-item-image-container">
+							<img src="./img/products/4.png" alt="">
+						</div>
+						<div class="products-item-descr">
+							<span class="products-item-descr-title">Sequin star t-shirt</span>
+							<span class="products-item-descr-price"><span class="products-item-descr-price_sale">$200.00 USD</span>$100.00 USD</span>
+						</div>
+					</div>
+					<div class="products-item">
+						<div class="products-item-image-container">
+							<img src="./img/products/5.png" alt="">
+						</div>
+						<div class="products-item-descr">
+							<span class="products-item-descr-title">Ruffle sleeve t-shirt</span>
+							<span class="products-item-descr-price">$175.00 USD</span>
+						</div>
+					</div>
+					<div class="products-item">
+						<span class="products-item_sale">sale</span>
+						<div class="products-item-image-container">
+							<img src="./img/products/6.png" alt="">
+						</div>
+						<div class="products-item-descr">
+							<span class="products-item-descr-title">Double layer top</span>
+							<span class="products-item-descr-price">$200.00 USD</span>
+						</div>
+					</div>
+					<div class="products-item">
+						<div class="products-item-image-container">
+							<img src="./img/products/7.png" alt="">
+						</div>
+						<div class="products-item-descr">
+							<span class="products-item-descr-title">V-neck cotton t-shirt</span>
+							<span class="products-item-descr-price">$100.00 USD</span>
+						</div>
+					</div>
+					<div class="products-item">
+						<div class="products-item-image-container">
+							<img src="./img/products/8.png" alt="">
+						</div>
+						<div class="products-item-descr">
+							<span class="products-item-descr-title">Message cotton t-shirt</span>
+							<span class="products-item-descr-price">$100.00 USD</span>
+						</div>
+					</div>
+					<div class="products-item">
+						<span class="products-item_sale">sale</span>
+						<div class="products-item-image-container">
+							<img src="./img/products/9.png" alt="">
+						</div>
+						<div class="products-item-descr">
+							<span class="products-item-descr-title">Nike Dry Swoosh</span>
+							<span class="products-item-descr-price"><span class="products-item-descr-price_sale">$200.00 USD</span>$100.00 USD</span>
+						</div>
+					</div>
+				</div>
+				<button class="products-loadmore hover">
+					<i class="icon-arrows-cw"></i>
+					<span>Load more</span>
+				</button>
+			</div>
+		</section>
+		<div class="pagination">
+			<div class="pagination-arrow hover">
+				<i class="icon-left-open"></i>
+			</div>
+			<div class="pagination-list">
+				<div class="pagination-item">01</div>
+				<div class="pagination-item">02</div>
+				<div class="pagination-item pagination-item_selected">03</div>
+				<div class="pagination-item">04</div>
+				<div class="pagination-item">05</div>
+			</div>
+			<div class="pagination-arrow hover pagination-arrow_active">
+				<i class="icon-right-open"></i>
+			</div>
+		</div>
+	</main>
+	<section class="promo-2">
+		<div class="promo-2-text">
+			<span>New Product</span>
+			<h5>The new Collection of Summer</h5>
+		</div>
+		<div class="promo-2-dots">
+			<span class="promo-2-dots_selected">.</span>
+			<span>.</span>
+			<span>.</span>
+		</div>
+	</section>
+	<section class="slider">
+		<div class="slider-arrow hover">
+			<i class="icon-left-open"></i>
+		</div>
+		<div class="slider-items">
+			<div class="slider-item"><img src="./img/slides/1.png" alt="firStudio"></div>
+			<div class="slider-item"><img src="./img/slides/2.png" alt="villatex"></div>
+			<div class="slider-item"><img src="./img/slides/3.png" alt="francois"></div>
+			<div class="slider-item"><img src="./img/slides/4.png" alt="cropit"></div>
+		</div>
+		<div class="slider-arrow slider-arrow_active hover">
+			<i class="icon-right-open"></i>
+		</div>
+	</section>
+	<footer class="footer">
+		<div class="footer-col">
+			<span class="logo">ModaX</span>
+			<div class="footer-social">
+				<i class="icon-facebook"></i>
+				<i class="icon-twitter"></i>
+				<i class="icon-behance"></i>
+				<i class="icon-dribble"></i>
+				<i class="icon-linkedin"></i>
+			</div>
+		</div>
+		<div class="footer-col">
+			<nav class="footer-nav">
+				<ul class="footer-nav-list">
+					<li><a href="#">Man</a></li>
+					<li><a href="#">Woman</a></li>
+					<li><a href="#">lookbook</a></li>
+					<li><a href="#">sale</a></li>
+					<li><a href="#">blog</a></li>
+				</ul>
+			</nav>
+			<span class="footer-form-title">Subscribe to news</span>
+			<div class="footer-form">
+				<input type="text" placeholder="Email Address">
+				<button type="submit" class="hover">Submit</button>
+			</div>
+		</div>
+		<div class="footer-col footer-contact">
+			<span>Contact us</span>
+			<p>
+				San Francisco, California<br/>
+				400 Castro St, San Francisco, CA<br/>
+				(+1) 686-868-9999
+			</p>
+			<div class="footer-contact-payments">
+				<img src="./img/payments/1.png" alt="">
+				<img src="./img/payments/2.png" alt="">
+				<img src="./img/payments/3.png" alt="">
+				<img src="./img/payments/4.png" alt="">
+				<img src="./img/payments/5.png" alt="">
+			</div>
+		</div>
+	</footer>
+	<script src="./bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="jquerry_ui/index.min.css">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<main class="main">
+		<section class="example">
+			<h2>Example of <code>.ready() .hide() .show() .click() .text()</code></h2>
+			<button class="button button-1">
+				hide text
+			</button>
+			<span class="text text-1">
+				text...
+			</span>
+		</section>
+		<section class="example">
+			<h2>Example of <code>.append() .prepend() .remove() .addClass()</code></h2>
+			<div class="row row-1">
+				<div class="element"></div>
+				<div class="element"></div>
+				<div class="element"></div>
+				<div class="element"></div>
+				<div class="element"></div>
+				<div class="element"></div>
+				<div class="element"></div>
+				<div class="element"></div>
+				<div class="element"></div>
+				<div class="element"></div>
+			</div>
+			<div class="row">
+				<button class="button button-2">
+					add element to start
+				</button>
+				<button class="button button-3">
+					add element to end
+				</button>
+			</div>
+			<span class="text">click on element to remove</span>
+		</section>
+		
+		<section class="example">
+			<h2>Example of <code>.change() .text() .val()</code></h2>
+			<input type="text" id="input">
+			<span class="text" id="input_text">start typing..</span>
+			<span class=""></span>
+		</section>
+		
+		<section class="example">
+			<h2>Example of <code>.on() .animate() and jquerry ui plugin</code></h2>
+			<div class="toggler">
+				<div id="effect" class="ui-widget-content ui-corner-all">
+					<h3 class="ui-widget-header ui-corner-all">Animate</h3>
+					<p>
+						Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit vitae, mi.
+					</p>
+				</div>
+			</div>
+			<button class="button button-4">
+				animate
+			</button>
+		</section>
+		<section class="example">
+			<h2>Example of <code>jquerry UI widget</code></h2>
+			<div id="slider-range" style="width: 500px;"></div>
+			<p style="margin-bottom: 100px">
+				<label for="amount">Price range:</label>
+				<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+			</p>
+		</section>
+	</main>
+	<button class="button button_slide" id="slide_top">slide to top</button>
+<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script defer src="jquerry_ui/index.min.js"></script>
+<script defer src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+p {
+  margin: 0;
+}
+.container {
+  margin-top: 100px;
+  height: 100%;
+  flex-direction: column;
+  width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+.title {
+  margin-top: 80px;
+  margin-bottom: 30px;
+}
+.text-container {
+  width: 150px;
+  
+  border: 1px solid #333333;
+  
+}
+
+.text {
+  text-shadow: 0 0 3px #FF0000;
+  color: #FF0000;
+  word-wrap: break-word;
+  cursor: pointer;
+  transition: opacity .3s;
+}
+.text:hover {
+  opacity: .5;
+}
+
+.columns {
+  column-width: 300px;
+  column-count: 3;
+  text-align: center;
+  column-gap: 30px;
+  column-rule: 1px solid #ccc;
+}
+
+.gradients {
+  display: flex;
+}
+
+.gradient {
+  width: 300px;
+  height: 100px;
+  margin-right: 30px;
+  background: linear-gradient(to top left, powderblue, pink);
+  transition: .3s;
+}
+.gradient:hover {
+  width: 250px;
+  height: 150px;
+}
+
+.gradient:last-child {
+  margin-right: 0;
+  background: radial-gradient(40% 50%, #FAECD5, #CAE4D8);
+}
+.textarea {
+  resize: horizontal;
+}
+@keyframes rotate {
+  from {transform: rotate(0)}
+  to {transform: rotate(360deg)}
+}
+@keyframes scale {
+  from {transform: scale(0)}
+  to {transform: scale(5)}
+}
+
+.animation-container {
+  display: flex;
+  align-items: center;
+}
+
+.animation-example1 {
+  animation: rotate 2s infinite ease;
+  width: 4px;
+  height: 50px;
+  background-color: #560300;
+  margin-right: 100px;
+}
+
+.animation-example2 {
+  animation: scale 2s infinite ease;
+  width: 10px;
+  height: 10px;
+  background-color: #a9c00d;
+}
+
+.transform-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+@keyframes rotateY {
+  from {transform: rotateY(0deg)}
+  to {transform: rotateY(360deg)}
+}
+@keyframes rotateX {
+  from {transform: rotateX(0deg) rotateY(0deg)}
+  to {transform: rotateX(360deg) rotateY(180deg)}
+}
+.transform-example1 {
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+  width: 200px;
+  height: 100px;
+  animation: rotateY 3s infinite linear;
+  background-color: rgba(192,87,111,0.54);
+  text-align: center;
+  padding-top: 10px;
+  color: #fff;
+  font-size: 16px;
+  margin-right: 20px;
+}
+
+.transform-example2 {
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+  width: 200px;
+  height: 100px;
+  animation: rotateX 3s infinite linear;
+  background-color: rgba(96, 71, 192, 0.54);
+  text-align: center;
+  padding-top: 10px;
+  color: #fff;
+  font-size: 16px;
+}
