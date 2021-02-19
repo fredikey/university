@@ -1,0 +1,14 @@
+# Idea
+.idea/
+.vscode/**
+
+# OSX
+.DS_Store
+
+node_modules/**
+__pycache__/
+# Specific
+sem3/django/project/__pycache__/
+sem3/django/app/__pycache__/
+sem3/django/venv/
+sem3/django/static/
