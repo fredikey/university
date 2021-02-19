@@ -1,0 +1,82 @@
+// Typography table
+$fonts: (
+//	             1920            1280
+//name       fz    lg   fw
+	h1:     ((34rem, 51rem, 600), (28rem, 42rem)),
+	h2:     ((28rem, 42rem, 600), (24rem, 36rem)),
+	h3:     ((22rem, 33rem, 600), (20rem, 30rem)),
+	h4:     ((16rem, 24rem, 600), (16rem, 24rem)),
+	h5:     ((14rem, 21rem, 700), (14rem, 21rem)),
+	h6:     ((12rem, 18rem, 700), (12rem, 18rem)),
+	big:    ((16rem, 24rem, 400), (16rem, 24rem)),
+	medium: ((14rem, 21rem, 400), (14rem, 21rem)),
+	small:  ((12rem, 18rem, 400), (12rem, 18rem)),
+	tiny:   ((10rem, 15rem, 400), (10rem, 15rem))
+);
+
+$fonts-weight: (
+	default: 400,
+	accent: 500,
+	bold: 600
+);
+// $weight can be default | accent | bold
+@mixin text ($name, $weight: default) {
+	$text-styles: map_get($fonts, $name);
+	// comment out cuz sass optimize map with 1 item
+  $val: nth($text-styles, 1);
+  $val2: nth($text-styles, 2);
+  //$val: $text-styles;
+
+	// handle name incorrect
+  @if $name != h1 and
+  $name != h2 and
+  $name != h3 and
+  $name != h4 and
+  $name != h5 and
+  $name != h6 and
+  $name != big and
+  $name != medium and
+  $name != small and
+  $name != tiny {
+    @error 'Property name - #{$name} is incorrect;'
+  }
+
+	// handle weight incorrect
+	@if (
+		$weight != default and
+		$weight != accent and
+		$weight != bold
+	) {
+		@error 'Property weight - #{$weight} is incorrect;'
+	}
+	@if (
+		$name == h1 or
+		$name == h2 or
+		$name == h3
+	) {
+		font-size: nth($val, 1);
+		line-height: nth($val, 2);
+		@include smallDesktop {
+			font-size: nth($val2, 1);
+			line-height: nth($val2, 2);
+		}
+	} @else {
+		font-size: nth($val, 1);
+		line-height: nth($val, 2);
+	}
+
+	@if (
+		$name == big or
+		$name == medium or
+		$name == small or
+		$name == tiny
+	) {
+		font-weight: map_get($fonts-weight, $weight);
+	} @else {
+		font-weight: nth($val, 3);
+	}
+
+	@if $name == h5 or $name == h6 {
+		text-transform: uppercase;
+	}
+}

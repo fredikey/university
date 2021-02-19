@@ -1,0 +1,24 @@
+@page :first { margin: 1cm; /* Отступы для первой страницы */ }
+@page :left { margin: 1cm 3cm 1cm 1.5cm; /* Отступы для всех левых страниц */
+}
+.content {
+	width: 100%;
+	margin-left: 0;
+}
+
+
+/* not important */
+.footer {
+	display: none;
+}
+
+#myChart {
+	display: none;
+}
+.sidebar {
+	display: none;
+}
+
+.post_image {
+	display: none;
+}

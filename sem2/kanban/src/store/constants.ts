@@ -1,0 +1,11 @@
+export const INIT_DARK_MODE = 'INIT_DARK_MODE'
+export const TOGGLE_DARK_MODE = 'TOGGLE_DARK_MODE'
+export const ADD_TASK = 'ADD_TASK'
+export const SET_TASK_STATUS = 'SET_TASK_STATUS'
+export const LOAD_TASKS = 'LOAD_TASKS'
+export const SAVE_TASKS = 'SAVE_TASKS'
+export const DELETE_TASK = 'DELETE_TASK'
+export const OPEN_EDIT_MODAL = 'OPEN_EDIT_MODAL'
+export const CLOSE_EDIT_MODAL = 'CLOSE_EDIT_MODAL'
+export const EDIT_TASK = 'EDIT_TASK'
+
