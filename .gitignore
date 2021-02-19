@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 # Idea
 .idea/
 .vscode/**
@@ -9,28 +7,9 @@
 
 node_modules/**
 __pycache__/
+
 # Specific
 sem3/django/project/__pycache__/
 sem3/django/app/__pycache__/
 sem3/django/venv/
 sem3/django/static/
-=======
-# IntelliJ project files
-.idea
-*.iml
-out
-gen
->>>>>>> rk2-fredikey/master
-=======
-# macos specific file
-.DS_Store
-
-# idea
-.idea/
-
-#generated files
-lab1/compressed
-lab2/compressed
-lab3/compressed
-*.docx
->>>>>>> database/master

@@ -1,0 +1,133 @@
+body {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.table th{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	max-width: 150px;
+	overflow-x: hidden;
+}
+
+.logo {
+	color: #fff;
+	height: 45px;
+}
+.nav-login {
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+.nav-logout-btn {
+	margin-left: 20px;
+}
+.main {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	padding-bottom: 20px;
+}
+.main__center {
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 150px;
+	text-align: center;
+}
+.main__form {
+	width: 50%;
+	align-self: center;
+}
+.main__form-link {
+	margin-top: 15px;
+	align-self: center;
+}
+.footer {
+	height: 100px;
+	background-color: #212529;
+	color: rgba(255,255,255, 0.5);
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	padding-right: 2%;
+	padding-left: 2%;
+}
+.footer-item {
+	margin-right: 30px;
+	margin-bottom: 0;
+}
+.footer-item a {
+	color: rgba(255,255,255, 0.5);
+}
+
+.greetings {
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+/* items list */
+.list {
+	display: flex;
+	flex-direction: column;
+}
+
+.list-item {
+	margin-bottom: 30px;
+}
+
+.list-item-text {
+	max-height: 100px;
+	overflow: hidden;
+}
+.title-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.page-item-date {
+	color: gray;
+}
+.session-item {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.session-item h6 {
+	margin-bottom: 0;
+}
+.link-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+.link-item h5 {
+	margin-bottom: 0;
+}
+.link-item_label {
+	max-width: 60%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow:ellipsis;
+}
+@media screen and (max-width: 991.98px){
+	.nav-login {
+		justify-content: flex-start;
+		margin: 0;
+	}
+	.main__form {
+		width: 100%;
+	}
+}
+
