@@ -1,0 +1,22 @@
+{
+	"overrides": [
+		{
+			"files": [
+				".prettierrc",
+				"tsconfig",
+				"package"
+			],
+			"options": {
+				"parser": "json"
+			}
+		}
+	],
+	"quoteProps": "consistent",
+	"useTabs": true,
+	"printWidth": 100,
+	"tabWidth": 2,
+	"singleQuote": true,
+	"jsxBracketSameLine": true,
+	"semi": false,
+	"trailingComma": "none"
+}

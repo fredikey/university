@@ -1,0 +1,15 @@
+{
+  "name": "university",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:fredikey/university.git",
+  "author": "Victor Kozodaev <viktor7778123@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "prettier": "prettier --config .prettierrc.json --ignore-path .prettierignore --write '**/*.{js,jsx,ts,tsx,json,yml}'"
+  },
+  "devDependencies": {
+    "eslint": "^7.20.0",
+    "prettier": "^2.2.1"
+  }
+}
