@@ -8,6 +8,7 @@
 node_modules/**
 __pycache__/
 dist/
+coverage/
 
 # Specific
 sem3/django/project/__pycache__/
