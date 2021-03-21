@@ -1,7 +1,7 @@
 import time
 
 import redis
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 cache = redis.Redis(host='redis', port=6379)
@@ -21,6 +21,14 @@ def get_hit_count():
 def hello():
     count = get_hit_count()
     return 'Hello from Docker! I have been seen {} times.\n'.format(count)
+
+@app.route('/about')
+def about():
+    return 'The about page'
+
+@app.route('/info')
+def info():
+    return render_template('hello.html')
 
 @app.route('/sale/<transaction_id>')
 def get_sale(transaction_id=0):
