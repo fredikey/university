@@ -1,5 +1,7 @@
 // Insertion Sort
-import { bubbleSort, insertionSort, selectSort } from './index'
+// import { bubbleSort, insertionSort, selectSort } from ''
+
+import { bubbleSort, insertionSort, selectSort } from '../../Sortings'
 
 describe('Sorting Module', () => {
 	const ARR_1 = [2, 123, 3, 2, 1, 23, 14, 5, 12, 213, 412, 12, 132, 512]
