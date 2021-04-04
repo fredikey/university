@@ -1,6 +1,3 @@
-// Insertion Sort
-// import { bubbleSort, insertionSort, selectSort } from ''
-
 import { bubbleSort, insertionSort, selectSort } from '../../Sortings'
 
 describe('Sorting Module', () => {
