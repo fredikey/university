@@ -1,0 +1,36 @@
+server {
+    listen       80;
+    listen  [::]:80;
+    server_name  ${NGINX_CUSTOM_SERVER_NAME};
+
+    access_log  /var/log/nginx/host.access.log  main;
+    error_log  /var/log/nginx/host.error.log;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+
+        # cache proxy and client in 1 hour
+        expires 1h;
+        add_header Cache-Control public;
+    }
+
+    location ~ \.(gif|jpg|png)$ {
+        root /usr/share/nginx/html/images;
+        expires 1h;
+        add_header Cache-Control public;
+    }
+
+    location ~ \.(mkv|mp4|mov)$ {
+        root /usr/share/nginx/html/videos;
+    }
+
+    location ~ \.(doc|docx)$ {
+        root /usr/share/nginx/html/docs;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
