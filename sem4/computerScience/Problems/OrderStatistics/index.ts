@@ -48,5 +48,5 @@ const orderStatisticsHelper: OrderStatisticsFunc = (arr, startIdx, endIdx, k) =>
 }
 
 export const orderStatistics = (arr: number[], k: number) => {
-	return orderStatisticsHelper(arr, 0, arr.length, k)
+	return orderStatisticsHelper(arr, 0, arr.length, k - 1)
 }
