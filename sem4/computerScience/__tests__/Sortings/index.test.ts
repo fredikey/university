@@ -1,4 +1,5 @@
 import { bubbleSort, insertionSort, selectSort, quickSort, mergeSort } from '../../Sortings'
+import { heapSort } from '../../Sortings/heapSort'
 
 describe('Sorting Module', () => {
 	const ARR_1 = [2, 123, 3, 2, 1, 23, 14, 5, 12, 213, 412, 12, 132, 512]
@@ -34,6 +35,17 @@ describe('Sorting Module', () => {
 		})
 	})
 
+	describe('Insertion sort', () => {
+		it.each`
+			input    | output
+			${ARR_1} | ${ARR_RES_1}
+			${ARR_2} | ${ARR_RES_2}
+			${ARR_3} | ${ARR_RES_3}
+		`('$input to $output', ({ input, output }) => {
+			expect(insertionSort(input)).toEqual(output)
+		})
+	})
+
 	describe('Quick sort', () => {
 		it.each`
 			input    | output
@@ -53,6 +65,17 @@ describe('Sorting Module', () => {
 			${ARR_3} | ${ARR_RES_3}
 		`('$input to $output', ({ input, output }) => {
 			expect(mergeSort(input)).toEqual(output)
+		})
+	})
+
+	describe('Heap sort', () => {
+		it.each`
+			input    | output
+			${ARR_1} | ${ARR_RES_1}
+			${ARR_2} | ${ARR_RES_2}
+			${ARR_3} | ${ARR_RES_3}
+		`('$input to $output', ({ input, output }) => {
+			expect(heapSort(input)).toEqual(output)
 		})
 	})
 })
