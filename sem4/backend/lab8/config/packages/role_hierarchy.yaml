@@ -3,13 +3,27 @@ security:
     !php/const App\Core\User\Enum\Role::ADMIN:
       - !php/const App\Core\User\Enum\Role::USER
       - !php/const App\Core\User\Enum\Role::OPERATOR
+      - !php/const App\Core\User\Enum\Role::CONTENT_MANAGER
+      - !php/const App\Core\User\Enum\Role::HR
+      - !php/const App\Core\Product\Enum\Permission::PRODUCT_CREATE
+      - !php/const App\Core\Product\Enum\Permission::PRODUCT_DELETE
       - !php/const App\Core\User\Enum\Permission::USER_CREATE
-      - !php/const App\Core\User\Enum\Permission::USER_UPDATE
       - !php/const App\Core\User\Enum\Permission::USER_DELETE
-      - !php/const App\Core\User\Enum\Permission::USER_VALIDATION
     !php/const App\Core\User\Enum\Role::OPERATOR:
       - !php/const App\Core\User\Enum\Role::USER
+      - !php/const App\Core\User\Enum\Role::CONTENT_MANAGER
+      - !php/const App\Core\User\Enum\Role::HR
+    !php/const App\Core\User\Enum\Role::HR:
+      - !php/const App\Core\User\Enum\Role::USER
       - !php/const App\Core\User\Enum\Permission::USER_CONTACT_CREATE
-      - !php/const App\Core\User\Enum\Permission::USER_INDEX
+      - !php/const App\Core\User\Enum\Permission::USER_UPDATE
+      - !php/const App\Core\User\Enum\Permission::USER_VALIDATION
+    !php/const App\Core\User\Enum\Role::CONTENT_MANAGER:
+      - !php/const App\Core\User\Enum\Role::USER
+      - !php/const App\Core\Product\Enum\Permission::PRODUCT_UPDATE
+      - !php/const App\Core\Product\Enum\Permission::PRODUCT_VALIDATION
     !php/const App\Core\User\Enum\Role::USER:
+      - !php/const App\Core\Product\Enum\Permission::PRODUCT_INDEX
+      - !php/const App\Core\Product\Enum\Permission::PRODUCT_SHOW
       - !php/const App\Core\User\Enum\Permission::USER_SHOW
+      - !php/const App\Core\User\Enum\Permission::USER_INDEX

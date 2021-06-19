@@ -11,4 +11,6 @@ class Role extends AbstractEnum
     public const ADMIN = 'ROLE_ADMIN';
     public const USER  = 'ROLE_USER';
     public const OPERATOR  = 'ROLE_OPERATOR';
+    public const CONTENT_MANAGER  = 'ROLE_CONTENT_MANAGER';
+    public const HR  = 'ROLE_HR';
 }

@@ -10,6 +10,12 @@ doctrine_mongodb:
     default:
       auto_mapping: true
       mappings:
+        App\Core\Product\Document:
+          is_bundle: false
+          type: annotation
+          dir: '%kernel.project_dir%/src/Core/Product/Document'
+          prefix: 'App\Core\Product\Document'
+          alias: AppCoreProduct
         App\Core\User\Document:
           is_bundle: false
           type: annotation
