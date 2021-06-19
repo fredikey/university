@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace App\Api\User\Dto;
 
+use App\Core\User\Validator\UserExists;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * @UserExists()
+ */
 class UserCreateRequestDto
 {
     /**

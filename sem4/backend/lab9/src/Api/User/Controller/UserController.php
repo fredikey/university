@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Api\User\Controller;
 
-use App\Api\User\Dto\ContactResponseDto;
 use App\Api\User\Dto\UserCreateRequestDto;
 use App\Api\User\Dto\UserListResponseDto;
 use App\Api\User\Dto\UserResponseDto;
 use App\Api\User\Dto\UserUpdateRequestDto;
 use App\Api\User\Dto\ValidationExampleRequestDto;
+use App\Api\User\Factory\ResponseFactory;
 use App\Core\Common\Dto\ValidationFailedResponse;
+use App\Core\Common\Factory\HTTPResponseFactory;
 use App\Core\User\Document\Contact;
 use App\Core\User\Document\User;
 use App\Core\User\Enum\Permission;
-use App\Core\User\Enum\Role;
-use App\Core\User\Enum\RoleHumanReadable;
 use App\Core\User\Repository\ContactRepository;
 use App\Core\User\Repository\UserRepository;
+use App\Core\User\Service\UserService;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -41,11 +41,13 @@ class UserController extends AbstractController
      *
      * @Rest\View()
      *
-     * @param User|null $user
+     * @param User|null         $user
+     * @param ContactRepository $contactRepository
+     * @param ResponseFactory   $responseFactory
      *
      * @return UserResponseDto
      */
-    public function show(User $user = null, ContactRepository $contactRepository)
+    public function show(User $user = null, ContactRepository $contactRepository, ResponseFactory $responseFactory)
     {
         if (!$user) {
             throw $this->createNotFoundException('User not found');
@@ -53,7 +55,7 @@ class UserController extends AbstractController
 
         $contact = $contactRepository->findOneBy(['user' => $user]);
 
-        return $this->createUserResponse($user, $contact);
+        return $responseFactory->createUserResponse($user, $contact);
     }
 
     /**
@@ -61,11 +63,16 @@ class UserController extends AbstractController
      * @IsGranted(Permission::USER_INDEX)
      * @Rest\View()
      *
+     * @param Request         $request
+     * @param UserRepository  $userRepository
+     * @param ResponseFactory $responseFactory
+     *
      * @return UserListResponseDto|ValidationFailedResponse
      */
     public function index(
         Request $request,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        ResponseFactory $responseFactory
     ): UserListResponseDto {
         $page     = (int)$request->get('page');
         $quantity = (int)$request->get('slice');
@@ -74,8 +81,8 @@ class UserController extends AbstractController
 
         return new UserListResponseDto(
             ... array_map(
-                    function (User $user) {
-                        return $this->createUserResponse($user);
+                    function (User $user) use ($responseFactory) {
+                        return $responseFactory->createUserResponse($user);
                     },
                     $users
                 )
@@ -91,34 +98,24 @@ class UserController extends AbstractController
      *
      * @param UserCreateRequestDto             $requestDto
      * @param ConstraintViolationListInterface $validationErrors
-     * @param UserRepository                   $userRepository
+     * @param UserService                      $service
+     * @param ResponseFactory                  $responseFactory
+     * @param HTTPResponseFactory              $HTTPResponseFactory
      *
      * @return UserResponseDto|ValidationFailedResponse|Response
      */
     public function create(
         UserCreateRequestDto $requestDto,
         ConstraintViolationListInterface $validationErrors,
-        UserRepository $userRepository
+        UserService $service,
+        ResponseFactory $responseFactory,
+        HTTPResponseFactory $HTTPResponseFactory
     ) {
         if ($validationErrors->count() > 0) {
-            return new ValidationFailedResponse($validationErrors);
+            return $HTTPResponseFactory->createValidationFailedResponse($validationErrors);
         }
 
-        if ($user = $userRepository->findOneBy(['phone' => $requestDto->phone])) {
-            return new Response('User already exists', Response::HTTP_BAD_REQUEST);
-        }
-
-        $user = new User(
-            $requestDto->phone,
-            $requestDto->roles,
-            $requestDto->apiToken
-        );
-        $user->setFirstName($requestDto->firstName);
-        $user->setLastName($requestDto->lastName);
-
-        $userRepository->save($user);
-
-        return $this->createUserResponse($user);
+        return $responseFactory->createUserResponse($service->createUser($requestDto));
     }
 
     /**
@@ -131,19 +128,22 @@ class UserController extends AbstractController
      * @param Request           $request
      * @param User|null         $user
      * @param ContactRepository $contactRepository
+     * @param ResponseFactory   $responseFactory
      *
      * @return UserResponseDto|ValidationFailedResponse|Response
      */
     public function createContact(
         Request $request,
         User $user = null,
-        ContactRepository $contactRepository
+        ContactRepository $contactRepository,
+        ResponseFactory $responseFactory
     ) {
         // todo проверки на валидацию всего всего и дто ...
+
         $contact = new Contact($request->get('phone', ''), $request->get('name', ''), $user);
         $contactRepository->save($contact);
 
-        return $this->createUserResponse($user, $contact);
+        return $responseFactory->createUserResponse($user, $contact);
     }
 
     /**
@@ -154,9 +154,11 @@ class UserController extends AbstractController
      *
      * @Rest\View()
      *
+     * @param User|null                        $user
      * @param UserUpdateRequestDto             $requestDto
      * @param ConstraintViolationListInterface $validationErrors
      * @param UserRepository                   $userRepository
+     * @param ResponseFactory                  $responseFactory
      *
      * @return UserResponseDto|ValidationFailedResponse|Response
      */
@@ -164,7 +166,8 @@ class UserController extends AbstractController
         User $user = null,
         UserUpdateRequestDto $requestDto,
         ConstraintViolationListInterface $validationErrors,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        ResponseFactory $responseFactory
     ) {
         if (!$user) {
             throw $this->createNotFoundException('User not found');
@@ -179,7 +182,7 @@ class UserController extends AbstractController
 
         $userRepository->save($user);
 
-        return $this->createUserResponse($user);
+        return $responseFactory->createUserResponse($user);
     }
 
     /**
@@ -205,19 +208,6 @@ class UserController extends AbstractController
         $userRepository->remove($user);
     }
 
-    private function getRoleHumanReadable(User $user): ?string
-    {
-        if (in_array(Role::ADMIN, $user->getRoles(), true)) {
-            return RoleHumanReadable::ADMIN;
-        }
-
-        if (in_array(Role::USER, $user->getRoles(), true)) {
-            return RoleHumanReadable::USER;
-        }
-
-        return null;
-    }
-
     /**
      * @Route(path="/validation", methods={"POST"})
      * @IsGranted(Permission::USER_VALIDATION)
@@ -236,34 +226,5 @@ class UserController extends AbstractController
         }
 
         return $requestDto;
-    }
-
-    /**
-     * @param User         $user
-     * @param Contact|null $contact
-     *
-     * @return UserResponseDto
-     */
-    private function createUserResponse(User $user, ?Contact $contact = null): UserResponseDto
-    {
-        $dto = new UserResponseDto();
-
-        $dto->id                = $user->getId();
-        $dto->firstName         = $user->getFirstName();
-        $dto->lastName          = $user->getLastName();
-        $dto->phone             = $user->getPhone();
-        $dto->roleHumanReadable = $this->getRoleHumanReadable($user);
-        $dto->token             = $user->getApiToken();
-
-        if ($contact) {
-            $contactResponseDto        = new ContactResponseDto();
-            $contactResponseDto->id    = $contact->getId();
-            $contactResponseDto->phone = $contact->getPhone();
-            $contactResponseDto->name  = $contact->getName();
-
-            $dto->contact = $contactResponseDto;
-        }
-
-        return $dto;
     }
 }
