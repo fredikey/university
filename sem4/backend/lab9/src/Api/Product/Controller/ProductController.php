@@ -9,10 +9,13 @@ use App\Api\Product\Dto\ProductListResponseDto;
 use App\Api\Product\Dto\ProductResponseDto;
 use App\Api\Product\Dto\ProductUpdateRequestDto;
 use App\Api\Product\Dto\ValidationExampleRequestDto;
+use App\Api\Product\Factory\ResponseFactory;
 use App\Core\Common\Dto\ValidationFailedResponse;
+use App\Core\Common\Factory\HTTPResponseFactory;
 use App\Core\Product\Document\Product;
 use App\Core\Product\Enum\Permission;
 use App\Core\Product\Repository\ProductRepository;
+use App\Core\Product\Service\ProductService;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -39,13 +42,13 @@ class ProductController extends AbstractController
      *
      * @return ProductResponseDto
      */
-    public function show(Product $product = null)
+    public function show(Product $product = null, ResponseFactory $responseFactory)
     {
         if (!$product) {
             throw $this->createNotFoundException('Product not found');
         }
 
-        return $this->createProductResponse($product);
+        return $responseFactory->createProductResponse($product);
     }
 
     /**
@@ -53,19 +56,18 @@ class ProductController extends AbstractController
      * @IsGranted(Permission::PRODUCT_INDEX)
      * @Rest\View()
      *
-     * @param ProductRepository $productRepository
-     *
      * @return ProductListResponseDto|ValidationFailedResponse
      */
     public function index(
-        ProductRepository $productRepository
+        ProductRepository $productRepository,
+        ResponseFactory $responseFactory
     ): ProductListResponseDto {
         $products = $productRepository->findAll();
 
         return new ProductListResponseDto(
             ... array_map(
-                    function (Product $product) {
-                        return $this->createProductResponse($product, null);
+                    function (Product $product) use ($responseFactory) {
+                        return $responseFactory->createProductResponse($product);
                     },
                     $products
                 )
@@ -81,43 +83,23 @@ class ProductController extends AbstractController
      *
      * @param ProductCreateRequestDto             $requestDto
      * @param ConstraintViolationListInterface $validationErrors
-     * @param ProductRepository                   $productRepository
+     * @param ProductService                   $productService
      *
      * @return ProductResponseDto|ValidationFailedResponse|Response
      */
     public function create(
         ProductCreateRequestDto $requestDto,
         ConstraintViolationListInterface $validationErrors,
-        ProductRepository $productRepository
+        ProductService $productService,
+        ResponseFactory $responseFactory,
+        HTTPResponseFactory $HTTPResponseFactory
     ) {
         if ($validationErrors->count() > 0) {
-            return new ValidationFailedResponse($validationErrors);
+            return $HTTPResponseFactory->createValidationFailedResponse($validationErrors);
         }
 
-        if ($product = $productRepository->findOneBy(['title' => $requestDto->title])) {
-            return new Response('Product already exists', Response::HTTP_BAD_REQUEST);
-        }
 
-        $product = new Product(
-            $requestDto->title,
-            $requestDto->description,
-            $requestDto->price,
-            $requestDto->place_date,
-            $requestDto->category,
-            $requestDto->city,
-            $requestDto->type
-        );
-        $product->setTitle($requestDto->title);
-        $product->setDescription($requestDto->description);
-        $product->setPrice($requestDto->price);
-        $product->setPlaceDate($requestDto->place_date);
-        $product->setCategory($requestDto->category);
-        $product->setCity($requestDto->city);
-        $product->setType($requestDto->type);
-
-        $productRepository->save($product);
-
-        return $this->createProductResponse($product, null);
+        return $responseFactory->createProductResponse($productService->createProduct($requestDto));
     }
 
     /**
@@ -127,10 +109,9 @@ class ProductController extends AbstractController
      *
      * @Rest\View()
      *
-     * @param Product|null $product
-     * @param ProductUpdateRequestDto $requestDto
+     * @param ProductUpdateRequestDto             $requestDto
      * @param ConstraintViolationListInterface $validationErrors
-     * @param ProductRepository $productRepository
+     * @param ProductService                   $productService
      *
      * @return ProductResponseDto|ValidationFailedResponse|Response
      */
@@ -138,7 +119,8 @@ class ProductController extends AbstractController
         Product $product = null,
         ProductUpdateRequestDto $requestDto,
         ConstraintViolationListInterface $validationErrors,
-        ProductRepository $productRepository
+        ProductService $productService,
+        ResponseFactory $responseFactory
     ) {
         if (!$product) {
             throw $this->createNotFoundException('Product not found');
@@ -148,17 +130,7 @@ class ProductController extends AbstractController
             return new ValidationFailedResponse($validationErrors);
         }
 
-        $product->setTitle($requestDto->title);
-        $product->setDescription($requestDto->description);
-        $product->setPrice($requestDto->price);
-        $product->setPlaceDate($requestDto->place_date);
-        $product->setCategory($requestDto->category);
-        $product->setCity($requestDto->city);
-        $product->setType($requestDto->type);
-
-        $productRepository->save($product);
-
-        return $this->createProductResponse($product);
+        return $responseFactory->createProductResponse($productService->updateProduct($requestDto));
     }
 
     /**
@@ -190,8 +162,7 @@ class ProductController extends AbstractController
      *
      * @Rest\View()
      *
-     * @param ValidationExampleRequestDto $requestDto
-     * @param ConstraintViolationListInterface $validationErrors
+     * @return ValidationExampleRequestDto|ValidationFailedResponse
      */
     public function validation(
         ValidationExampleRequestDto $requestDto,
@@ -202,26 +173,5 @@ class ProductController extends AbstractController
         }
 
         return $requestDto;
-    }
-
-    /**
-     * @param Product         $product
-     *
-     * @return ProductResponseDto
-     */
-    private function createProductResponse(Product $product): ProductResponseDto
-    {
-        $dto = new ProductResponseDto();
-
-        $dto->id                = $product->getId();
-        $dto->title         = $product->getTitle();
-        $dto->description          = $product->getDescription();
-        $dto->price = $product->getPrice();
-        $dto->place_date             = $product->getPlaceDate();
-        $dto->category             = $product->getCategory();
-        $dto->city             = $product->getCity();
-        $dto->type            = $product->getType();
-
-        return $dto;
     }
 }

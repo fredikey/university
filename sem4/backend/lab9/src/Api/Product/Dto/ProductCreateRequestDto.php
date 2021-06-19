@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace App\Api\Product\Dto;
 
+use App\Core\Product\Validator\ProductExists;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * @ProductExists()
+ */
 class ProductCreateRequestDto
 {
     /**
