@@ -1,0 +1,20 @@
+.contentOuter,
+.content {
+	display: flex;
+	flex: 1;
+}
+.contentOuter {
+	padding: 0 50px;
+}
+.content {
+ 	padding: 24px;
+ 	background: #fff;
+}
+
+.footer {
+	text-align: center;
+}
+
+.container {
+	height: 100vh;
+}

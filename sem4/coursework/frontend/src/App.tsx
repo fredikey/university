@@ -1,7 +1,8 @@
 import React from 'react'
+import AppLayout from './components/Layout'
 
 function App() {
-	return <main>content</main>
+	return <AppLayout>Content</AppLayout>
 }
 
 export default App
