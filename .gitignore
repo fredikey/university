@@ -11,7 +11,7 @@ dist/
 coverage/
 
 # Specific
-sem3/django/project/__pycache__/
-sem3/django/app/__pycache__/
 sem3/django/venv/
 sem3/django/static/
+sem4/coursework/backend/venv
+sem4/coursework/backend/static
