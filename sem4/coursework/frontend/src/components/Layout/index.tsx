@@ -12,7 +12,7 @@ interface IHeaderLink {
 }
 const LINKS: IHeaderLink[] = [
 	{
-		title: 'Tickets List',
+		title: 'Список событий',
 		path: RoutesEnum.TicketsList
 	}
 ]
