@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import CityAPIView, EventTypeAPIView, AddressAPIView, TicketClassAPIView, SeatTicketClassAPIView, \
-    SeatAPIView, order_list, order_detail, user_detail, user_list, ticket_detail, ticket_list
+    SeatAPIView, order_list, order_detail, user_detail, user_list, ticket_detail, ticket_list, event_list, event_detail
 
 urlpatterns = [
     path('city/', CityAPIView.as_view()),
@@ -20,6 +20,6 @@ urlpatterns = [
     path('ticket-list/', ticket_list),  # гет и пост
     path('ticket-detail/<int:pk>', ticket_detail),  # гет, пут, делит
 
-    path('event-list/', ticket_list),  # гет и пост
-    path('event-detail/<int:pk>', ticket_detail),  # гет, пут, делит
+    path('event-list/', event_list),  # гет и пост
+    path('event-detail/<int:pk>', event_detail),  # гет, пут, делит
 ]

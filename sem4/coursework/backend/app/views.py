@@ -235,7 +235,7 @@ def event_list(request):
 
 	if request.method == 'GET':
 		event = Event.objects.all()
-		serializer = TicketSer(event, many=True)
+		serializer = EventSer(event, many=True)
 		return Response(serializer.data)
 
 	elif request.method == 'POST':
@@ -250,7 +250,7 @@ def event_list(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def event_detail(request, pk):
 	try:
-		event = Ticket.objects.get(pk=pk)
+		event = Event.objects.get(pk=pk)
 
 	except Event.DoesNotExist:
 		return HttpResponse(status=status.HTTP_404_NOT_FOUND)
