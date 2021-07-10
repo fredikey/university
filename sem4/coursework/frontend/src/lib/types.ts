@@ -1,3 +1,4 @@
+// Events
 export interface ICity {
 	id: number
 	name: string
@@ -31,4 +32,31 @@ export interface IEvent {
 	status: EventStatus
 	eventType: IEventType
 	address: IEventAddress
+}
+
+// Tickets
+
+export interface ITicketSeat {
+	id: number
+	row: number
+	seat: number
+}
+enum TicketType {
+	SEAT = 0,
+	ENTER = 1
+}
+export interface ITicketClass {
+	id: number
+	name: string
+	price: number
+	amount: number
+	ticketType: TicketType
+	eventId: number
+}
+
+export interface ITicket {
+	id: number
+	ticketClass: ITicketClass
+	seat: ITicketSeat
+	eventId: number
 }
