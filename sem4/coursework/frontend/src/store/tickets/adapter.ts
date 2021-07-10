@@ -20,3 +20,9 @@ export interface IInitialTicketSeat {
 	seat_number: number
 	address: number
 }
+
+export interface IInitialSeatTicketClasses {
+	id: number
+	seat: number
+	ticket: number
+}

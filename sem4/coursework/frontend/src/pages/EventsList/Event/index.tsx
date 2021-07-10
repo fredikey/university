@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import styles from './styles.module.scss'
 import { IEvent } from '../../../lib/types'
-import { Card, List, Divider } from 'antd'
+import { Card, List, Divider, Button } from 'antd'
 import { renderEllipsis } from '../../../lib/utils'
 import { CalendarOutlined, EnvironmentOutlined } from '@ant-design/icons'
 
@@ -12,8 +12,9 @@ interface IListItem {
 }
 interface IProps {
 	data: IEvent
+	onClickBuy: (eventId: number) => void
 }
-function EventComponent({ data }: IProps) {
+function EventComponent({ data, onClickBuy }: IProps) {
 	const date = useMemo(() => {
 		const dateStartObj = new Date(data.timeStart)
 		const dateEndObj = new Date(data.timeEnd)
@@ -45,6 +46,10 @@ function EventComponent({ data }: IProps) {
 			}
 		]
 	}, [date, address])
+
+	const handleBuyTicket = () => {
+		onClickBuy(data.id)
+	}
 	return (
 		<Card title={data.name} bordered bodyStyle={{ paddingTop: 0, paddingBottom: 10 }}>
 			<List
@@ -70,7 +75,12 @@ function EventComponent({ data }: IProps) {
 			<Divider orientation="left" plain>
 				Описание
 			</Divider>
-			<p>{renderEllipsis(data.description, 150)}</p>
+			<div className={styles.bottom}>
+				<p className={styles.description}>{renderEllipsis(data.description, 150)}</p>
+				<Button type="primary" onClick={handleBuyTicket}>
+					Купить
+				</Button>
+			</div>
 		</Card>
 	)
 }

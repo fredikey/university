@@ -40,6 +40,7 @@ export interface ITicketSeat {
 	id: number
 	row: number
 	seat: number
+	ticketClassId: number
 }
 export enum TicketType {
 	SEAT = 0,

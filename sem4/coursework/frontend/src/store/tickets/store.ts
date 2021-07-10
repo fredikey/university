@@ -7,8 +7,8 @@ import { EventStoreInstance } from '../events/store'
 class TicketsStore {
 	public tickets: ITicket[] = []
 
-	private ticketClasses: ITicketClass[] = []
-	private ticketSeats: ITicketSeat[] = []
+	public ticketClasses: ITicketClass[] = []
+	public ticketSeats: ITicketSeat[] = []
 
 	constructor() {
 		makeAutoObservable(this)
@@ -52,13 +52,61 @@ class TicketsStore {
 	}
 
 	async getTicketSeats() {
-		const { data } = await TicketServices.getTicketSeats()
-		this.ticketSeats = data.map((item) => ({
-			id: item.id,
-			seat: item.seat_number,
-			row: item.row_number
-		}))
+		const [{ data: seatsData }, { data: seatsClassesData }] = await Promise.all([
+			TicketServices.getTicketSeats(),
+			TicketServices.getTicketSeatsClasses()
+		])
+		console.log(seatsClassesData)
+		console.log('seatsData', seatsData)
+		this.ticketSeats = seatsData.map((item) => {
+			const seatClasses = seatsClassesData.find((ticketsSeat) => ticketsSeat.seat === item.id)
+			return {
+				id: item.id,
+				seat: item.seat_number,
+				row: item.row_number,
+				// @ts-expect-error
+				ticketClassId: seatClasses.ticketClass
+			}
+		})
 	}
+
+	async createTicket({
+		eventId,
+		seatId,
+		ticketClassId
+	}: {
+		eventId: number
+		seatId: number
+		ticketClassId: number
+	}) {
+		const { data } = await TicketServices.createTicket({
+			event: eventId,
+			seat: seatId,
+			ticket_class: ticketClassId
+		})
+		// todo refactor that duplicated code
+		const event = EventStoreInstance.events.find((event) => event.id === eventId)
+		const seat = this.ticketSeats.find((seat) => seat.id === seatId)
+		const ticketClass = this.ticketClasses.find((ticketClass) => ticketClass.id === ticketClassId)
+
+		this.tickets.push({
+			id: data.id,
+			event: {
+				id: (event as IEvent).id,
+				name: (event as IEvent).name
+			},
+			seat: seat as ITicketSeat,
+			ticketClass: ticketClass as ITicketClass
+		})
+	}
+
+	// async deleteTicket(id: number) {
+	// 	await TicketServices.deleteTicket(id)
+	// 	const idx = this.tickets.findIndex((item) => item.id === id)
+	// 	if (idx !== -1) {
+	// 		this.tickets.splice(idx, 1)
+	// 	}
+	// }
 }
 
 export const TicketStoreInstance = new TicketsStore()

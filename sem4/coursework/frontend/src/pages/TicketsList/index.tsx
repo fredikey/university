@@ -5,6 +5,7 @@ import { Content } from '../../components'
 import { Button, List } from 'antd'
 import { ProfileOutlined } from '@ant-design/icons'
 import { TicketType } from '../../lib/types'
+import { observer } from 'mobx-react-lite'
 
 function TicketsList() {
 	const ticketsStore = useTicketStore()
@@ -61,4 +62,4 @@ function TicketsList() {
 	)
 }
 
-export default TicketsList
+export default observer(TicketsList)
