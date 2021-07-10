@@ -67,7 +67,8 @@ class EventsStore {
 	}
 }
 
-export const EventStoreContext = React.createContext(EventsStore)
+export const EventStoreInstance = new EventsStore()
+export const EventStoreContext = React.createContext(EventStoreInstance)
 
 export const useEventStore = () => {
 	return React.useContext(EventStoreContext)

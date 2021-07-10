@@ -12,8 +12,8 @@ interface IHeaderLink {
 }
 const LINKS: IHeaderLink[] = [
 	{
-		title: 'Список событий',
-		path: RoutesEnum.TicketsList
+		title: 'Все события',
+		path: RoutesEnum.EventsList
 	}
 ]
 interface IProps {
@@ -32,9 +32,7 @@ function AppLayout({ children }: IProps) {
 					))}
 				</Menu>
 			</Header>
-			<Content className={styles.contentOuter}>
-				<div className={styles.content}>{children}</div>
-			</Content>
+			{children}
 			<Footer className={styles.footer}>Kozodaev Victor, 191-321</Footer>
 		</Layout>
 	)

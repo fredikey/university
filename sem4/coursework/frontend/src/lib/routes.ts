@@ -1,5 +1,6 @@
 import { createBrowserHistory } from 'history'
 export enum RoutesEnum {
+	EventsList = '/events',
 	TicketsList = '/tickets'
 }
 
