@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import styles from './styles.module.scss'
 import { Modal, Select, Spin, notification } from 'antd'
 import { useTicketStore } from '../../../store/tickets/store'
+import { useHistory } from 'react-router'
 import { RoutesEnum } from '../../../lib/routes'
 const { Option } = Select
 
@@ -34,6 +35,7 @@ interface IProps {
 export function BuyTicketModal({ state, onClose, visible }: IProps) {
 	const ticketsStore = useTicketStore()
 	const [loading, setLoading] = useState(false)
+	const history = useHistory()
 
 	useEffect(() => {
 		setLoading(true)
@@ -68,6 +70,7 @@ export function BuyTicketModal({ state, onClose, visible }: IProps) {
 					message: 'Билет успешно куплен!',
 					description: 'Транзакция прошла успешно. Чек пришлем на емейл указанный при регистрации.'
 				})
+				history.push(RoutesEnum.TicketsList)
 			})
 	}
 
