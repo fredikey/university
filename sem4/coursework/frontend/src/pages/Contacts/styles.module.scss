@@ -1,0 +1,22 @@
+.container {
+	flex-direction: column;
+}
+.title {
+	font-size: 25px;
+	font-weight: 800;
+	margin-top: 50px;
+}
+.info {
+	margin-bottom: 50px;
+	color: gray;
+	font-size: 18px;
+}
+.list {
+	list-style: none;
+	font-size: 18px;
+	padding: 0;
+}
+
+.listItem {
+	margin-bottom: 10px;
+}

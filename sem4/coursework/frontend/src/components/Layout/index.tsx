@@ -22,6 +22,10 @@ const LINKS: IHeaderLink[] = [
 	{
 		title: 'Мои билеты',
 		path: RoutesEnum.TicketsList
+	},
+	{
+		title: 'Контакты',
+		path: RoutesEnum.Contacts
 	}
 ]
 interface IProps {
