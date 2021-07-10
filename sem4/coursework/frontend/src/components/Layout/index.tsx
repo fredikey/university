@@ -12,6 +12,10 @@ interface IHeaderLink {
 }
 const LINKS: IHeaderLink[] = [
 	{
+		title: 'Главная',
+		path: RoutesEnum.Home
+	},
+	{
 		title: 'Все события',
 		path: RoutesEnum.EventsList
 	},
