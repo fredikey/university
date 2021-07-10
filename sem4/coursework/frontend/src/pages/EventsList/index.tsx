@@ -4,6 +4,9 @@ import styles from './styles.module.scss'
 import { Content } from '../../components'
 import { EventComponent } from './Event'
 import { useModal, BuyTicketModal, IBuyTicketsModalState } from './ButTicketModal'
+import { Input } from 'antd'
+
+const { Search } = Input
 
 function EventsList() {
 	const eventsStore = useEventStore()
@@ -22,11 +25,29 @@ function EventsList() {
 	const openBuyTicketModal = (eventId: number) => {
 		buyTicketModal.open({ eventId })
 	}
+
+	const [searchText, setSearchText] = useState('')
+
+	const filteredItems = eventsStore.events.filter((item) => {
+		return item.name.toLowerCase().includes(searchText)
+	})
 	return (
 		<Content loading={loading} className={styles.container}>
-			{eventsStore.events.map((item) => (
-				<EventComponent key={item.id} data={item} onClickBuy={openBuyTicketModal} />
-			))}
+			<Search
+				placeholder="Введите имя эвента.."
+				allowClear
+				enterButton="Поиск"
+				size="large"
+				onChange={(evt) => {
+					setSearchText(evt.target.value)
+				}}
+				onSearch={setSearchText}
+			/>
+			<div className={styles.grid}>
+				{filteredItems.map((item) => (
+					<EventComponent key={item.id} data={item} onClickBuy={openBuyTicketModal} />
+				))}
+			</div>
 			{buyTicketModal.visible && (
 				<BuyTicketModal
 					visible={buyTicketModal.visible}
