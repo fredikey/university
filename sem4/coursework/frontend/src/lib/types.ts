@@ -41,7 +41,7 @@ export interface ITicketSeat {
 	row: number
 	seat: number
 }
-enum TicketType {
+export enum TicketType {
 	SEAT = 0,
 	ENTER = 1
 }
@@ -58,5 +58,5 @@ export interface ITicket {
 	id: number
 	ticketClass: ITicketClass
 	seat: ITicketSeat
-	eventId: number
+	event: Pick<IEvent, 'id' | 'name'>
 }

@@ -1,7 +1,8 @@
 import { makeAutoObservable } from 'mobx'
-import { ITicket, ITicketClass, ITicketSeat } from '../../lib/types'
+import { IEvent, ITicket, ITicketClass, ITicketSeat } from '../../lib/types'
 import TicketServices from './services'
 import React from 'react'
+import { EventStoreInstance } from '../events/store'
 
 class TicketsStore {
 	public tickets: ITicket[] = []
@@ -16,12 +17,14 @@ class TicketsStore {
 	async getTickets() {
 		const [{ data }] = await Promise.all([
 			TicketServices.getTickets(),
+			EventStoreInstance.events.length === 0 ? EventStoreInstance.getEvents() : undefined,
 			this.ticketClasses.length === 0 ? this.getTicketClasses() : undefined,
 			this.ticketSeats.length === 0 ? this.getTicketSeats() : undefined
 		])
 
 		// todo move to adapter layer
 		this.tickets = data.map((item) => {
+			const event = EventStoreInstance.events.find((event) => event.id === item.event)
 			const seat = this.ticketSeats.find((seat) => seat.id === item.seat)
 			const ticketClass = this.ticketClasses.find(
 				(ticketClass) => ticketClass.id === item.ticket_class
@@ -29,7 +32,10 @@ class TicketsStore {
 
 			return {
 				id: item.id,
-				eventId: item.event,
+				event: {
+					id: (event as IEvent).id,
+					name: (event as IEvent).name
+				},
 				seat: seat as ITicketSeat,
 				ticketClass: ticketClass as ITicketClass
 			}

@@ -14,6 +14,10 @@ const LINKS: IHeaderLink[] = [
 	{
 		title: 'Все события',
 		path: RoutesEnum.EventsList
+	},
+	{
+		title: 'Мои билеты',
+		path: RoutesEnum.TicketsList
 	}
 ]
 interface IProps {
