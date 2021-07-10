@@ -1,0 +1,17 @@
+.contentOuter,
+.content {
+	display: flex;
+	flex: 1;
+}
+.contentOuter {
+	padding: 0 50px;
+}
+.content {
+ 	padding: 24px;
+ 	background: #fff;
+}
+
+.loaderContainer {
+	padding-top: 50px;
+	justify-content: center;
+}
