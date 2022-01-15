@@ -27,7 +27,6 @@ function EventsList() {
 	}
 
 	const [searchText, setSearchText] = useState('')
-
 	const filteredItems = eventsStore.events.filter((item) => {
 		return item.name.toLowerCase().includes(searchText)
 	})
