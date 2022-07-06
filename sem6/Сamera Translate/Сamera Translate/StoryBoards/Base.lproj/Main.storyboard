@@ -15,19 +15,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HaO-eD-AZR" userLabel="Camera Output View">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HaO-eD-AZR" userLabel="Camera Output View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="aOw-P5-lEE"/>
+                        <viewLayoutGuide key="safeArea" id="LuK-C1-zhe"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="HaO-eD-AZR" firstAttribute="leading" secondItem="aOw-P5-lEE" secondAttribute="leading" id="1t4-jM-bSq"/>
-                            <constraint firstItem="aOw-P5-lEE" firstAttribute="trailing" secondItem="HaO-eD-AZR" secondAttribute="trailing" id="474-7Z-ZfU"/>
-                            <constraint firstItem="aOw-P5-lEE" firstAttribute="bottom" secondItem="HaO-eD-AZR" secondAttribute="bottom" id="bdd-5v-iYl"/>
-                            <constraint firstItem="HaO-eD-AZR" firstAttribute="top" secondItem="aOw-P5-lEE" secondAttribute="top" id="fm7-Ky-sBR"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="cameraOutputView" destination="HaO-eD-AZR" id="9Mg-ds-qPY"/>
