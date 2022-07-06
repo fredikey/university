@@ -8,7 +8,7 @@
 import Vision
 
 final class TextRecognitionHelper {
-    var onRecognize: (([String]) -> Void)?
+    var onRecognize: (([ResultBox]) -> Void)?
     private(set) var isRecognizing = false
     private let mainQueue = DispatchQueue.main
     private let queue = DispatchQueue(label: "TextRecognitionHelper", qos: .background)
@@ -41,15 +41,28 @@ final class TextRecognitionHelper {
             self.mainQueue.sync {
                 self.isRecognizing = true
             }
-            var result = [String]()
+            
+            var result = [ResultBox]()
             for observation in observations {
                 let recognizedText = observation.topCandidates(1)[.zero].string
-                result.append(recognizedText)
+                
+                let rect = self.convertCoordinates(of: observation.boundingBox)
+                
+                result.append(ResultBox(text: recognizedText, rect: rect))
             }
+            
             self.mainQueue.sync {
                 self.onRecognize?(result)
                 self.isRecognizing = false
             }
         }
+    }
+    
+    private func convertCoordinates(of recognizedBoundingBox: CGRect) -> CGRect {
+        let x = recognizedBoundingBox.minX * recognizeRectSize.width
+        let y = (1 - recognizedBoundingBox.maxY) * recognizeRectSize.height
+        let width = (recognizedBoundingBox.maxX - recognizedBoundingBox.minX) * recognizeRectSize.width
+        let height = (recognizedBoundingBox.maxY - recognizedBoundingBox.minY) * recognizeRectSize.height
+        return CGRect(x: x, y: y, width: width, height: height)
     }
 }

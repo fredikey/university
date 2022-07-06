@@ -47,6 +47,19 @@ final class CameraHelper: NSObject {
             self.isReceiving = state
         }
     }
+    
+    func draw(layers: [CATextLayer]) {
+        mainQueue.async {
+            self.captureVideoPreviewLayer.sublayers?.removeSubrange(1...)
+            layers.forEach{self.captureVideoPreviewLayer.addSublayer($0)}
+        }
+    }
+    
+    func clearPreviewLayer() {
+        mainQueue.async {
+            self.captureVideoPreviewLayer.sublayers?.removeSubrange(1...)
+        }
+    }
 }
 
 extension CameraHelper: AVCaptureVideoDataOutputSampleBufferDelegate {

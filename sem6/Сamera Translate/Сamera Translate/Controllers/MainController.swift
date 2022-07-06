@@ -15,6 +15,7 @@ class MainController: UIViewController {
     private var cameraHelper: CameraHelper!
     private var textRecognitionHelper: TextRecognitionHelper!
     private var translateService: TranslateService!
+    private var boxHelper: BoxHelper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +30,14 @@ class MainController: UIViewController {
         
         self.translateService = TranslateService()
         
+        self.boxHelper = BoxHelper(rectWidth: cameraOutputView.bounds.width)
+        
         cameraHelper.onMove = {
             print("CameraHelper: onMove")
-//            self.cameraHelper.setReceiving(true)
+            
+            self.translateService.stopTranslate()
+            self.cameraHelper.clearPreviewLayer()
+            self.cameraHelper.setReceiving(true)
         }
         
         cameraHelper.onReceive = { frame in
@@ -51,6 +57,10 @@ class MainController: UIViewController {
         
         translateService.onTranslate = { result in
             print("TranslateService: onTranslate", result)
+            
+            let layers = self.boxHelper.updateLayout(boxes: result)
+            self.cameraHelper.draw(layers: layers)
+            
             self.cameraHelper.setReceiving(true)
         }
     }

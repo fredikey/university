@@ -11,11 +11,11 @@ import SwiftyJSON
 
 
 final class TranslateService {
-    var onTranslate: (([String]) -> Void)?
+    var onTranslate: (([ResultBox]) -> Void)?
     private(set) var isTranslating = false
     private let mainQueue = DispatchQueue.main
     private let queue = DispatchQueue(label: "TranslateService", qos: .background)
-    private var currentTranslating = [String]()
+    private var currentTranslating = [ResultBox]()
     
     func stopTranslate() {
         mainQueue.async {
@@ -23,7 +23,7 @@ final class TranslateService {
         }
     }
     
-    func translate(result: [String]) {
+    func translate(result: [ResultBox]) {
         mainQueue.async {
             guard !self.isTranslating else { return }
             self.isTranslating = true
@@ -40,7 +40,7 @@ final class TranslateService {
                 self.isTranslating = false
                 return
             }
-            let parameters = ["q": self.currentTranslating[index],
+            let parameters = ["q": self.currentTranslating[index].text,
                               "langpair": "en|ru",
                               "de": "viktor7778123@gmail.com"]
             self.queue.async {
@@ -49,7 +49,7 @@ final class TranslateService {
                         guard self.isTranslating,
                               let value = response.value,
                               let text = JSON(value)["responseData"]["translatedText"].string else { return }
-                        self.currentTranslating[index] = text
+                        self.currentTranslating[index].text = text
                         self.translateNext(index: index + 1)
                     }
                 }

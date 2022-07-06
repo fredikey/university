@@ -12,6 +12,8 @@
 		E37FFB8C287645B900849406 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E37FFB8B287645B900849406 /* Alamofire */; };
 		E37FFB8F287645D200849406 /* TranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37FFB8E287645D200849406 /* TranslateService.swift */; };
 		E37FFB922876488400849406 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E37FFB912876488400849406 /* SwiftyJSON */; };
+		E37FFB9528764E6F00849406 /* ResultBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37FFB9428764E6F00849406 /* ResultBox.swift */; };
+		E37FFB972876503000849406 /* BoxHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37FFB962876503000849406 /* BoxHelper.swift */; };
 		E3D5D4EC27FA54DB00B63C3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5D4EB27FA54DB00B63C3C /* AppDelegate.swift */; };
 		E3D5D4EE27FA54DB00B63C3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5D4ED27FA54DB00B63C3C /* SceneDelegate.swift */; };
 		E3D5D4F027FA54DB00B63C3C /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5D4EF27FA54DB00B63C3C /* MainController.swift */; };
@@ -25,6 +27,8 @@
 		E37FFB8128762AF000849406 /* CameraHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHelper.swift; sourceTree = "<group>"; };
 		E37FFB8328762B5600849406 /* TextRecognitionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionHelper.swift; sourceTree = "<group>"; };
 		E37FFB8E287645D200849406 /* TranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateService.swift; sourceTree = "<group>"; };
+		E37FFB9428764E6F00849406 /* ResultBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBox.swift; sourceTree = "<group>"; };
+		E37FFB962876503000849406 /* BoxHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxHelper.swift; sourceTree = "<group>"; };
 		E3D5D4E827FA54DB00B63C3C /* Сamera Translate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Сamera Translate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D5D4EB27FA54DB00B63C3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3D5D4ED27FA54DB00B63C3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +85,7 @@
 			children = (
 				E37FFB8128762AF000849406 /* CameraHelper.swift */,
 				E37FFB8328762B5600849406 /* TextRecognitionHelper.swift */,
+				E37FFB962876503000849406 /* BoxHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -91,6 +96,14 @@
 				E37FFB8E287645D200849406 /* TranslateService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		E37FFB9328764E5000849406 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				E37FFB9428764E6F00849406 /* ResultBox.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		E3D5D4DF27FA54DB00B63C3C = {
@@ -112,6 +125,7 @@
 		E3D5D4EA27FA54DB00B63C3C /* Сamera Translate */ = {
 			isa = PBXGroup;
 			children = (
+				E37FFB9328764E5000849406 /* Entities */,
 				E37FFB8D287645C600849406 /* Services */,
 				E37FFB7F2876292A00849406 /* Helpers */,
 				E3D5D4FC27FA54DD00B63C3C /* Info.plist */,
@@ -204,6 +218,8 @@
 			files = (
 				E3D5D4F027FA54DB00B63C3C /* MainController.swift in Sources */,
 				E3D5D4EC27FA54DB00B63C3C /* AppDelegate.swift in Sources */,
+				E37FFB9528764E6F00849406 /* ResultBox.swift in Sources */,
+				E37FFB972876503000849406 /* BoxHelper.swift in Sources */,
 				E37FFB8228762AF000849406 /* CameraHelper.swift in Sources */,
 				E37FFB8428762B5600849406 /* TextRecognitionHelper.swift in Sources */,
 				E3D5D4EE27FA54DB00B63C3C /* SceneDelegate.swift in Sources */,
