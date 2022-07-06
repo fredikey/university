@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E37FFB8228762AF000849406 /* CameraHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37FFB8128762AF000849406 /* CameraHelper.swift */; };
+		E37FFB8428762B5600849406 /* TextRecognitionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37FFB8328762B5600849406 /* TextRecognitionHelper.swift */; };
 		E3D5D4EC27FA54DB00B63C3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5D4EB27FA54DB00B63C3C /* AppDelegate.swift */; };
 		E3D5D4EE27FA54DB00B63C3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5D4ED27FA54DB00B63C3C /* SceneDelegate.swift */; };
-		E3D5D4F027FA54DB00B63C3C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5D4EF27FA54DB00B63C3C /* ViewController.swift */; };
+		E3D5D4F027FA54DB00B63C3C /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5D4EF27FA54DB00B63C3C /* MainController.swift */; };
 		E3D5D4F327FA54DB00B63C3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3D5D4F127FA54DB00B63C3C /* Main.storyboard */; };
 		E3D5D4F627FA54DB00B63C3C /* _amera_Translate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3D5D4F427FA54DB00B63C3C /* _amera_Translate.xcdatamodeld */; };
 		E3D5D4F827FA54DD00B63C3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3D5D4F727FA54DD00B63C3C /* Assets.xcassets */; };
@@ -17,10 +19,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E37FFB8128762AF000849406 /* CameraHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHelper.swift; sourceTree = "<group>"; };
+		E37FFB8328762B5600849406 /* TextRecognitionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionHelper.swift; sourceTree = "<group>"; };
 		E3D5D4E827FA54DB00B63C3C /* Сamera Translate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Сamera Translate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D5D4EB27FA54DB00B63C3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3D5D4ED27FA54DB00B63C3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E3D5D4EF27FA54DB00B63C3C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E3D5D4EF27FA54DB00B63C3C /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		E3D5D4F227FA54DB00B63C3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3D5D4F527FA54DB00B63C3C /* _amera_Translate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = _amera_Translate.xcdatamodel; sourceTree = "<group>"; };
 		E3D5D4F727FA54DD00B63C3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -39,6 +43,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E37FFB7A2876228000849406 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				E3D5D4F127FA54DB00B63C3C /* Main.storyboard */,
+				E3D5D4F927FA54DD00B63C3C /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoards;
+			sourceTree = "<group>";
+		};
+		E37FFB7B287624A500849406 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E3D5D4EF27FA54DB00B63C3C /* MainController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E37FFB7C2876251D00849406 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				E3D5D4ED27FA54DB00B63C3C /* SceneDelegate.swift */,
+				E3D5D4F727FA54DD00B63C3C /* Assets.xcassets */,
+				E3D5D4EB27FA54DB00B63C3C /* AppDelegate.swift */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		E37FFB7F2876292A00849406 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E37FFB8128762AF000849406 /* CameraHelper.swift */,
+				E37FFB8328762B5600849406 /* TextRecognitionHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		E3D5D4DF27FA54DB00B63C3C = {
 			isa = PBXGroup;
 			children = (
@@ -58,13 +98,11 @@
 		E3D5D4EA27FA54DB00B63C3C /* Сamera Translate */ = {
 			isa = PBXGroup;
 			children = (
-				E3D5D4EB27FA54DB00B63C3C /* AppDelegate.swift */,
-				E3D5D4ED27FA54DB00B63C3C /* SceneDelegate.swift */,
-				E3D5D4EF27FA54DB00B63C3C /* ViewController.swift */,
-				E3D5D4F127FA54DB00B63C3C /* Main.storyboard */,
-				E3D5D4F727FA54DD00B63C3C /* Assets.xcassets */,
-				E3D5D4F927FA54DD00B63C3C /* LaunchScreen.storyboard */,
+				E37FFB7F2876292A00849406 /* Helpers */,
 				E3D5D4FC27FA54DD00B63C3C /* Info.plist */,
+				E37FFB7C2876251D00849406 /* System */,
+				E37FFB7B287624A500849406 /* Controllers */,
+				E37FFB7A2876228000849406 /* StoryBoards */,
 				E3D5D4F427FA54DB00B63C3C /* _amera_Translate.xcdatamodeld */,
 			);
 			path = "Сamera Translate";
@@ -141,8 +179,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3D5D4F027FA54DB00B63C3C /* ViewController.swift in Sources */,
+				E3D5D4F027FA54DB00B63C3C /* MainController.swift in Sources */,
 				E3D5D4EC27FA54DB00B63C3C /* AppDelegate.swift in Sources */,
+				E37FFB8228762AF000849406 /* CameraHelper.swift in Sources */,
+				E37FFB8428762B5600849406 /* TextRecognitionHelper.swift in Sources */,
 				E3D5D4EE27FA54DB00B63C3C /* SceneDelegate.swift in Sources */,
 				E3D5D4F627FA54DB00B63C3C /* _amera_Translate.xcdatamodeld in Sources */,
 			);
@@ -293,7 +333,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 773C75L43P;
+				DEVELOPMENT_TEAM = 3P5NH6LU3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Сamera Translate/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "for text detection";
@@ -322,7 +362,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 773C75L43P;
+				DEVELOPMENT_TEAM = 3P5NH6LU3H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Сamera Translate/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "for text detection";
