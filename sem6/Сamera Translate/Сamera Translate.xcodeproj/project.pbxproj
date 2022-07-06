@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		E37FFB8228762AF000849406 /* CameraHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37FFB8128762AF000849406 /* CameraHelper.swift */; };
 		E37FFB8428762B5600849406 /* TextRecognitionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37FFB8328762B5600849406 /* TextRecognitionHelper.swift */; };
+		E37FFB8C287645B900849406 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E37FFB8B287645B900849406 /* Alamofire */; };
+		E37FFB8F287645D200849406 /* TranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37FFB8E287645D200849406 /* TranslateService.swift */; };
+		E37FFB922876488400849406 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E37FFB912876488400849406 /* SwiftyJSON */; };
 		E3D5D4EC27FA54DB00B63C3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5D4EB27FA54DB00B63C3C /* AppDelegate.swift */; };
 		E3D5D4EE27FA54DB00B63C3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5D4ED27FA54DB00B63C3C /* SceneDelegate.swift */; };
 		E3D5D4F027FA54DB00B63C3C /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D5D4EF27FA54DB00B63C3C /* MainController.swift */; };
@@ -21,6 +24,7 @@
 /* Begin PBXFileReference section */
 		E37FFB8128762AF000849406 /* CameraHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHelper.swift; sourceTree = "<group>"; };
 		E37FFB8328762B5600849406 /* TextRecognitionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionHelper.swift; sourceTree = "<group>"; };
+		E37FFB8E287645D200849406 /* TranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateService.swift; sourceTree = "<group>"; };
 		E3D5D4E827FA54DB00B63C3C /* Сamera Translate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Сamera Translate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D5D4EB27FA54DB00B63C3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3D5D4ED27FA54DB00B63C3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E37FFB922876488400849406 /* SwiftyJSON in Frameworks */,
+				E37FFB8C287645B900849406 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +85,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		E37FFB8D287645C600849406 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E37FFB8E287645D200849406 /* TranslateService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		E3D5D4DF27FA54DB00B63C3C = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +112,7 @@
 		E3D5D4EA27FA54DB00B63C3C /* Сamera Translate */ = {
 			isa = PBXGroup;
 			children = (
+				E37FFB8D287645C600849406 /* Services */,
 				E37FFB7F2876292A00849406 /* Helpers */,
 				E3D5D4FC27FA54DD00B63C3C /* Info.plist */,
 				E37FFB7C2876251D00849406 /* System */,
@@ -124,6 +139,10 @@
 			dependencies = (
 			);
 			name = "Сamera Translate";
+			packageProductDependencies = (
+				E37FFB8B287645B900849406 /* Alamofire */,
+				E37FFB912876488400849406 /* SwiftyJSON */,
+			);
 			productName = "Сamera Translate";
 			productReference = E3D5D4E827FA54DB00B63C3C /* Сamera Translate.app */;
 			productType = "com.apple.product-type.application";
@@ -152,6 +171,10 @@
 				Base,
 			);
 			mainGroup = E3D5D4DF27FA54DB00B63C3C;
+			packageReferences = (
+				E37FFB8A287645B900849406 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				E37FFB902876488400849406 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+			);
 			productRefGroup = E3D5D4E927FA54DB00B63C3C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -184,6 +207,7 @@
 				E37FFB8228762AF000849406 /* CameraHelper.swift in Sources */,
 				E37FFB8428762B5600849406 /* TextRecognitionHelper.swift in Sources */,
 				E3D5D4EE27FA54DB00B63C3C /* SceneDelegate.swift in Sources */,
+				E37FFB8F287645D200849406 /* TranslateService.swift in Sources */,
 				E3D5D4F627FA54DB00B63C3C /* _amera_Translate.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,6 +430,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E37FFB8A287645B900849406 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		E37FFB902876488400849406 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E37FFB8B287645B900849406 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E37FFB8A287645B900849406 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		E37FFB912876488400849406 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E37FFB902876488400849406 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E3D5D4F427FA54DB00B63C3C /* _amera_Translate.xcdatamodeld */ = {

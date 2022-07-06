@@ -14,6 +14,7 @@ class MainController: UIViewController {
     @IBOutlet weak var cameraOutputView: UIView!
     private var cameraHelper: CameraHelper!
     private var textRecognitionHelper: TextRecognitionHelper!
+    private var translateService: TranslateService!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +27,11 @@ class MainController: UIViewController {
         
         self.textRecognitionHelper = TextRecognitionHelper(recognizeRectSize: cameraOutputView.bounds.size)
         
+        self.translateService = TranslateService()
+        
         cameraHelper.onMove = {
             print("CameraHelper: onMove")
-            self.cameraHelper.setReceiving(true)
+//            self.cameraHelper.setReceiving(true)
         }
         
         cameraHelper.onReceive = { frame in
@@ -39,6 +42,15 @@ class MainController: UIViewController {
         
         textRecognitionHelper.onRecognize = { result in
             print("TextRecognitionHelper: onRecognize", result)
+            if !result.isEmpty {
+                self.translateService.translate(result: result)
+            } else {
+                self.cameraHelper.setReceiving(true)
+            }
+        }
+        
+        translateService.onTranslate = { result in
+            print("TranslateService: onTranslate", result)
             self.cameraHelper.setReceiving(true)
         }
     }
